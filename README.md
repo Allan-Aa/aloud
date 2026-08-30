@@ -10,8 +10,7 @@ A native macOS text-to-speech app for reading editor text, clipboard content, or
 
 - 支持 MiniMax、OpenAI 和 macOS 系统语音。MiniMax 与 OpenAI 使用用户自己的 API Key，macOS 系统语音无需云端凭据。
 - MiniMax 音色按类别分组并支持搜索；332 个系统音色附带内置离线样音，试听同一音色时无需重复请求 API。
-- 在其他 AI 原生桌面 App 中按下设置的全局快捷键，例如 Codex、Claude，可以直接朗读当前前台对话的最新 AI 回复，不必切回对话窗口或手动复制。
-- 也支持剪贴板朗读、当前选区朗读、Markdown 清理、播放速度调整、历史记录和 WAV 导出。
+- 在任意 App 中选中需要朗读的内容后，按下设置的全局快捷键即可播放；也支持剪贴板朗读、Markdown 清理、播放速度调整、历史记录和 WAV 导出。
 - API Key 保存在 macOS 钥匙串中；MiniMax 也可通过本机 1Password CLI 导入。
 - Gemini 适配器仍受实验功能与发布审批双重门控，当前发行版不可用。
 
@@ -19,8 +18,7 @@ A native macOS text-to-speech app for reading editor text, clipboard content, or
 
 - Supports MiniMax, OpenAI, and macOS system voices. MiniMax and OpenAI use the user's own API key; macOS voices require no cloud credential.
 - MiniMax voices are searchable and grouped. The app bundles offline samples for 332 system voices, so replaying those samples does not incur another API request.
-- From another AI-native desktop app, such as Codex or Claude, press the configured global hotkey to read the latest reply from the current foreground conversation, without switching back or copying it manually.
-- Also includes clipboard and selection reading, Markdown cleanup, playback-speed controls, history, and WAV export.
+- In any app, select the content you want to hear, then press the configured global hotkey to play it. Also includes clipboard reading, Markdown cleanup, playback-speed controls, history, and WAV export.
 - API keys are stored in the macOS Keychain. MiniMax can also import through the local 1Password CLI.
 - The Gemini adapter remains behind both experimental-feature and release-approval gates and is unavailable in the current release.
 
@@ -51,9 +49,9 @@ swift run Aloud
 
 For first use, choose a provider, model, and voice in Settings. MiniMax and OpenAI each require their own API key. MiniMax can import through the [1Password CLI](https://developer.1password.com/docs/cli/) from an item named `Aloud MiniMax API Key`, with a `credential` field, in the `Private` vault; manual entry in the app is also supported. The project does not read production credentials from environment variables or repository files.
 
-在 Codex、Claude 等 AI 原生桌面 App 的对话窗口前台显示时，可以在其他 App 中按下设置的全局快捷键，念会读取当前对话的最新 AI 回复并开始播放。这个入口面向支持相应读取方式的 AI 原生桌面 App，不代表所有聊天 App 都提供同样的对话读取能力。
+要朗读 Codex、Claude 等 AI App 的回复时，先选中想听的那一段，再按设置的“朗读选中文字”快捷键。无需复制到另一个应用；如果无法选中，也可以复制后使用“朗读剪贴板”。
 
-When a conversation is in the foreground in an AI-native desktop app such as Codex or Claude, press the configured global hotkey from another app. Aloud reads the latest reply and starts playback. This entry point targets AI-native desktop apps that support the corresponding extraction path; it does not imply equivalent conversation extraction from every chat app.
+To read a reply in an AI app such as Codex or Claude, select the passage you want to hear, then press the configured Read Selection hotkey. You do not need to copy it into another app; if selection is unavailable, copy it and use Read Clipboard instead.
 
 ## 构建应用包 / Build the app bundle
 
