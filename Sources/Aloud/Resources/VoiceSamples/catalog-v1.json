@@ -1,0 +1,2997 @@
+{
+  "accountSourceURL" : "https://api.minimax.io/v1/get_voice",
+  "modelID" : "speech-2.8-hd",
+  "retrievedAt" : "2026-08-16T18:44:41Z",
+  "schemaVersion" : 1,
+  "sourceURL" : "https://platform.minimax.io/docs/faq/system-voice-id",
+  "voices" : [
+    {
+      "displayName" : "Expressive Narrator",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 1,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.c550ecfe292ebf3b2ed2341a14d4c126aa8eea3ebfcc4d5ac4f3e048b3534c06",
+      "wireVoiceID" : "English_expressive_narrator"
+    },
+    {
+      "displayName" : "Radiant Girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 2,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.8381e39a56f36a3df261f4c7b070f6acb190ce9c8d83c460220fd06780483839",
+      "wireVoiceID" : "English_radiant_girl"
+    },
+    {
+      "displayName" : "Magnetic-voiced Male",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 3,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.db4b35ea0ff33ca3cb975b4269f6c6766adfe416b72a0f4333141919415ea59c",
+      "wireVoiceID" : "English_magnetic_voiced_man"
+    },
+    {
+      "displayName" : "Compelling Lady",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 4,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.2ccbd49e2735768755991ef10dda6a68852f46b77854e0c6bcddcbfe9a127b55",
+      "wireVoiceID" : "English_compelling_lady1"
+    },
+    {
+      "displayName" : "Aussie Bloke",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 5,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.a8250aa92daf263406da38a5891034e70e25cf9419d264a6f8d37898cbc65cf5",
+      "wireVoiceID" : "English_Aussie_Bloke"
+    },
+    {
+      "displayName" : "Captivating Female",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 6,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.10db341db047b02a0983c2e388169fc7700164fa7d01ea261217e0aaef623fda",
+      "wireVoiceID" : "English_captivating_female1"
+    },
+    {
+      "displayName" : "Upbeat Woman",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 7,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.cea102018d20aba14e95b3112a0e93221d160d3cd5bdcf166d5911a0948a7ac3",
+      "wireVoiceID" : "English_Upbeat_Woman"
+    },
+    {
+      "displayName" : "Trustworthy Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 8,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.1fcd5817a56944b270a990c36f78215fa145b69a26aa68bf6b8de77659ea372d",
+      "wireVoiceID" : "English_Trustworth_Man"
+    },
+    {
+      "displayName" : "Calm Woman",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 9,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.9dc3e735db591506eccca9dff89cd7d582b00a05910a4f1b4d742beb148da0b9",
+      "wireVoiceID" : "English_CalmWoman"
+    },
+    {
+      "displayName" : "Upset Girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 10,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.4bd2e24253a216c8abfffa6429678f98452759a4b8b29de52f79ce37ebbc799a",
+      "wireVoiceID" : "English_UpsetGirl"
+    },
+    {
+      "displayName" : "Gentle-voiced Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 11,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.c9a8376ca1eb91ef996deca047398bff7951a0996150c567cc1ce767c0048f80",
+      "wireVoiceID" : "English_Gentle-voiced_man"
+    },
+    {
+      "displayName" : "Whispering girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 12,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.ca4e0726f7bc7c51e0106fa74810bc98519e0274815ae643ac61f4f72e8f5c0a",
+      "wireVoiceID" : "English_Whispering_girl"
+    },
+    {
+      "displayName" : "Diligent Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 13,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.9283aac26757b423e2df6ee9b2edd4a7f429921c61a863dd0744b91ef03ab931",
+      "wireVoiceID" : "English_Diligent_Man"
+    },
+    {
+      "displayName" : "Graceful Lady",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 14,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.ee2ff84b469e2bb042a34e4526d56e50bcf3c14ee73a8ccb470f032f2af807cb",
+      "wireVoiceID" : "English_Graceful_Lady"
+    },
+    {
+      "displayName" : "Reserved Young Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 15,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.3e076752de5bce7220a0bc150b99b2b7440f46ffd5d55e9561df9fcdc9e78ecb",
+      "wireVoiceID" : "English_ReservedYoungMan"
+    },
+    {
+      "displayName" : "Playful Girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 16,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.7113a8007779cab2c1d5c763af1a2ce329c7fa4637a04fea33243e7b424df76e",
+      "wireVoiceID" : "English_PlayfulGirl"
+    },
+    {
+      "displayName" : "Man With Deep Voice",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 17,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.43da8676768dc91fce51f7d66fa639ad58974e81130eeb91b273345debcbabb0",
+      "wireVoiceID" : "English_ManWithDeepVoice"
+    },
+    {
+      "displayName" : "Mature Partner",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 18,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.8288188b0f011e555fdac6e9296995e14fb9bd579695a3a4dabfef26a00c8c16",
+      "wireVoiceID" : "English_MaturePartner"
+    },
+    {
+      "displayName" : "Friendly Guy",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 19,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.80a8602ef3f98c2d8de2c4906eab934e66a53d459d78072659a49e38f64105ee",
+      "wireVoiceID" : "English_FriendlyPerson"
+    },
+    {
+      "displayName" : "Bossy Lady",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 20,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.217e06bd7bf95ea8bf3559fcd1d5dede2f3d3aa13bef3136631846e523e00aed",
+      "wireVoiceID" : "English_MatureBoss"
+    },
+    {
+      "displayName" : "Male Debater",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 21,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.45b99ae144a87f87614507eca222488e34ebfef7631f709f92b210a96aad5c08",
+      "wireVoiceID" : "English_Debator"
+    },
+    {
+      "displayName" : "Lovely Girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 22,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.c12fc416346188e2ea1749c0f38b94e69d95d92416f509b0857c91d7bcb241a2",
+      "wireVoiceID" : "English_LovelyGirl"
+    },
+    {
+      "displayName" : "Reliable Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 23,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.1ab6e98a5a201becae8394bf4a6ecb3ebe12b34629eab74391e87d105713fc89",
+      "wireVoiceID" : "English_Steadymentor"
+    },
+    {
+      "displayName" : "Deep-voiced Gentleman",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 24,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.2fa3a2a8b7e6c15499e0af09f406de26257e3d17cb700d0c71f540bcae056303",
+      "wireVoiceID" : "English_Deep-VoicedGentleman"
+    },
+    {
+      "displayName" : "Wise Lady",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 25,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.b0e4ef2c0e4ba5238c9e4b29a1a38a8ca9ccc70a6da0984621f1ddbcabf1552d",
+      "wireVoiceID" : "English_Wiselady"
+    },
+    {
+      "displayName" : "Captivating Storyteller",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 26,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.18dc485b55b721749270fbe6e87e1e6f0c0d71394e6b2240c72722a139a69093",
+      "wireVoiceID" : "English_CaptivatingStoryteller"
+    },
+    {
+      "displayName" : "Decent Young Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 27,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.0a96895f3f1f279ed97ba2d09a8e8e5ccd198c9f745b0c1777e6cb8d7cfdd82f",
+      "wireVoiceID" : "English_DecentYoungMan"
+    },
+    {
+      "displayName" : "Sentimental Lady",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 28,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.5aab0043883fa68bafb7d95365e1388294d6fa400f47a32f9ed37d44f4f3074e",
+      "wireVoiceID" : "English_SentimentalLady"
+    },
+    {
+      "displayName" : "Imposing Queen",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 29,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.6901023dcc85ad80487dda746dd6c83eb9f2821846a237dcb87aa1bb510ce2d2",
+      "wireVoiceID" : "English_ImposingManner"
+    },
+    {
+      "displayName" : "Teen Boy",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 30,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.7604efdc97601c922a7c4e6966e5e47cf46b4818e2cff439065f629e31a5126a",
+      "wireVoiceID" : "English_SadTeen"
+    },
+    {
+      "displayName" : "Passionate Warrior",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 31,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.a84909c3e3a7960942430d0622c501ee255d3266d5dfd3d53e7ecda36a399df3",
+      "wireVoiceID" : "English_PassionateWarrior"
+    },
+    {
+      "displayName" : "Wise Scholar",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 32,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.100c178750b30f0bacb6fc97f297c44eb8e57c6eab155afc6e41bfd92a707852",
+      "wireVoiceID" : "English_WiseScholar"
+    },
+    {
+      "displayName" : "Soft-Spoken Girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 33,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.044e8c4b52fc257ea372468eeb31d95bbf955da1b65566c9695d39e16ecf42b2",
+      "wireVoiceID" : "English_Soft-spokenGirl"
+    },
+    {
+      "displayName" : "Serene Woman",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 34,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.a3de14ca6fc4e4e3d65d10e3a5920287155deb42d36839dc83603f712b34901a",
+      "wireVoiceID" : "English_SereneWoman"
+    },
+    {
+      "displayName" : "Confident Woman",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 35,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.7da7b82e970285cf3c3bfb38f8f05b4a76c70bd679eed517eaf4e38777325a80",
+      "wireVoiceID" : "English_ConfidentWoman"
+    },
+    {
+      "displayName" : "Patient Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 36,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.f69354bbf2e19bdf64f37e78195fb94e107a373123bfb0553a68771d15e51d80",
+      "wireVoiceID" : "English_PatientMan"
+    },
+    {
+      "displayName" : "Comedian",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 37,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.f889bbe5ca2e62f7e899a3ad8cbf25066fc4e36da1b71a45d433ab141bd67794",
+      "wireVoiceID" : "English_Comedian"
+    },
+    {
+      "displayName" : "Bossy Leader",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 38,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.c82f02937c0ed8490a6e607768f26921b8867d09357867b09d869dfb9694444f",
+      "wireVoiceID" : "English_BossyLeader"
+    },
+    {
+      "displayName" : "Strong-Willed Boy",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 39,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.109239275df724bbc5e81b95da91e310035b0634ca10620de685c5de26a76755",
+      "wireVoiceID" : "English_Strong-WilledBoy"
+    },
+    {
+      "displayName" : "Stressed Lady",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 40,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.9d95c7c1e895621dbb10f92b07c86670c0bd4fa8a2d776b1e1a52eab8af10cd5",
+      "wireVoiceID" : "English_StressedLady"
+    },
+    {
+      "displayName" : "Assertive Queen",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 41,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.e7d69e9059c4f9ebe76cda75c590955cdd2241c6d0b1567c92e82dcfb68a0973",
+      "wireVoiceID" : "English_AssertiveQueen"
+    },
+    {
+      "displayName" : "Female Narrator",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 42,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.a0946e1b137d363f330e42d6b389ad178de4081943a6e104dd6fbcfbd9d3a5a3",
+      "wireVoiceID" : "English_AnimeCharacter"
+    },
+    {
+      "displayName" : "Jovial Man",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 43,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.e9023016975fd45fb3ccf5b5196ca12859d44bb641a7cb61cf6e8bace214dea8",
+      "wireVoiceID" : "English_Jovialman"
+    },
+    {
+      "displayName" : "Whimsical Girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 44,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.c6a264b849514baf8464fbd01257b2d882ad09a7bd372bfc266875ed448b5edf",
+      "wireVoiceID" : "English_WhimsicalGirl"
+    },
+    {
+      "displayName" : "Kind-Hearted Girl",
+      "language" : "English",
+      "languageTag" : "en-US",
+      "number" : 45,
+      "phrase" : "Voice sample.",
+      "stableVoiceID" : "minimax.dynamic.2aa2336dfc33cdbbba4798916064d1101b2213db94ac8a11e9de9bff05cc65fb",
+      "wireVoiceID" : "English_Kind-heartedGirl"
+    },
+    {
+      "displayName" : "Reliable Executive",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 46,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.0b6d3e99246324ed707591e0b59d20f0d7e8393dd5a6b788dcaeccd7bbef30c1",
+      "wireVoiceID" : "Chinese (Mandarin)_Reliable_Executive"
+    },
+    {
+      "displayName" : "News Anchor",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 47,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.69481e71890429ed803bdbc032093dcd0ae4a99e43806610403136cfe1c33786",
+      "wireVoiceID" : "Chinese (Mandarin)_News_Anchor"
+    },
+    {
+      "displayName" : "Unrestrained Young Man",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 48,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.c4de8bd2bbcb0122f969be19fcefc683b21540119bd6c788bd65cf55612fb36e",
+      "wireVoiceID" : "Chinese (Mandarin)_Unrestrained_Young_Man"
+    },
+    {
+      "displayName" : "Mature Woman",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 49,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.81422eab3f556f734ef200d850b9255994cb7da64193d0da6e2a9a7ac57dcfd8",
+      "wireVoiceID" : "Chinese (Mandarin)_Mature_Woman"
+    },
+    {
+      "displayName" : "Arrogant Miss",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 50,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.8da1530fe62ce810d0ee37d371c9131ee48d84749870b04c9e7501d949d4b01b",
+      "wireVoiceID" : "Arrogant_Miss"
+    },
+    {
+      "displayName" : "Robot Armor",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 51,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.2b3a82cdca2dc7e0af413acc9faadfaccf8bebe654ef0adfbca777b9f7ba4d00",
+      "wireVoiceID" : "Robot_Armor"
+    },
+    {
+      "displayName" : "Kind-hearted Antie",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 52,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.5db0e69b0f0663063579cbf2931dffa6775112ee65787bcb72a2843d0cc4110b",
+      "wireVoiceID" : "Chinese (Mandarin)_Kind-hearted_Antie"
+    },
+    {
+      "displayName" : "HK Flight Attendant",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 53,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.2c5a92794bafffb4ebee3069ef5b28b220b709327806cae8594ad5acccebbcc2",
+      "wireVoiceID" : "Chinese (Mandarin)_HK_Flight_Attendant"
+    },
+    {
+      "displayName" : "Humorous Elder",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 54,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.5f0f7db5374dc1fd271f1431524c8c0baec4940b2c71b7d452dd8537c01c0cbe",
+      "wireVoiceID" : "Chinese (Mandarin)_Humorous_Elder"
+    },
+    {
+      "displayName" : "Gentleman",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 55,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.3391ee59c220b66eff047bd123c835bd8c3f371dcd7578e16b3b885b04dbe8bf",
+      "wireVoiceID" : "Chinese (Mandarin)_Gentleman"
+    },
+    {
+      "displayName" : "Warm Bestie",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 56,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.7f1fc98e506d12d79d7c6cb6a7903c63b1bbe5fdbf738c100b2de0bc3ad0416d",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm_Bestie"
+    },
+    {
+      "displayName" : "Stubborn Friend",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 57,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.ebd8996b8d4adadc6b7cf0083745a0d365ab50a68ab2a875b35d2f3b878e8fad",
+      "wireVoiceID" : "Chinese (Mandarin)_Stubborn_Friend"
+    },
+    {
+      "displayName" : "Sweet Lady",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 58,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.511137c6a73e5896a2b749008b3f4d94875aa9f858e3f87a56e53251e52b1f29",
+      "wireVoiceID" : "Chinese (Mandarin)_Sweet_Lady"
+    },
+    {
+      "displayName" : "Southern Young Man",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 59,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.49d39763e417f31da5215d89db54e036d74817e2640b74b7216cf4b31b4006c5",
+      "wireVoiceID" : "Chinese (Mandarin)_Southern_Young_Man"
+    },
+    {
+      "displayName" : "Wise Women",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 60,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.9fc1b4da15a9e3499712a1499cfda38fdd3efd11ccc3edb0ee9ac7e18c2c9513",
+      "wireVoiceID" : "Chinese (Mandarin)_Wise_Women"
+    },
+    {
+      "displayName" : "Gentle Youth",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 61,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.4bea50d053b4695d1dac0e7b347a44d3fdf52737539dd13355081dc7ab704ba2",
+      "wireVoiceID" : "Chinese (Mandarin)_Gentle_Youth"
+    },
+    {
+      "displayName" : "Warm Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 62,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.21adde6c88e9831e15687dc3499f8e6e654957c8e47b056351d18f60d50be04a",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm_Girl"
+    },
+    {
+      "displayName" : "Male Announcer",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 63,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.b66c0a3a33a0f22bac40f37564cd560ead2c1a41bf5e28002b5a47ccc4fdcd87",
+      "wireVoiceID" : "Chinese (Mandarin)_Male_Announcer"
+    },
+    {
+      "displayName" : "Kind-hearted Elder",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 64,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.ec1df8b0cc235a24ccab6c3de82328cbe9e98e195407b2ab81a4754a1efdd3bc",
+      "wireVoiceID" : "Chinese (Mandarin)_Kind-hearted_Elder"
+    },
+    {
+      "displayName" : "Cute Spirit",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 65,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.8edd28cc0ad8007f66291c426cbd8295b1c9488f54ae4e0815c27019ebc0f86f",
+      "wireVoiceID" : "Chinese (Mandarin)_Cute_Spirit"
+    },
+    {
+      "displayName" : "Radio Host",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 66,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.radio-host.default",
+      "wireVoiceID" : "Chinese (Mandarin)_Radio_Host"
+    },
+    {
+      "displayName" : "Lyrical Voice",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 67,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.82146135a5ed323a26309bb749ddcc57a6969c69f65f5fb58e7d8e9a54bb18e4",
+      "wireVoiceID" : "Chinese (Mandarin)_Lyrical_Voice"
+    },
+    {
+      "displayName" : "Straightforward Boy",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 68,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.71c83e8f3dddf164293b70b720463a2a2321b7376385efaba5cec39183bbc46b",
+      "wireVoiceID" : "Chinese (Mandarin)_Straightforward_Boy"
+    },
+    {
+      "displayName" : "Sincere Adult",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 69,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.beb6d8ce6ad6939d1f13cc3adbf9a5ab19a4c9383344e34e0527f5c6168a8d10",
+      "wireVoiceID" : "Chinese (Mandarin)_Sincere_Adult"
+    },
+    {
+      "displayName" : "Gentle Senior",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 70,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.1d4f9f64d50f443e805eb51ed2aac42c5b421636abcf3ac20a3f98091ad8fda5",
+      "wireVoiceID" : "Chinese (Mandarin)_Gentle_Senior"
+    },
+    {
+      "displayName" : "Crisp Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 71,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.e0f55b719a3843c21a4bbaf59b8bbb7b1d1e7753213b2564865ea2301ad183a6",
+      "wireVoiceID" : "Chinese (Mandarin)_Crisp_Girl"
+    },
+    {
+      "displayName" : "Pure-hearted Boy",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 72,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.e4f03adf72300ff64a6716080dc33b03b4aaa1d709584113f7a17de29dc437cd",
+      "wireVoiceID" : "Chinese (Mandarin)_Pure-hearted_Boy"
+    },
+    {
+      "displayName" : "Soft Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 73,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.e0ca1430c4cc12853f3e97d5fac4f035355fecd86ae3179b2b2e030f443eb7f7",
+      "wireVoiceID" : "Chinese (Mandarin)_Soft_Girl"
+    },
+    {
+      "displayName" : "Intellectual Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 74,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.c4b148e37cbe2eac20be4b4c9e39ec0e3afc85c8d02b4dc5396618537e0e6e66",
+      "wireVoiceID" : "Chinese (Mandarin)_IntellectualGirl"
+    },
+    {
+      "displayName" : "Warm-hearted Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 75,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.ed97c165437dcaabb91e7ed65183ed36dc1f2fde56376be5366b36550c23cfd2",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm_HeartedGirl"
+    },
+    {
+      "displayName" : "Laid-back Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 76,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.laid-back-girl.default",
+      "wireVoiceID" : "Chinese (Mandarin)_Laid_BackGirl"
+    },
+    {
+      "displayName" : "Explorative Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 77,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.edd84a84165ad500b68ae2dfd47c6fd1941e4a2c240381880cf14a5fce661c8c",
+      "wireVoiceID" : "Chinese (Mandarin)_ExplorativeGirl"
+    },
+    {
+      "displayName" : "Warm-hearted Aunt",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 78,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.892a799ed6fd9ca9b0afb4ee7ce60ad8e4023ed259ca320ad3aa19fc8dfd866c",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm-HeartedAunt"
+    },
+    {
+      "displayName" : "Bashful Girl",
+      "language" : "Chinese (Mandarin)",
+      "languageTag" : "zh-CN",
+      "number" : 79,
+      "phrase" : "声音样本。",
+      "stableVoiceID" : "minimax.dynamic.e20f7e5f4e2bf2c4ffe67158c2a90682b2b4641660bc08aeabd8a9fdcfb9e4f9",
+      "wireVoiceID" : "Chinese (Mandarin)_BashfulGirl"
+    },
+    {
+      "displayName" : "Intellectual Senior",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 80,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.e2a7f0a7a5106735e6d298cfd6e77fedc5c635bcc0a4facadcabeb426062b346",
+      "wireVoiceID" : "Japanese_IntellectualSenior"
+    },
+    {
+      "displayName" : "Decisive Princess",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 81,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.03db28f1be780282693b6c97446f3934db72fce48cff66a5ef1fc4eb897dce58",
+      "wireVoiceID" : "Japanese_DecisivePrincess"
+    },
+    {
+      "displayName" : "Loyal Knight",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 82,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.25f82b21e57ea311c1a5ec5901212ecc6a078f2671fb4567421dd214dc956e89",
+      "wireVoiceID" : "Japanese_LoyalKnight"
+    },
+    {
+      "displayName" : "Dominant Man",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 83,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.ffb8e67a626a70b361cca1d82efac0d7128dbc925448f2c506ca299fb8b66730",
+      "wireVoiceID" : "Japanese_DominantMan"
+    },
+    {
+      "displayName" : "Serious Commander",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 84,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.657209e03577eddb839079bb7ed7b7f01dfba55b25db1a2cb92d10314d76586b",
+      "wireVoiceID" : "Japanese_SeriousCommander"
+    },
+    {
+      "displayName" : "Cold Queen",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 85,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.3c767988d38f79a21a326bfa285a8de509bb7ff7fb02ea6b5ec88c2294654ad8",
+      "wireVoiceID" : "Japanese_ColdQueen"
+    },
+    {
+      "displayName" : "Dependable Woman",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 86,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.a6a25b9f3486c29b257cabebe420850c8313c6ab91a55fe32a8c8312172176d0",
+      "wireVoiceID" : "Japanese_DependableWoman"
+    },
+    {
+      "displayName" : "Gentle Butler",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 87,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.64746bd4ca63928182a58825f92ff23ab77413f34a9a1d3bfe5e651487569f90",
+      "wireVoiceID" : "Japanese_GentleButler"
+    },
+    {
+      "displayName" : "Kind Lady",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 88,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.508891d1828008e9897c8f18f9e24ffdaa1e3d3815c76356482b0a1372a0b17d",
+      "wireVoiceID" : "Japanese_KindLady"
+    },
+    {
+      "displayName" : "Calm Lady",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 89,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.f64c16e57d1c67d9e31225d05f3f2ea8d60e573e8e32b75b5a0b41747a831199",
+      "wireVoiceID" : "Japanese_CalmLady"
+    },
+    {
+      "displayName" : "Optimistic Youth",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 90,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.9b083ec9f9d638a208b2768a4c7cb5303333b29937dd8c116a654b4c5dd7330d",
+      "wireVoiceID" : "Japanese_OptimisticYouth"
+    },
+    {
+      "displayName" : "Generous Izakaya Owner",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 91,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.81b6801db651c3894e62570d23dff99bb6b3b61a0110b9940646582f6b93f83c",
+      "wireVoiceID" : "Japanese_GenerousIzakayaOwner"
+    },
+    {
+      "displayName" : "Sporty Student",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 92,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.586b370ea503bcd6a2eab3f7802d136dea26b3f41b0f1e84f4512ab7e252c115",
+      "wireVoiceID" : "Japanese_SportyStudent"
+    },
+    {
+      "displayName" : "Innocent Boy",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 93,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.7b97fac0819ca37ed6247b6a46cf01fdb20a792280fa6162cf1dbef33b018502",
+      "wireVoiceID" : "Japanese_InnocentBoy"
+    },
+    {
+      "displayName" : "Graceful Maiden",
+      "language" : "Japanese",
+      "languageTag" : "ja-JP",
+      "number" : 94,
+      "phrase" : "音声サンプルです。",
+      "stableVoiceID" : "minimax.dynamic.7ab9a1da0ee6896edc60a2008228f43083fd832753b120bb513e6141431d82b5",
+      "wireVoiceID" : "Japanese_GracefulMaiden"
+    },
+    {
+      "displayName" : "Professional Female Host",
+      "language" : "Cantonese",
+      "languageTag" : "yue-HK",
+      "number" : 95,
+      "phrase" : "聲音樣本。",
+      "stableVoiceID" : "minimax.dynamic.642ea2fa179d129510666bfd6ec07c5c660a282a24a2815d81e1064ee91a0c8a",
+      "wireVoiceID" : "Cantonese_ProfessionalHost（F)"
+    },
+    {
+      "displayName" : "Gentle Lady",
+      "language" : "Cantonese",
+      "languageTag" : "yue-HK",
+      "number" : 96,
+      "phrase" : "聲音樣本。",
+      "stableVoiceID" : "minimax.dynamic.be0bd743beeedf222043d5efc3f782d1524443fbc71996e6533b9635426b89f1",
+      "wireVoiceID" : "Cantonese_GentleLady"
+    },
+    {
+      "displayName" : "Professional Male Host",
+      "language" : "Cantonese",
+      "languageTag" : "yue-HK",
+      "number" : 97,
+      "phrase" : "聲音樣本。",
+      "stableVoiceID" : "minimax.dynamic.53763a1b0803829670ccda61f2a155f332ec0da84395eae9e2886df6866f7029",
+      "wireVoiceID" : "Cantonese_ProfessionalHost（M)"
+    },
+    {
+      "displayName" : "Playful Man",
+      "language" : "Cantonese",
+      "languageTag" : "yue-HK",
+      "number" : 98,
+      "phrase" : "聲音樣本。",
+      "stableVoiceID" : "minimax.dynamic.46ae8e7547465fedea9f8e9cd78962fc2250d629430599129f383186b36c411f",
+      "wireVoiceID" : "Cantonese_PlayfulMan"
+    },
+    {
+      "displayName" : "Cute Girl",
+      "language" : "Cantonese",
+      "languageTag" : "yue-HK",
+      "number" : 99,
+      "phrase" : "聲音樣本。",
+      "stableVoiceID" : "minimax.dynamic.c1d075973fcbaff59dbfa85089641862b3656193becf6cdf75377db4a189a414",
+      "wireVoiceID" : "Cantonese_CuteGirl"
+    },
+    {
+      "displayName" : "Kind Woman",
+      "language" : "Cantonese",
+      "languageTag" : "yue-HK",
+      "number" : 100,
+      "phrase" : "聲音樣本。",
+      "stableVoiceID" : "minimax.dynamic.80bad92fd41bf825a40c89a38ba2258134b0638f16f616f4546cfb247430cbcb",
+      "wireVoiceID" : "Cantonese_KindWoman"
+    },
+    {
+      "displayName" : "Airheaded Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 101,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.8dc1f42bbf6273ebfc2854a8daea28ae59e6429691aa8fa79930c9554e65b481",
+      "wireVoiceID" : "Korean_AirheadedGirl"
+    },
+    {
+      "displayName" : "Athletic Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 102,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.e638fbb7af20f6e90b5df1067d3f29b8e4199a22a9d00e548c41d1472b1a017a",
+      "wireVoiceID" : "Korean_AthleticGirl"
+    },
+    {
+      "displayName" : "Athletic Student",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 103,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.4df07d6f1da1835ccf79fc94e263604827dce6397674b95ad3c48d1427c8e964",
+      "wireVoiceID" : "Korean_AthleticStudent"
+    },
+    {
+      "displayName" : "Brave Adventurer",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 104,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.1d0e4a336b53a1add97b1808e6ec616e45b452120927bcd3a3e194f85f390f76",
+      "wireVoiceID" : "Korean_BraveAdventurer"
+    },
+    {
+      "displayName" : "Brave Female Warrior",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 105,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.8f280ce27cfa1014abce1c882fc197c1f70a797c845cc42cec87275f4b01b124",
+      "wireVoiceID" : "Korean_BraveFemaleWarrior"
+    },
+    {
+      "displayName" : "Brave Youth",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 106,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.6656c7704b93d1af87673d913191655b3b21585aa1edb0d509f0d0b8214f645c",
+      "wireVoiceID" : "Korean_BraveYouth"
+    },
+    {
+      "displayName" : "Calm Gentleman",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 107,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.599d2bd32624f2a8a13699f12c16e867113bc9e8f5c248ce60482cd72d40e247",
+      "wireVoiceID" : "Korean_CalmGentleman"
+    },
+    {
+      "displayName" : "Calm Lady",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 108,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.79597ed877de5987ac552336ff4483436fcafeb3cdc1e07214f8463e0a5ec586",
+      "wireVoiceID" : "Korean_CalmLady"
+    },
+    {
+      "displayName" : "Caring Woman",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 109,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.29e5d4b10a7d420d379ab75a9cb6353b194ffc14aa13dd058e188365d57475e4",
+      "wireVoiceID" : "Korean_CaringWoman"
+    },
+    {
+      "displayName" : "Charming Elder Sister",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 110,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.048ed0e0098b69cf2c3cd32a71a99ec9b88266cdefcbe52a6e195410b84c64ab",
+      "wireVoiceID" : "Korean_CharmingElderSister"
+    },
+    {
+      "displayName" : "Charming Sister",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 111,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.f91e4f750baa291f335d8cad5bf363f6c397f4fcf579fd4d48aadcd875dabf7b",
+      "wireVoiceID" : "Korean_CharmingSister"
+    },
+    {
+      "displayName" : "Cheerful Boyfriend",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 112,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.41abf0e336b929657f89e1d61f2bd4c958fb652938e6eec296d13d22e16a8544",
+      "wireVoiceID" : "Korean_CheerfulBoyfriend"
+    },
+    {
+      "displayName" : "Cheerful Cool Junior",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 113,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.054cb9042d398beb424c72a4e7c6caa0defa0b1f0856ef62dd9dedb8103a8d2f",
+      "wireVoiceID" : "Korean_CheerfulCoolJunior"
+    },
+    {
+      "displayName" : "Cheerful Little Sister",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 114,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.c208cfe30afa3e84afe2476face967b69207a7d8a9b56b814a73f380503bcc2e",
+      "wireVoiceID" : "Korean_CheerfulLittleSister"
+    },
+    {
+      "displayName" : "Childhood Friend Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 115,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.2a64e60393b1466d75011ba18c9647b3765dd00405db8decb0305109021e3b00",
+      "wireVoiceID" : "Korean_ChildhoodFriendGirl"
+    },
+    {
+      "displayName" : "Cocky Guy",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 116,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.cbb1075e5619e8dcae49121a12652fc9282f30d139f97624e76fe27e9e6542f4",
+      "wireVoiceID" : "Korean_CockyGuy"
+    },
+    {
+      "displayName" : "Cold Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 117,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.0c43e9035c043b9b283caa03127f6d8ad412107477631d8835409c3bf7029497",
+      "wireVoiceID" : "Korean_ColdGirl"
+    },
+    {
+      "displayName" : "Cold Young Man",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 118,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.56c6b3177032fe3319c3c470584dfb8da9197060e6e9ae9be036fffe83abce25",
+      "wireVoiceID" : "Korean_ColdYoungMan"
+    },
+    {
+      "displayName" : "Confident Boss",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 119,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.67c6d005f82fefcbba19c332e67d2d667031dca324c948e64a0ce76852f05905",
+      "wireVoiceID" : "Korean_ConfidentBoss"
+    },
+    {
+      "displayName" : "Considerate Senior",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 120,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.b5dcad88ef40634720c41493d2f4b244a9dbc763b6dd118cb827cf2cbd530fcd",
+      "wireVoiceID" : "Korean_ConsiderateSenior"
+    },
+    {
+      "displayName" : "Decisive Queen",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 121,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.92e3b41512dbf26b9bee2d2184b105e8577f741a0e1f81825c5a867c43b759d6",
+      "wireVoiceID" : "Korean_DecisiveQueen"
+    },
+    {
+      "displayName" : "Dominant Man",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 122,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.dd16e503d8d4c16bae9a2f413b3a094e65a244cf3aa30069a03b238074fcb6ea",
+      "wireVoiceID" : "Korean_DominantMan"
+    },
+    {
+      "displayName" : "Elegant Princess",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 123,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.e4f4bb1bd73ed40f0e2bd695af189a6d11edd7e674bed1346e49140d1c18d4bf",
+      "wireVoiceID" : "Korean_ElegantPrincess"
+    },
+    {
+      "displayName" : "Enchanting Sister",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 124,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.a5ec62a0da987d9c9d679d770604f7beaf33ed8d3ab702a59baa7888d17baee4",
+      "wireVoiceID" : "Korean_EnchantingSister"
+    },
+    {
+      "displayName" : "Enthusiastic Teen",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 125,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.51a85c3e1ffbf6f61969bd41773123ea24df65ee876f8a1b784f829398343d60",
+      "wireVoiceID" : "Korean_EnthusiasticTeen"
+    },
+    {
+      "displayName" : "Friendly Big Sister",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 126,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.1e02002a34e3b0691ae7f836baeea6a7b940815c4169402decd1423b58fbaa88",
+      "wireVoiceID" : "Korean_FriendlyBigSister"
+    },
+    {
+      "displayName" : "Gentle Boss",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 127,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.9c18770aa0a7ef96e0ff5c4fcfd6569e8ab58a8eaccb9440d660533fcc303c08",
+      "wireVoiceID" : "Korean_GentleBoss"
+    },
+    {
+      "displayName" : "Gentle Woman",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 128,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.62a2f023dece4226945b4f2f6742356735b99a190c32ed3cb17d53e21358cd8d",
+      "wireVoiceID" : "Korean_GentleWoman"
+    },
+    {
+      "displayName" : "Haughty Lady",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 129,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.4ed5e8089d91c505e2238ffea19b8590ae222d59cc38e413a18328f3696bc48e",
+      "wireVoiceID" : "Korean_HaughtyLady"
+    },
+    {
+      "displayName" : "Innocent Boy",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 130,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.6d120ad662d530420c777be1e3f60f6aa6b5ddb475d37daa1fc46ebeb781dec6",
+      "wireVoiceID" : "Korean_InnocentBoy"
+    },
+    {
+      "displayName" : "Intellectual Man",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 131,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.63795ba96ee0ff6c51a7330caa9042fe2d003d38bef18b6373e8c25e55596bcf",
+      "wireVoiceID" : "Korean_IntellectualMan"
+    },
+    {
+      "displayName" : "Intellectual Senior",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 132,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.8297c3c7006f7749cfd4aa108ceb4278dd8ed6117a94c2ffedc3e1bb564457ab",
+      "wireVoiceID" : "Korean_IntellectualSenior"
+    },
+    {
+      "displayName" : "Lonely Warrior",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 133,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.5c84961d965eca2dadbd4bb02fd8316b3e4bf8425940dc97dcb76368235e446e",
+      "wireVoiceID" : "Korean_LonelyWarrior"
+    },
+    {
+      "displayName" : "Mature Lady",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 134,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.4b80efc23d4d254b1ae3f1b59b23a70cd1c559084aafa98198ea89c6cff1493d",
+      "wireVoiceID" : "Korean_MatureLady"
+    },
+    {
+      "displayName" : "Mysterious Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 135,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.d44d15859f15bc28d9ac36c28919a6370fff718ad53488a63dfe2f90918c17df",
+      "wireVoiceID" : "Korean_MysteriousGirl"
+    },
+    {
+      "displayName" : "Optimistic Youth",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 136,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.90e70b7baaed6c6764a724369f92f8ddbdbddcb39e9ddff61d6a89518dc32163",
+      "wireVoiceID" : "Korean_OptimisticYouth"
+    },
+    {
+      "displayName" : "Playboy Charmer",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 137,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.79d6a5441ac09b5fe79ee5566f774df2520ca4cefd718c4376f4c22a21bc9623",
+      "wireVoiceID" : "Korean_PlayboyCharmer"
+    },
+    {
+      "displayName" : "Possessive Man",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 138,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.f8aba65ebbb4da338798b9222589af26454b085c2f298350e48dc84a62d285b9",
+      "wireVoiceID" : "Korean_PossessiveMan"
+    },
+    {
+      "displayName" : "Quirky Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 139,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.bc1aa630ad6601cc05e8d8f70afcafb56b780f5ea6b0c3c632907a5bd5bc6093",
+      "wireVoiceID" : "Korean_QuirkyGirl"
+    },
+    {
+      "displayName" : "Reliable Sister",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 140,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.be2b03d0f96d4b9a2fc047f621ef89e5edcff44603a5219314370b505de751cc",
+      "wireVoiceID" : "Korean_ReliableSister"
+    },
+    {
+      "displayName" : "Reliable Youth",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 141,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.08cdf002d1d2ea7931b748320b6b5d3bba9eb1375825427e3582e04e94a1229f",
+      "wireVoiceID" : "Korean_ReliableYouth"
+    },
+    {
+      "displayName" : "Sassy Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 142,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.5a15f8444a7856a6c1164acb94776899143a8c4718ad114b8b8486458a01c263",
+      "wireVoiceID" : "Korean_SassyGirl"
+    },
+    {
+      "displayName" : "Shy Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 143,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.b97e83f5f232921f09630433f0abfe89f4aa12bfebce56bfb5bf6f51746e5c96",
+      "wireVoiceID" : "Korean_ShyGirl"
+    },
+    {
+      "displayName" : "Soothing Lady",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 144,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.b8cdccfe5601b85f37a7f9412ed8dc9eda221e53f8ce6fb36d7369d52c196663",
+      "wireVoiceID" : "Korean_SoothingLady"
+    },
+    {
+      "displayName" : "Strict Boss",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 145,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.6d46287ae24586e3823a1ab1a8e61efc36b56215ffea106c6bdd63a4c7ed2b54",
+      "wireVoiceID" : "Korean_StrictBoss"
+    },
+    {
+      "displayName" : "Sweet Girl",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 146,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.e68d32929f9e58cdf866e2ba84748a8ad50d78243f901d478f412dda69ac1b2d",
+      "wireVoiceID" : "Korean_SweetGirl"
+    },
+    {
+      "displayName" : "Thoughtful Woman",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 147,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.bb9e3c9bbe2858b51f776d77ab3830c6400beebf9fcc41dbfad81815068729aa",
+      "wireVoiceID" : "Korean_ThoughtfulWoman"
+    },
+    {
+      "displayName" : "Wise Elf",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 148,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.b6ba447a24cf1f56939db2619550e349147165103f55ac3b4a92ce5a81b80af9",
+      "wireVoiceID" : "Korean_WiseElf"
+    },
+    {
+      "displayName" : "Wise Teacher",
+      "language" : "Korean",
+      "languageTag" : "ko-KR",
+      "number" : 149,
+      "phrase" : "음성 샘플입니다.",
+      "stableVoiceID" : "minimax.dynamic.176258b0b6df9f1dcd43ea9e6611f17cef28969fd01ee576a2297164deeba555",
+      "wireVoiceID" : "Korean_WiseTeacher"
+    },
+    {
+      "displayName" : "Serene Woman",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 150,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.92cff527641976d2aa5d886aeadfd8bbec16725c4acaa7e4c7c06ca8567970a4",
+      "wireVoiceID" : "Spanish_SereneWoman"
+    },
+    {
+      "displayName" : "Mature Partner",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 151,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.3e48fb1b8fc2ae2f6e055818491b57c51e67a131072121e40a9b01468a16fda1",
+      "wireVoiceID" : "Spanish_MaturePartner"
+    },
+    {
+      "displayName" : "Captivating Storyteller",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 152,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.5500c6dcf12f7ef21ec9258ba771cbf305f6741a6be780ac906be8d0a21ee5f3",
+      "wireVoiceID" : "Spanish_CaptivatingStoryteller"
+    },
+    {
+      "displayName" : "Narrator",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 153,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.28356fa78d87f5bf10f0d20e12655af4b6fad22f9fe1e132de11bd515b08a0db",
+      "wireVoiceID" : "Spanish_Narrator"
+    },
+    {
+      "displayName" : "Wise Scholar",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 154,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.d58c96b1b0fee61f3dd55e534ff79a6d6d98feb96859e6f9afc07763f4af2b8e",
+      "wireVoiceID" : "Spanish_WiseScholar"
+    },
+    {
+      "displayName" : "Kind-hearted Girl",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 155,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.ac8eeba3219538b0ef6207b0df8a12e74a73861f0160e275d21d6136a8d386f0",
+      "wireVoiceID" : "Spanish_Kind-heartedGirl"
+    },
+    {
+      "displayName" : "Determined Manager",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 156,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.f97a4002ae704d523f1938725bc067888d1df51a66eb56edfe6f0f365bdc28c3",
+      "wireVoiceID" : "Spanish_DeterminedManager"
+    },
+    {
+      "displayName" : "Bossy Leader",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 157,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6daa2de42dc1e8ea2f914c143d6fad08017d33e7da5843ecc056d53411adb4d1",
+      "wireVoiceID" : "Spanish_BossyLeader"
+    },
+    {
+      "displayName" : "Reserved Young Man",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 158,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.08e48aa36636e8deb34916060622b8808d793888166e1f2da1ecc5c80fbe68ac",
+      "wireVoiceID" : "Spanish_ReservedYoungMan"
+    },
+    {
+      "displayName" : "Confident Woman",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 159,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.e4810c708651b673a3c3d2cd2a3a94e25df436187df20d99a11e9d68eedb08fc",
+      "wireVoiceID" : "Spanish_ConfidentWoman"
+    },
+    {
+      "displayName" : "Thoughtful Man",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 160,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.75ffa0aa8e283910f403ee5a558b8796ca8fd04bc6e0d05a7c390d1b72e2e82e",
+      "wireVoiceID" : "Spanish_ThoughtfulMan"
+    },
+    {
+      "displayName" : "Strong-willed Boy",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 161,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.9b3b1a3e5c28d95e70bdd70a7cf1d733218d2f9d271300b637a1ed37ed4d0541",
+      "wireVoiceID" : "Spanish_Strong-WilledBoy"
+    },
+    {
+      "displayName" : "Sophisticated Lady",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 162,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.24d92bd5c0496c4a5d86c8aadbf5fd64e2e85d79836211f6d35d155c8f38bf53",
+      "wireVoiceID" : "Spanish_SophisticatedLady"
+    },
+    {
+      "displayName" : "Rational Man",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 163,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.ba5fd074893e7656c04a6429f5a2fbb1416482d10eb1514832bf0f568869ca0d",
+      "wireVoiceID" : "Spanish_RationalMan"
+    },
+    {
+      "displayName" : "Anime Character",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 164,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.4f53be2570a7e587786569915ba6e184b3d969d82442b71090d4dbf2468913cd",
+      "wireVoiceID" : "Spanish_AnimeCharacter"
+    },
+    {
+      "displayName" : "Deep-toned Man",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 165,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.1977d6b9e01a26446f1fb0eee6c979950374ef2af411236eb3dfc3046ca3f3c9",
+      "wireVoiceID" : "Spanish_Deep-tonedMan"
+    },
+    {
+      "displayName" : "Fussy hostess",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 166,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.8fbb3d8c2d6d13b5cda966c787d518865cae891b84bd351a3a5a704838cd259e",
+      "wireVoiceID" : "Spanish_Fussyhostess"
+    },
+    {
+      "displayName" : "Sincere Teen",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 167,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.599f2b6d0acd03d36e6bbbfe2f9c4894f3be331b13449ba683723f37837c8591",
+      "wireVoiceID" : "Spanish_SincereTeen"
+    },
+    {
+      "displayName" : "Frank Lady",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 168,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.4275114dfb7884327a9cf3449deb1321a8f22e270e2aae6186e5f358a2510fac",
+      "wireVoiceID" : "Spanish_FrankLady"
+    },
+    {
+      "displayName" : "Comedian",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 169,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.8fff237f47a07062c306df5aae8490033b20126ce3f4a28469669c85b8cfbfa3",
+      "wireVoiceID" : "Spanish_Comedian"
+    },
+    {
+      "displayName" : "Debator",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 170,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.9e6b99fb5a0c8a390765bf37fe3433dd4859d92cb5153d5e2452bd3abe4c2e21",
+      "wireVoiceID" : "Spanish_Debator"
+    },
+    {
+      "displayName" : "Tough Boss",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 171,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.0a0335a4523df01f32088bb2f0821433b59d066729a51e89d1b63f760b9fe9c8",
+      "wireVoiceID" : "Spanish_ToughBoss"
+    },
+    {
+      "displayName" : "Wise Lady",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 172,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6e78af8494b800c704bbee69dd9923c0f744916a5e42504970e500fc6a455d27",
+      "wireVoiceID" : "Spanish_Wiselady"
+    },
+    {
+      "displayName" : "Steady Mentor",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 173,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6a6f6d604407e188a214a4d70c67567f4af03472a3472116969c0bc4f31649bb",
+      "wireVoiceID" : "Spanish_Steadymentor"
+    },
+    {
+      "displayName" : "Jovial Man",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 174,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.c2cd0435a4b0f1437ab706f00cf2c702ed99a465cf744d1ff35c7ff4c559cb84",
+      "wireVoiceID" : "Spanish_Jovialman"
+    },
+    {
+      "displayName" : "Santa Claus",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 175,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.d11c8dde0fbb3030188a690f9a0a63f0e252f6014eecf42579c63724e27c64ac",
+      "wireVoiceID" : "Spanish_SantaClaus"
+    },
+    {
+      "displayName" : "Rudolph",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 176,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6f00ee836d48884643e5ccfedb486dac9ae5bb7e39d5a75e0fef37531cbf5c80",
+      "wireVoiceID" : "Spanish_Rudolph"
+    },
+    {
+      "displayName" : "Intonate Girl",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 177,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.77f86ba1003591d78e633499260496ec40681f932c8c0cfa6b43acbec2098d6b",
+      "wireVoiceID" : "Spanish_Intonategirl"
+    },
+    {
+      "displayName" : "Arnold",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 178,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.e69cda464f4df14d39c706a730aa42e330e6e4467b2095700ab7982243dc438b",
+      "wireVoiceID" : "Spanish_Arnold"
+    },
+    {
+      "displayName" : "Ghost",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 179,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.d69e98bfbff86ce0bb59fe5e8704f873798433cfc989b685a659490f901883dc",
+      "wireVoiceID" : "Spanish_Ghost"
+    },
+    {
+      "displayName" : "Humorous Elder",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 180,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.61e3989ea0715aa5ee02ddf26befca4649c895bf7c4a70342493d3f4ce4c507d",
+      "wireVoiceID" : "Spanish_HumorousElder"
+    },
+    {
+      "displayName" : "Energetic Boy",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 181,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.1cc40477dc443a8404087d8c67c527614b73bf1c329719fbeef2c21ff360a850",
+      "wireVoiceID" : "Spanish_EnergeticBoy"
+    },
+    {
+      "displayName" : "Whimsical Girl",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 182,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.f3f4c255e2a013fddf893dd452c5cc701e03dbd62cdc0bd136f08ac8e97c7475",
+      "wireVoiceID" : "Spanish_WhimsicalGirl"
+    },
+    {
+      "displayName" : "Strict Boss",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 183,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.14f345623961de650a7c4626aabd80364982b25cc7dd2064130c7bf740d2456c",
+      "wireVoiceID" : "Spanish_StrictBoss"
+    },
+    {
+      "displayName" : "Reliable Man",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 184,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.e5f22d57fc3a498b8f994d5587de5e542720f33a1d6674d472c46ca151fa63fc",
+      "wireVoiceID" : "Spanish_ReliableMan"
+    },
+    {
+      "displayName" : "Serene Elder",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 185,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.17af6dc7cb32e5654da491c619932879403637c18cc6e8dd639f328204364771",
+      "wireVoiceID" : "Spanish_SereneElder"
+    },
+    {
+      "displayName" : "Angry Man",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 186,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.821b6ce909b39e8f41eb8d21d30e30c0bf807db880f6acd216b10b9f0aaea7c4",
+      "wireVoiceID" : "Spanish_AngryMan"
+    },
+    {
+      "displayName" : "Assertive Queen",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 187,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.eacebe90b372f9753792c42d5688788d4b19b520404d03d43d40636209e28dab",
+      "wireVoiceID" : "Spanish_AssertiveQueen"
+    },
+    {
+      "displayName" : "Caring Girlfriend",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 188,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.9a7396060665cb1556d04a1f21eb05d9dc827999e9594ee802063149d3746e38",
+      "wireVoiceID" : "Spanish_CaringGirlfriend"
+    },
+    {
+      "displayName" : "Powerful Soldier",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 189,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.63306ff043343ab82cd85baca982605a60e04f9553ef208039aa2db3b4acf920",
+      "wireVoiceID" : "Spanish_PowerfulSoldier"
+    },
+    {
+      "displayName" : "Passionate Warrior",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 190,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.5fbdbf866cefd75d5d8dc965c8f1a336d7299b3d16b64bbad49e209d46fcaaa3",
+      "wireVoiceID" : "Spanish_PassionateWarrior"
+    },
+    {
+      "displayName" : "Chatty Girl",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 191,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.5a0b5a50ba92548f68dd0b35df300d5ff4d6a69668a23eb15f75c2f9806bda05",
+      "wireVoiceID" : "Spanish_ChattyGirl"
+    },
+    {
+      "displayName" : "Romantic Husband",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 192,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.509be270e05537dadf5705f93c61e827f43ae41a2f87cd3f3deae9c7cb681059",
+      "wireVoiceID" : "Spanish_RomanticHusband"
+    },
+    {
+      "displayName" : "Compelling Girl",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 193,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.dfba7fee749dc8c62e906224530cc03dc0e544296bfe35a49de0d9047fe18d10",
+      "wireVoiceID" : "Spanish_CompellingGirl"
+    },
+    {
+      "displayName" : "Powerful Veteran",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 194,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.2e859676769f3b3298d107916d293a3c536d945890843fdd0316020bff04c8cb",
+      "wireVoiceID" : "Spanish_PowerfulVeteran"
+    },
+    {
+      "displayName" : "Sensible Manager",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 195,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.b48ed1422f5f25e05cfb1bc5948c9b8961602812716479099a9e18ce48a7de38",
+      "wireVoiceID" : "Spanish_SensibleManager"
+    },
+    {
+      "displayName" : "Thoughtful Lady",
+      "language" : "Spanish",
+      "languageTag" : "es-ES",
+      "number" : 196,
+      "phrase" : "Muestra de voz.",
+      "stableVoiceID" : "minimax.dynamic.cfc6e0efc0ed846c1471cd8867a963e7edf4a2cf609fd0b1512c95abae8e2c5c",
+      "wireVoiceID" : "Spanish_ThoughtfulLady"
+    },
+    {
+      "displayName" : "Sentimental Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 197,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.c4d06f716a6c58281e2376b5195179563c91d4e6a85a7668802d239465d7ddd3",
+      "wireVoiceID" : "Portuguese_SentimentalLady"
+    },
+    {
+      "displayName" : "Bossy Leader",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 198,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.cfdb04d5c3b8c6b63b8daccc42c46ffde2d13cd105d735b9ff31d797216089f1",
+      "wireVoiceID" : "Portuguese_BossyLeader"
+    },
+    {
+      "displayName" : "Wise lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 199,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.d14554705a59b342b9d9d71f24cf004644b2c038e9b033551aeb762ece399029",
+      "wireVoiceID" : "Portuguese_Wiselady"
+    },
+    {
+      "displayName" : "Strong-willed Boy",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 200,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.e58689f081dfb1702c7f7a9491f4f2eb3d9ff5d30125ff5faaf6a60b3e488b70",
+      "wireVoiceID" : "Portuguese_Strong-WilledBoy"
+    },
+    {
+      "displayName" : "Deep-voiced Gentleman",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 201,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a830ead515db5bcee06986bae7c80f62c844269f19a270d018e8d83384f304f0",
+      "wireVoiceID" : "Portuguese_Deep-VoicedGentleman"
+    },
+    {
+      "displayName" : "Upset Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 202,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.976f4e52f710558ed7a9a4ab1c50335f1a60d0e7594bed398d6e29e1d09001eb",
+      "wireVoiceID" : "Portuguese_UpsetGirl"
+    },
+    {
+      "displayName" : "Passionate Warrior",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 203,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.d47e1404077def8cc5dabf36422b8786bfd79ff8561d76f5af3afff53dbdef56",
+      "wireVoiceID" : "Portuguese_PassionateWarrior"
+    },
+    {
+      "displayName" : "Anime Character",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 204,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.3558b7565a57490df5e1135719498239ad7c0f9d23f972073c251810e7fd2272",
+      "wireVoiceID" : "Portuguese_AnimeCharacter"
+    },
+    {
+      "displayName" : "Confident Woman",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 205,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.953c7050539dbe0a5927b20c9684490c87631c330ba74a8116698d04ad359704",
+      "wireVoiceID" : "Portuguese_ConfidentWoman"
+    },
+    {
+      "displayName" : "Angry Man",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 206,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.f9bb1284c035c1a5b395c088128bd6662d9064e4356911caab74d8652a45ac8a",
+      "wireVoiceID" : "Portuguese_AngryMan"
+    },
+    {
+      "displayName" : "Captivating Storyteller",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 207,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.d331f04e38738b57eaf9a9f86e6af34593692845cb3525c7b0b8225a2968ed85",
+      "wireVoiceID" : "Portuguese_CaptivatingStoryteller"
+    },
+    {
+      "displayName" : "Godfather",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 208,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.f1bc61fcd46d79da588e930fc20535fb510f38d3c2679543bf7a437854a69bbb",
+      "wireVoiceID" : "Portuguese_Godfather"
+    },
+    {
+      "displayName" : "Reserved Young Man",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 209,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a5419c47b06e5304f8f6359465fc806eddab14c0ee83023fc97b3ea30ad5e5f8",
+      "wireVoiceID" : "Portuguese_ReservedYoungMan"
+    },
+    {
+      "displayName" : "Smart Young Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 210,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.7cee8f9230bce8542abbfbcdcdaac7f204b35209c38af0c105ba6ecc6c29ee85",
+      "wireVoiceID" : "Portuguese_SmartYoungGirl"
+    },
+    {
+      "displayName" : "Kind-hearted Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 211,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.0f95a9b279d0ef0dacad26d0f420c0ce67b8cf0fb7642c277fd2d7834e6e2509",
+      "wireVoiceID" : "Portuguese_Kind-heartedGirl"
+    },
+    {
+      "displayName" : "Pompous lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 212,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.68bc02c5c51965ea8c5dc4ad948920a6c512836c98db4959d019adc92549e10b",
+      "wireVoiceID" : "Portuguese_Pompouslady"
+    },
+    {
+      "displayName" : "Grinch",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 213,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.21580351a312d9070f5e75c77a09fd355639b7a9ab5e1404f3923a9f0fca3ee9",
+      "wireVoiceID" : "Portuguese_Grinch"
+    },
+    {
+      "displayName" : "Debator",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 214,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.f98f32f067e502d3c5e480f827334c494f4b9bdb9f9c5e3291a8015482e9acbe",
+      "wireVoiceID" : "Portuguese_Debator"
+    },
+    {
+      "displayName" : "Sweet Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 215,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.41742041eabc8f58a7653b12eb348a840cb7da29c8de686a2b24ec5b3f147971",
+      "wireVoiceID" : "Portuguese_SweetGirl"
+    },
+    {
+      "displayName" : "Attractive Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 216,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.53e84fb14b39e3a24f57d07ca0c11f9c3a3b98190722c1ac892fcbb45cff8613",
+      "wireVoiceID" : "Portuguese_AttractiveGirl"
+    },
+    {
+      "displayName" : "Thoughtful Man",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 217,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.21ed53da9c0344a7e293053df3057ebf70a33e969faf010cdd54a075cda1d432",
+      "wireVoiceID" : "Portuguese_ThoughtfulMan"
+    },
+    {
+      "displayName" : "Playful Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 218,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.7001e2e518f4f742e4c5c15082c25c0fbfc417ffdd9f7b5a665999614c8ebd5a",
+      "wireVoiceID" : "Portuguese_PlayfulGirl"
+    },
+    {
+      "displayName" : "Gorgeous Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 219,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6df4ed1f5e6c9dd831c225d56de57d9cdf0513ce79447cafb67c58c528284454",
+      "wireVoiceID" : "Portuguese_GorgeousLady"
+    },
+    {
+      "displayName" : "Lovely Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 220,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.8d3fb306b4fa9fe445b80bbadf8b1fcfaa640dbaec846f4b5b094f9128e361ba",
+      "wireVoiceID" : "Portuguese_LovelyLady"
+    },
+    {
+      "displayName" : "Serene Woman",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 221,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.540befb492eebadbdb146f4f916fc133fd0095f999d64a2407b19b20daaab407",
+      "wireVoiceID" : "Portuguese_SereneWoman"
+    },
+    {
+      "displayName" : "Sad Teen",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 222,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.afaecf0603ed337b89303549853d8bfaeec87f2da092bfcd8f02e9b5a3486ca1",
+      "wireVoiceID" : "Portuguese_SadTeen"
+    },
+    {
+      "displayName" : "Mature Partner",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 223,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.410b64e0c5cf510b5c0b4c6f859b5df95e6926123368544afd79cfaa48a9e7b3",
+      "wireVoiceID" : "Portuguese_MaturePartner"
+    },
+    {
+      "displayName" : "Comedian",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 224,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.758756243e912111eb533e4d12a026ba6d00cbd9ddb45c689147f4949c45eb7d",
+      "wireVoiceID" : "Portuguese_Comedian"
+    },
+    {
+      "displayName" : "Naughty Schoolgirl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 225,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a874a51e6466456de5bcff592b0fbac6b906b4f528e2dd4ba271565b26160478",
+      "wireVoiceID" : "Portuguese_NaughtySchoolgirl"
+    },
+    {
+      "displayName" : "Narrator",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 226,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.90ea8258ab99cc209356072a661dd9f0d6b637a6a58ef34e07aa09b7d1e3e4c4",
+      "wireVoiceID" : "Portuguese_Narrator"
+    },
+    {
+      "displayName" : "Tough Boss",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 227,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.f9c11b0ea22cd79b80a2da3f112c8b58d188af364a82a3d3adc973ee746f72ba",
+      "wireVoiceID" : "Portuguese_ToughBoss"
+    },
+    {
+      "displayName" : "Fussy hostess",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 228,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a9a5c09994bd46dca21c3cce8b3ca352f02f240ee3e06c919119c26639b371af",
+      "wireVoiceID" : "Portuguese_Fussyhostess"
+    },
+    {
+      "displayName" : "Dramatist",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 229,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.ac647bcc7c70dbf56e7d21cfc93a0388c9df61b7f3d8f65fc2ee0c4fd39fb568",
+      "wireVoiceID" : "Portuguese_Dramatist"
+    },
+    {
+      "displayName" : "Steady Mentor",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 230,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.c09c263732fc347d0a1bca666a05f17474fbf1179aae876e4dfdd1dd89047cf5",
+      "wireVoiceID" : "Portuguese_Steadymentor"
+    },
+    {
+      "displayName" : "Jovial Man",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 231,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.81f84cea634ef0e05b0ce3f49d49b1cf40661ec26b195d8d80908c9be1c27419",
+      "wireVoiceID" : "Portuguese_Jovialman"
+    },
+    {
+      "displayName" : "Charming Queen",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 232,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.2a8426f5d3e0328db62ba86dd306e3725f535c44c61ef8491c9ecd124cd49213",
+      "wireVoiceID" : "Portuguese_CharmingQueen"
+    },
+    {
+      "displayName" : "Santa Claus",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 233,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a9ce2ff299955e92da96158e4e910dcb104199257021d4a0cd5b8e5ad1f2e3e6",
+      "wireVoiceID" : "Portuguese_SantaClaus"
+    },
+    {
+      "displayName" : "Rudolph",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 234,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.464ec4e82682071e2f9ce715b0901543964cac466317349e409159721ba099a0",
+      "wireVoiceID" : "Portuguese_Rudolph"
+    },
+    {
+      "displayName" : "Arnold",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 235,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.e78dfcbd3be0e2bfab4fa5aa29f20c5a32a89ba2a7291b6cff8f5233d31aac07",
+      "wireVoiceID" : "Portuguese_Arnold"
+    },
+    {
+      "displayName" : "Charming Santa",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 236,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.c160c40526afd04ac4084322658239d1dc123561d5e5b15ba8d56131e71e6d49",
+      "wireVoiceID" : "Portuguese_CharmingSanta"
+    },
+    {
+      "displayName" : "Charming Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 237,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.cf0ec7db3c836a5dc29447efe498fb01495da90dfdd7969500025ecf331581bc",
+      "wireVoiceID" : "Portuguese_CharmingLady"
+    },
+    {
+      "displayName" : "Ghost",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 238,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.95429f921b8a10eaba3fc63bd85b5750656017078be66edcd317f00b98b99afd",
+      "wireVoiceID" : "Portuguese_Ghost"
+    },
+    {
+      "displayName" : "Humorous Elder",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 239,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.bc92c3c2e4b38ee2229d8b58bfd3f2333882936c5655f36f0f6f628e6328557d",
+      "wireVoiceID" : "Portuguese_HumorousElder"
+    },
+    {
+      "displayName" : "Calm Leader",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 240,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.bd7979cea351264e255c03e945bb62ff365bbd53df86cd5fa1aa45afccd1b43b",
+      "wireVoiceID" : "Portuguese_CalmLeader"
+    },
+    {
+      "displayName" : "Gentle Teacher",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 241,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.1d9166432e92d6dec66dc3aab3bfba5500b126b1906e9d0c1afd9fe476888ff0",
+      "wireVoiceID" : "Portuguese_GentleTeacher"
+    },
+    {
+      "displayName" : "Energetic Boy",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 242,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.63ba4c43a112c46a3cbfff7850ba608a4a6faf991588b056e67a6879d003dead",
+      "wireVoiceID" : "Portuguese_EnergeticBoy"
+    },
+    {
+      "displayName" : "Reliable Man",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 243,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6f20d7456c1347f644fc3a8dd5b2ea1e5d281f8e38267f878980d850d782438a",
+      "wireVoiceID" : "Portuguese_ReliableMan"
+    },
+    {
+      "displayName" : "Serene Elder",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 244,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.950bfe616c131edb18f86395cea6946cca99ebdb317bb4b757d6180513d1ef53",
+      "wireVoiceID" : "Portuguese_SereneElder"
+    },
+    {
+      "displayName" : "Grim Reaper",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 245,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.7787dc159f1824856035bdf5b9f911077b5931dc8afa2d20919850ec3a218a58",
+      "wireVoiceID" : "Portuguese_GrimReaper"
+    },
+    {
+      "displayName" : "Assertive Queen",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 246,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.1ed82dd579fa826e5b8f80a75c69542ff5fd8b62ab9587c545be89f3b91f675e",
+      "wireVoiceID" : "Portuguese_AssertiveQueen"
+    },
+    {
+      "displayName" : "Whimsical Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 247,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a25a0d1c3ff3ef1d6d371f19992ce96068cdbebf29b27e3848bd752d0d8d0ebc",
+      "wireVoiceID" : "Portuguese_WhimsicalGirl"
+    },
+    {
+      "displayName" : "Stressed Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 248,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6d55fdb1c3a7a7d16944769039f096839da3e5c576ec5da32b1ee153bc8546d3",
+      "wireVoiceID" : "Portuguese_StressedLady"
+    },
+    {
+      "displayName" : "Friendly Neighbor",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 249,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.2f6e2338172cc539c697c43558de9e97ebba900d024fd5a4d986dec1983d6384",
+      "wireVoiceID" : "Portuguese_FriendlyNeighbor"
+    },
+    {
+      "displayName" : "Caring Girlfriend",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 250,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.412a7083d4c1016135ce6a07212f081295b9d7dd144fc5b1beb0cab1862a649f",
+      "wireVoiceID" : "Portuguese_CaringGirlfriend"
+    },
+    {
+      "displayName" : "Powerful Soldier",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 251,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.e8b4de5950802aa43a960b1957dd63c908a5d0f169ae43152b2b2a8cee298af3",
+      "wireVoiceID" : "Portuguese_PowerfulSoldier"
+    },
+    {
+      "displayName" : "Fascinating Boy",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 252,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.7b37435119a0990a412a308ded91e091978521ea960ec6942eadedbc0344dd93",
+      "wireVoiceID" : "Portuguese_FascinatingBoy"
+    },
+    {
+      "displayName" : "Romantic Husband",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 253,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6812e961009a94494adfdce89b22a9c2e3c49ee267cb6fa63a33efd4703eeb20",
+      "wireVoiceID" : "Portuguese_RomanticHusband"
+    },
+    {
+      "displayName" : "Strict Boss",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 254,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.6becd85b0df2af1409a207c81c6917bd600a374837cf99441686009a2a53914f",
+      "wireVoiceID" : "Portuguese_StrictBoss"
+    },
+    {
+      "displayName" : "Inspiring Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 255,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.c8149ed19a05b621ce0621217a831ea625b8675594396a08028a0e7b611e2a6c",
+      "wireVoiceID" : "Portuguese_InspiringLady"
+    },
+    {
+      "displayName" : "Playful Spirit",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 256,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.03d01b625c2e33b0b651e5b673a49b254e081cae4e6e527bdbe2eceae54c9223",
+      "wireVoiceID" : "Portuguese_PlayfulSpirit"
+    },
+    {
+      "displayName" : "Elegant Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 257,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.34f7e6c4c6e1a99e5fccc5fa265a35e56647dcb4e43d5d478e087dfb15f6c8b8",
+      "wireVoiceID" : "Portuguese_ElegantGirl"
+    },
+    {
+      "displayName" : "Compelling Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 258,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.f0fcdd3cdd0b1eca8115f2f01b63b2fee250a3c129f4152b46eff72b41524c76",
+      "wireVoiceID" : "Portuguese_CompellingGirl"
+    },
+    {
+      "displayName" : "Powerful Veteran",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 259,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.da21991be495779d50bd92b92eaa5841be838987b138c9d817d8f56147b00871",
+      "wireVoiceID" : "Portuguese_PowerfulVeteran"
+    },
+    {
+      "displayName" : "Sensible Manager",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 260,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.fd0d1181e284d03a5c7325a82bfa0a2107e383a872b5c222820c51ec87a009c4",
+      "wireVoiceID" : "Portuguese_SensibleManager"
+    },
+    {
+      "displayName" : "Thoughtful Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 261,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.1b4e11396f118eaa4df9dbfb8ab6695cb4a31dc65cca50d0da9f99a09e7e982a",
+      "wireVoiceID" : "Portuguese_ThoughtfulLady"
+    },
+    {
+      "displayName" : "Theatrical Actor",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 262,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.294e9df120f6663477d1aae1cfb812d814738318968d8870546bed53e219d8a5",
+      "wireVoiceID" : "Portuguese_TheatricalActor"
+    },
+    {
+      "displayName" : "Fragile Boy",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 263,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.9c31d1cf76696a48aef20eeef4d2e584a1d40e5f53e05189f673fe824152f4e5",
+      "wireVoiceID" : "Portuguese_FragileBoy"
+    },
+    {
+      "displayName" : "Chatty Girl",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 264,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.051254137cff9dd86eae8216bc6e5a3be7bcf2920968834254a8cd2ad051b7f8",
+      "wireVoiceID" : "Portuguese_ChattyGirl"
+    },
+    {
+      "displayName" : "Conscientious Instructor",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 265,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.c99d52aa6b3fd9106e2bea48689605003d8a6b54c464251cf17a80d99a6b4982",
+      "wireVoiceID" : "Portuguese_Conscientiousinstructor"
+    },
+    {
+      "displayName" : "Rational Man",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 266,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.35d4c1131bd1591be12ca53f162b2c58691809c6faf41afb0900ee02913c4216",
+      "wireVoiceID" : "Portuguese_RationalMan"
+    },
+    {
+      "displayName" : "Wise Scholar",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 267,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a34ba777644820bb4a027690033c143f0d6fd82c6f3e3ebf51fb2bb14431ade3",
+      "wireVoiceID" : "Portuguese_WiseScholar"
+    },
+    {
+      "displayName" : "Frank Lady",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 268,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.a365abc289a1a9d15ea1b8fcf65f3a4a71cb26c6c71434e6d625a06170e3aef9",
+      "wireVoiceID" : "Portuguese_FrankLady"
+    },
+    {
+      "displayName" : "Determined Manager",
+      "language" : "Portuguese",
+      "languageTag" : "pt-PT",
+      "number" : 269,
+      "phrase" : "Amostra de voz.",
+      "stableVoiceID" : "minimax.dynamic.569f11ac8bdcd1bc85af1a786be989dd156ef28d27416b3c4f973e4927d9f019",
+      "wireVoiceID" : "Portuguese_DeterminedManager"
+    },
+    {
+      "displayName" : "Level-Headed Man",
+      "language" : "French",
+      "languageTag" : "fr-FR",
+      "number" : 270,
+      "phrase" : "Exemple de voix.",
+      "stableVoiceID" : "minimax.dynamic.163ce017b61990d723b7ee375fe908b3fef6e57751cc8c28015507d6d7480f09",
+      "wireVoiceID" : "French_Male_Speech_New"
+    },
+    {
+      "displayName" : "Patient Female Presenter",
+      "language" : "French",
+      "languageTag" : "fr-FR",
+      "number" : 271,
+      "phrase" : "Exemple de voix.",
+      "stableVoiceID" : "minimax.dynamic.bea1b82118710cf8d48e16e698b5930945b78d34f02ba7055588ac8f8fef9802",
+      "wireVoiceID" : "French_Female_News Anchor"
+    },
+    {
+      "displayName" : "Casual Man",
+      "language" : "French",
+      "languageTag" : "fr-FR",
+      "number" : 272,
+      "phrase" : "Exemple de voix.",
+      "stableVoiceID" : "minimax.dynamic.b54e568c7355954fa3f5eafee20bca86ce77a124e21ca548674576aaa63ea308",
+      "wireVoiceID" : "French_CasualMan"
+    },
+    {
+      "displayName" : "Movie Lead Female",
+      "language" : "French",
+      "languageTag" : "fr-FR",
+      "number" : 273,
+      "phrase" : "Exemple de voix.",
+      "stableVoiceID" : "minimax.dynamic.a20e10b45f51c96984cabeb5bb35f0f085d59483bca3091cf2bf9c175e54b7b6",
+      "wireVoiceID" : "French_MovieLeadFemale"
+    },
+    {
+      "displayName" : "Female Anchor",
+      "language" : "French",
+      "languageTag" : "fr-FR",
+      "number" : 274,
+      "phrase" : "Exemple de voix.",
+      "stableVoiceID" : "minimax.dynamic.adfc63dc8ace41d472de86c867fa2f10ad17c7bb78e217dc89cc6adf771cbbd9",
+      "wireVoiceID" : "French_FemaleAnchor"
+    },
+    {
+      "displayName" : "Male Narrator",
+      "language" : "French",
+      "languageTag" : "fr-FR",
+      "number" : 275,
+      "phrase" : "Exemple de voix.",
+      "stableVoiceID" : "minimax.dynamic.033c19f4f2bec91b71e6e4218d154fd44fe753762d72a5de0c8b1fe7b77b864d",
+      "wireVoiceID" : "French_MaleNarrator"
+    },
+    {
+      "displayName" : "Sweet Girl",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 276,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.c13b668aa4b1855a64a146146bbf28a8af162064eae620154c1c25252e498ee8",
+      "wireVoiceID" : "Indonesian_SweetGirl"
+    },
+    {
+      "displayName" : "Reserved Young Man",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 277,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.3c473621d8e78eb5172f2d174fc54234174ffe8c7336aa7b6b477e0dd07e03b7",
+      "wireVoiceID" : "Indonesian_ReservedYoungMan"
+    },
+    {
+      "displayName" : "Charming Girl",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 278,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.ab6744e46de6f67a9e808c0177b40cce91e7e83433014af2be823a5778d868d5",
+      "wireVoiceID" : "Indonesian_CharmingGirl"
+    },
+    {
+      "displayName" : "Calm Woman",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 279,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.b8febdb8d2402c1e1a08f833799ff313148a7e335232a24fd0afd971ff30d8c5",
+      "wireVoiceID" : "Indonesian_CalmWoman"
+    },
+    {
+      "displayName" : "Confident Woman",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 280,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.ae68d2984fd946b7a773c6bccb8e2db57f208921399f091f7efde32d2e6116a3",
+      "wireVoiceID" : "Indonesian_ConfidentWoman"
+    },
+    {
+      "displayName" : "Caring Man",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 281,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.12079e1c37c4250fce01e571041107fe14e0c07787878229824b9cfd34df9c1a",
+      "wireVoiceID" : "Indonesian_CaringMan"
+    },
+    {
+      "displayName" : "Bossy Leader",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 282,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.8ea99c2777970de0aa5dafe3973f9fc0cd452e11e93d4cd5eb5c9d34093263f4",
+      "wireVoiceID" : "Indonesian_BossyLeader"
+    },
+    {
+      "displayName" : "Determined Boy",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 283,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.e2c39dff37865bc0068872671c10ed1fca1b15d968a608c9b712ab356e6f4c9f",
+      "wireVoiceID" : "Indonesian_DeterminedBoy"
+    },
+    {
+      "displayName" : "Gentle Girl",
+      "language" : "Indonesian",
+      "languageTag" : "id-ID",
+      "number" : 284,
+      "phrase" : "Contoh suara.",
+      "stableVoiceID" : "minimax.dynamic.749fa03d54c938694a858fefab2e7d03115ce4d10711fd1653c31b911791b3bf",
+      "wireVoiceID" : "Indonesian_GentleGirl"
+    },
+    {
+      "displayName" : "Friendly Man",
+      "language" : "German",
+      "languageTag" : "de-DE",
+      "number" : 285,
+      "phrase" : "Stimmprobe.",
+      "stableVoiceID" : "minimax.dynamic.cd468d12d83367e9a7dce0f54f3befc8248a74cb814b71f5e19f0ee1bfabb739",
+      "wireVoiceID" : "German_FriendlyMan"
+    },
+    {
+      "displayName" : "Sweet Lady",
+      "language" : "German",
+      "languageTag" : "de-DE",
+      "number" : 286,
+      "phrase" : "Stimmprobe.",
+      "stableVoiceID" : "minimax.dynamic.2d7aa59c9177e320d287998e7ede7b84814a4965f030c2e5721fde9a7ad47bb1",
+      "wireVoiceID" : "German_SweetLady"
+    },
+    {
+      "displayName" : "Playful Man",
+      "language" : "German",
+      "languageTag" : "de-DE",
+      "number" : 287,
+      "phrase" : "Stimmprobe.",
+      "stableVoiceID" : "minimax.dynamic.6817a62d340c88469960b6c84c71a738338f8862d89884ac0502f9b3f53b11b2",
+      "wireVoiceID" : "German_PlayfulMan"
+    },
+    {
+      "displayName" : "Handsome Childhood Friend",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 288,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.b01bc2803d6387d56a3b3990896b5550ac28a65ff0b6192a8cb1c7a95990d8b0",
+      "wireVoiceID" : "Russian_HandsomeChildhoodFriend"
+    },
+    {
+      "displayName" : "Bright Queen",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 289,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.f49cc675bdcb7af6c4295c862d58655cf3b08ecabe756550a4906602e2d05a1c",
+      "wireVoiceID" : "Russian_BrightHeroine"
+    },
+    {
+      "displayName" : "Ambitious Woman",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 290,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.4fc45fe4a0fd5f2acdc92611a3248dcc4bce9b581bea51a0163d8b2af023b96b",
+      "wireVoiceID" : "Russian_AmbitiousWoman"
+    },
+    {
+      "displayName" : "Reliable Man",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 291,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.fbbd51d968a7936f361e8f3fad9b91f350566765a1f455fa363fb911e33fd976",
+      "wireVoiceID" : "Russian_ReliableMan"
+    },
+    {
+      "displayName" : "Crazy Girl",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 292,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.9f7f15f7f346c29385c3f574cb3a223a09bbb3e4292f9abca6c6176b8ebdd4f7",
+      "wireVoiceID" : "Russian_CrazyQueen"
+    },
+    {
+      "displayName" : "Pessimistic Girl",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 293,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.70f2c95f634e12b5452dba9402574db595f494cc777a94fa46fc7a1dc5b776b0",
+      "wireVoiceID" : "Russian_PessimisticGirl"
+    },
+    {
+      "displayName" : "Attractive Guy",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 294,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.48f84bf9acba3663e788729ceee9aedfefea60c933f158c8e3a97db4ba5fdfdb",
+      "wireVoiceID" : "Russian_AttractiveGuy"
+    },
+    {
+      "displayName" : "Bad-tempered Boy",
+      "language" : "Russian",
+      "languageTag" : "ru-RU",
+      "number" : 295,
+      "phrase" : "Образец голоса.",
+      "stableVoiceID" : "minimax.dynamic.49a080033b5aa061a21cde047876cf82af149bd5f9d61b6393fe883c8b6a977e",
+      "wireVoiceID" : "Russian_Bad-temperedBoy"
+    },
+    {
+      "displayName" : "Brave Heroine",
+      "language" : "Italian",
+      "languageTag" : "it-IT",
+      "number" : 296,
+      "phrase" : "Esempio di voce.",
+      "stableVoiceID" : "minimax.dynamic.cad1bf53af64bb073f5a1783894cc52b848948800d48fe169d01cfc90144e831",
+      "wireVoiceID" : "Italian_BraveHeroine"
+    },
+    {
+      "displayName" : "Narrator",
+      "language" : "Italian",
+      "languageTag" : "it-IT",
+      "number" : 297,
+      "phrase" : "Esempio di voce.",
+      "stableVoiceID" : "minimax.dynamic.e0ba6f9933a0dd4d291910c1f946de6d8d9c0cc2aaa8a14f139f4d2b290e83fc",
+      "wireVoiceID" : "Italian_Narrator"
+    },
+    {
+      "displayName" : "Wandering Sorcerer",
+      "language" : "Italian",
+      "languageTag" : "it-IT",
+      "number" : 298,
+      "phrase" : "Esempio di voce.",
+      "stableVoiceID" : "minimax.dynamic.73745cf821da53091abbb1b508546a99b5f61cadd808afd27b2d4ca3828252cf",
+      "wireVoiceID" : "Italian_WanderingSorcerer"
+    },
+    {
+      "displayName" : "Diligent Leader",
+      "language" : "Italian",
+      "languageTag" : "it-IT",
+      "number" : 299,
+      "phrase" : "Esempio di voce.",
+      "stableVoiceID" : "minimax.dynamic.0e14e211c9c6b1eac1cf52c90dfca6b6edfc529c72b058fe81857924549cfaa6",
+      "wireVoiceID" : "Italian_DiligentLeader"
+    },
+    {
+      "displayName" : "Kind-hearted girl",
+      "language" : "Dutch",
+      "languageTag" : "nl-NL",
+      "number" : 300,
+      "phrase" : "Stemvoorbeeld.",
+      "stableVoiceID" : "minimax.dynamic.d75c204d6c8f96cd8db17a3f09bc369ef5e44ef2f652aa31f29f261a598d9180",
+      "wireVoiceID" : "Dutch_kindhearted_girl"
+    },
+    {
+      "displayName" : "Bossy leader",
+      "language" : "Dutch",
+      "languageTag" : "nl-NL",
+      "number" : 301,
+      "phrase" : "Stemvoorbeeld.",
+      "stableVoiceID" : "minimax.dynamic.020a483162259a4482b3a4794793ef0ce011ac889f85b5ff1d7d448833d764d3",
+      "wireVoiceID" : "Dutch_bossy_leader"
+    },
+    {
+      "displayName" : "Kind-hearted girl",
+      "language" : "Vietnamese",
+      "languageTag" : "vi-VN",
+      "number" : 302,
+      "phrase" : "Mẫu giọng nói.",
+      "stableVoiceID" : "minimax.dynamic.7a1b3bd31ee3698fd84c60b7a2841ce10655e2d4c31f40dd165465d951782067",
+      "wireVoiceID" : "Vietnamese_kindhearted_girl"
+    },
+    {
+      "displayName" : "Calm Woman",
+      "language" : "Arabic",
+      "languageTag" : "ar-SA",
+      "number" : 303,
+      "phrase" : "عينة صوتية.",
+      "stableVoiceID" : "minimax.dynamic.eaed550b4d037646dac396cea636578a1f1ff2468adbec2f428db78cc7b3dfa6",
+      "wireVoiceID" : "Arabic_CalmWoman"
+    },
+    {
+      "displayName" : "Friendly Guy",
+      "language" : "Arabic",
+      "languageTag" : "ar-SA",
+      "number" : 304,
+      "phrase" : "عينة صوتية.",
+      "stableVoiceID" : "minimax.dynamic.f42278af68de5e25c2bf6c78f9dca4a8b2d6940fb84a9325d9ee78aa8c47e3ea",
+      "wireVoiceID" : "Arabic_FriendlyGuy"
+    },
+    {
+      "displayName" : "Calm Woman",
+      "language" : "Turkish",
+      "languageTag" : "tr-TR",
+      "number" : 305,
+      "phrase" : "Ses örneği.",
+      "stableVoiceID" : "minimax.dynamic.5b93acb38a3cfa53541e3fda5cff88ded5d0f9f14ac9f336d2534fefa16d0084",
+      "wireVoiceID" : "Turkish_CalmWoman"
+    },
+    {
+      "displayName" : "Trustworthy man",
+      "language" : "Turkish",
+      "languageTag" : "tr-TR",
+      "number" : 306,
+      "phrase" : "Ses örneği.",
+      "stableVoiceID" : "minimax.dynamic.b0690983520bb5109908f4d9434ee496b423eeff953cb97eba7e1584d934d6d4",
+      "wireVoiceID" : "Turkish_Trustworthyman"
+    },
+    {
+      "displayName" : "Calm Woman",
+      "language" : "Ukrainian",
+      "languageTag" : "uk-UA",
+      "number" : 307,
+      "phrase" : "Зразок голосу.",
+      "stableVoiceID" : "minimax.dynamic.ece7a735887a14b352622bf305a51bd23648be7b0d0f9c222466f518ac4c97d7",
+      "wireVoiceID" : "Ukrainian_CalmWoman"
+    },
+    {
+      "displayName" : "Wise Scholar",
+      "language" : "Ukrainian",
+      "languageTag" : "uk-UA",
+      "number" : 308,
+      "phrase" : "Зразок голосу.",
+      "stableVoiceID" : "minimax.dynamic.34b14581f18ae9d5003b2356334d7d65ff14d21076c9109d4598cad6d0cda6be",
+      "wireVoiceID" : "Ukrainian_WiseScholar"
+    },
+    {
+      "displayName" : "Serene Man",
+      "language" : "Thai",
+      "languageTag" : "th-TH",
+      "number" : 309,
+      "phrase" : "ตัวอย่างเสียง",
+      "stableVoiceID" : "minimax.dynamic.87cc36db5940b0dfd118afe34f02dd2e0861909db70f70a4dd3930bffab78f21",
+      "wireVoiceID" : "Thai_male_1_sample8"
+    },
+    {
+      "displayName" : "Friendly Man",
+      "language" : "Thai",
+      "languageTag" : "th-TH",
+      "number" : 310,
+      "phrase" : "ตัวอย่างเสียง",
+      "stableVoiceID" : "minimax.dynamic.9c436a91c1f46637ba2665dc2b18de3122dfd91fb21536e20a21c14bb7cd6d6b",
+      "wireVoiceID" : "Thai_male_2_sample2"
+    },
+    {
+      "displayName" : "Confident Woman",
+      "language" : "Thai",
+      "languageTag" : "th-TH",
+      "number" : 311,
+      "phrase" : "ตัวอย่างเสียง",
+      "stableVoiceID" : "minimax.dynamic.f6865a2a2c8466e161c8f25233887961cdd2066e1a2827b7550884fd70fcf504",
+      "wireVoiceID" : "Thai_female_1_sample1"
+    },
+    {
+      "displayName" : "Energetic Woman",
+      "language" : "Thai",
+      "languageTag" : "th-TH",
+      "number" : 312,
+      "phrase" : "ตัวอย่างเสียง",
+      "stableVoiceID" : "minimax.dynamic.27ae8cb22fe7bb82007f7fc26556596e8ea5f00de7e0314b5a09cedb8599ee81",
+      "wireVoiceID" : "Thai_female_2_sample2"
+    },
+    {
+      "displayName" : "Male Narrator",
+      "language" : "Polish",
+      "languageTag" : "pl-PL",
+      "number" : 313,
+      "phrase" : "Próbka głosu.",
+      "stableVoiceID" : "minimax.dynamic.53f13018b48649a0f3fddcc2386c9af85957d30ac7986fcec0011e3190ec486c",
+      "wireVoiceID" : "Polish_male_1_sample4"
+    },
+    {
+      "displayName" : "Male Anchor",
+      "language" : "Polish",
+      "languageTag" : "pl-PL",
+      "number" : 314,
+      "phrase" : "Próbka głosu.",
+      "stableVoiceID" : "minimax.dynamic.bfefd5c0d69a3dab91cc7b3a7b7050931bac7f5c189a71f22fe3887206a6f41e",
+      "wireVoiceID" : "Polish_male_2_sample3"
+    },
+    {
+      "displayName" : "Calm Woman",
+      "language" : "Polish",
+      "languageTag" : "pl-PL",
+      "number" : 315,
+      "phrase" : "Próbka głosu.",
+      "stableVoiceID" : "minimax.dynamic.3d77de49e5e3254ef4533f23d1921b9fd984f534b95ff62e71b2be7cd6396721",
+      "wireVoiceID" : "Polish_female_1_sample1"
+    },
+    {
+      "displayName" : "Casual Woman",
+      "language" : "Polish",
+      "languageTag" : "pl-PL",
+      "number" : 316,
+      "phrase" : "Próbka głosu.",
+      "stableVoiceID" : "minimax.dynamic.f12298eed802bc8c69898b778378620a12c9314b6983fd09692dae5c9ede3623",
+      "wireVoiceID" : "Polish_female_2_sample3"
+    },
+    {
+      "displayName" : "Reliable Man",
+      "language" : "Romanian",
+      "languageTag" : "ro-RO",
+      "number" : 317,
+      "phrase" : "Mostră de voce.",
+      "stableVoiceID" : "minimax.dynamic.421e0c3ed3b5548d697505f6067d6fc66213cb1edaba9a0a538ebe5f8d924260",
+      "wireVoiceID" : "Romanian_male_1_sample2"
+    },
+    {
+      "displayName" : "Energetic Youth",
+      "language" : "Romanian",
+      "languageTag" : "ro-RO",
+      "number" : 318,
+      "phrase" : "Mostră de voce.",
+      "stableVoiceID" : "minimax.dynamic.6e054b8ac950b4c90dfe4717ca40ce15afd45d8638dc36c36540706f00c15475",
+      "wireVoiceID" : "Romanian_male_2_sample1"
+    },
+    {
+      "displayName" : "Optimistic Youth",
+      "language" : "Romanian",
+      "languageTag" : "ro-RO",
+      "number" : 319,
+      "phrase" : "Mostră de voce.",
+      "stableVoiceID" : "minimax.dynamic.5de76db4846051aa9c93dcc4566a4f458dbd142d1e6165bd9280d2658dc2f4fe",
+      "wireVoiceID" : "Romanian_female_1_sample4"
+    },
+    {
+      "displayName" : "Gentle Woman",
+      "language" : "Romanian",
+      "languageTag" : "ro-RO",
+      "number" : 320,
+      "phrase" : "Mostră de voce.",
+      "stableVoiceID" : "minimax.dynamic.2fa1f83f995db553f47663793bb003b5b2e88a767dfd4c839d57df26129e895e",
+      "wireVoiceID" : "Romanian_female_2_sample1"
+    },
+    {
+      "displayName" : "Thoughtful Mentor",
+      "language" : "Greek",
+      "languageTag" : "el-GR",
+      "number" : 321,
+      "phrase" : "Δείγμα φωνής.",
+      "stableVoiceID" : "minimax.dynamic.bae4115c2eedc60e32429cd57ab8ca030372d8327a56d6e54d43e4c56dfbc825",
+      "wireVoiceID" : "greek_male_1a_v1"
+    },
+    {
+      "displayName" : "Gentle Lady",
+      "language" : "Greek",
+      "languageTag" : "el-GR",
+      "number" : 322,
+      "phrase" : "Δείγμα φωνής.",
+      "stableVoiceID" : "minimax.dynamic.4c70d285de262a564a1799c9dfcbbea825861ae62f1f65ec3dd00025070eb5de",
+      "wireVoiceID" : "Greek_female_1_sample1"
+    },
+    {
+      "displayName" : "Girl Next Door",
+      "language" : "Greek",
+      "languageTag" : "el-GR",
+      "number" : 323,
+      "phrase" : "Δείγμα φωνής.",
+      "stableVoiceID" : "minimax.dynamic.7221deccfc7428f90a5e7ad1104184cfc7a506fc3158e906da1d9c1abae2421d",
+      "wireVoiceID" : "Greek_female_2_sample3"
+    },
+    {
+      "displayName" : "Assured Presenter",
+      "language" : "Czech",
+      "languageTag" : "cs-CZ",
+      "number" : 324,
+      "phrase" : "Ukázka hlasu.",
+      "stableVoiceID" : "minimax.dynamic.bf0a4c60192de50c5795d7978dbf3b911d3c3c69cd3559dedbc12b400303d8ef",
+      "wireVoiceID" : "czech_male_1_v1"
+    },
+    {
+      "displayName" : "Steadfast Narrator",
+      "language" : "Czech",
+      "languageTag" : "cs-CZ",
+      "number" : 325,
+      "phrase" : "Ukázka hlasu.",
+      "stableVoiceID" : "minimax.dynamic.b43f127d8c749893b2c0f3cf2d299c0e09ea640d08ddea9fdc8af197d02cb7d2",
+      "wireVoiceID" : "czech_female_5_v7"
+    },
+    {
+      "displayName" : "Elegant Lady",
+      "language" : "Czech",
+      "languageTag" : "cs-CZ",
+      "number" : 326,
+      "phrase" : "Ukázka hlasu.",
+      "stableVoiceID" : "minimax.dynamic.f28b8583af6ffe07f61161272f38e1fd001955448e3c7a766611d2700fca03fe",
+      "wireVoiceID" : "czech_female_2_v2"
+    },
+    {
+      "displayName" : "Upbeat Man",
+      "language" : "Finnish",
+      "languageTag" : "fi-FI",
+      "number" : 327,
+      "phrase" : "Ääninäyte.",
+      "stableVoiceID" : "minimax.dynamic.5bf0ea957344791279d1753d8cf47e54519c6738a461eb8a80138d9ac665b598",
+      "wireVoiceID" : "finnish_male_3_v1"
+    },
+    {
+      "displayName" : "Friendly Boy",
+      "language" : "Finnish",
+      "languageTag" : "fi-FI",
+      "number" : 328,
+      "phrase" : "Ääninäyte.",
+      "stableVoiceID" : "minimax.dynamic.1ae2f02aea4a72cb92c0810c59f9fc881cfbc831b53bdc6321b2b73ce2fb6c1c",
+      "wireVoiceID" : "finnish_male_1_v2"
+    },
+    {
+      "displayName" : "Assetive Woman",
+      "language" : "Finnish",
+      "languageTag" : "fi-FI",
+      "number" : 329,
+      "phrase" : "Ääninäyte.",
+      "stableVoiceID" : "minimax.dynamic.a1848fc06ab2628591c2349f4a00a5ac4c509ba17c7a4021b1d5841ba32f94a1",
+      "wireVoiceID" : "finnish_female_4_v1"
+    },
+    {
+      "displayName" : "Trustworthy Advisor",
+      "language" : "Hindi",
+      "languageTag" : "hi-IN",
+      "number" : 330,
+      "phrase" : "आवाज़ का नमूना।",
+      "stableVoiceID" : "minimax.dynamic.5bf7225d61365982641c3c677000d9287b72bb363039b398daf1d1b16a1a2062",
+      "wireVoiceID" : "hindi_male_1_v2"
+    },
+    {
+      "displayName" : "Tranquil Woman",
+      "language" : "Hindi",
+      "languageTag" : "hi-IN",
+      "number" : 331,
+      "phrase" : "आवाज़ का नमूना।",
+      "stableVoiceID" : "minimax.dynamic.7544eb8d06dce161f557b0f9e57f788651e083b22c568ab1b3e763a540a9db8a",
+      "wireVoiceID" : "hindi_female_2_v1"
+    },
+    {
+      "displayName" : "News Anchor",
+      "language" : "Hindi",
+      "languageTag" : "hi-IN",
+      "number" : 332,
+      "phrase" : "आवाज़ का नमूना।",
+      "stableVoiceID" : "minimax.dynamic.1c48a817bf72cbbba600bbb1fe76d4ceb5d1058ae86c630f9b95473569a76c8f",
+      "wireVoiceID" : "hindi_female_1_v2"
+    }
+  ]
+}

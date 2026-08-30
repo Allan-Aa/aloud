@@ -1,0 +1,17 @@
+{
+  "voice": "minimax:Chinese (Mandarin)_Radio_Host|fluent",
+  "rate": 50,
+  "playbackSpeed": 1.25,
+  "stripMarkdown": true,
+  "skipCode": false,
+  "mpvBin": "/opt/homebrew/bin/mpv",
+  "ffmpegBin": "/opt/homebrew/bin/ffmpeg",
+  "cacheLimitMB": 512,
+  "cacheDays": 14,
+  "launchAtLogin": false,
+  "menuBarOnly": true,
+  "hotkeyChime": true,
+  "hkReadSelection": {"keyCode": 50, "modifiers": 4096},
+  "hkReadClipboard": {"keyCode": 50, "modifiers": 2048},
+  "hkTogglePause": {"keyCode": 49, "modifiers": 2304}
+}

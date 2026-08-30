@@ -1,0 +1,3000 @@
+{
+  "encoding" : {
+    "bitrateKbps" : 64,
+    "channels" : 1,
+    "codec" : "aac-lc",
+    "container" : "m4a"
+  },
+  "entries" : [
+    {
+      "fileName" : "7b9c59042281fe3108e4d515eb8d5cab0c4e8f2d2158f768960bf456e069adc2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c550ecfe292ebf3b2ed2341a14d4c126aa8eea3ebfcc4d5ac4f3e048b3534c06",
+      "wireVoiceID" : "English_expressive_narrator"
+    },
+    {
+      "fileName" : "36b55202ef124c2062fa84690a6c23de0e948faa414bb33c29ad9a6eb057ef9d.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8381e39a56f36a3df261f4c7b070f6acb190ce9c8d83c460220fd06780483839",
+      "wireVoiceID" : "English_radiant_girl"
+    },
+    {
+      "fileName" : "cf3055217bd0cd31c780bf51085ff711da938b15ad95590624e65fbd25e665f6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.db4b35ea0ff33ca3cb975b4269f6c6766adfe416b72a0f4333141919415ea59c",
+      "wireVoiceID" : "English_magnetic_voiced_man"
+    },
+    {
+      "fileName" : "a05ad754ebfa51143ef23a103ddb2211c37a09379c92e88f48576813925aa6bd.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2ccbd49e2735768755991ef10dda6a68852f46b77854e0c6bcddcbfe9a127b55",
+      "wireVoiceID" : "English_compelling_lady1"
+    },
+    {
+      "fileName" : "7a09703f96655a72b42c1f4ca1d7b10eca85f8f992227270a5d1c7fc33e8ccf0.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a8250aa92daf263406da38a5891034e70e25cf9419d264a6f8d37898cbc65cf5",
+      "wireVoiceID" : "English_Aussie_Bloke"
+    },
+    {
+      "fileName" : "51c4108275f05a2a156b8c9451d8a526c590d84c30ed755c0e1e89fd529d1fca.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.10db341db047b02a0983c2e388169fc7700164fa7d01ea261217e0aaef623fda",
+      "wireVoiceID" : "English_captivating_female1"
+    },
+    {
+      "fileName" : "6793f72cc0b21ee8005fe8ff33d908f2e6807da735b0ac17130ed397f3a9c455.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.cea102018d20aba14e95b3112a0e93221d160d3cd5bdcf166d5911a0948a7ac3",
+      "wireVoiceID" : "English_Upbeat_Woman"
+    },
+    {
+      "fileName" : "7a95de55f4ed4ed6677f56b75b7cef8c24bd26e2da4227cf22843bbb5323d86a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1fcd5817a56944b270a990c36f78215fa145b69a26aa68bf6b8de77659ea372d",
+      "wireVoiceID" : "English_Trustworth_Man"
+    },
+    {
+      "fileName" : "568e0d6d8d5beaf5770df7e63f3593d74b25ef923f6fda7f1ea50531f7a4809b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9dc3e735db591506eccca9dff89cd7d582b00a05910a4f1b4d742beb148da0b9",
+      "wireVoiceID" : "English_CalmWoman"
+    },
+    {
+      "fileName" : "40716a48bf3fe98dcee959324b3d3319650b971a9103694954018e8681d050d2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4bd2e24253a216c8abfffa6429678f98452759a4b8b29de52f79ce37ebbc799a",
+      "wireVoiceID" : "English_UpsetGirl"
+    },
+    {
+      "fileName" : "c5be4363bc7a52691d9f218f3302495a1638c63e748b302e4e210f4c9e5218df.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c9a8376ca1eb91ef996deca047398bff7951a0996150c567cc1ce767c0048f80",
+      "wireVoiceID" : "English_Gentle-voiced_man"
+    },
+    {
+      "fileName" : "71df05e794a36d69622af9a9514a1b2514753349f4ade19bb12cb8ff69dec581.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ca4e0726f7bc7c51e0106fa74810bc98519e0274815ae643ac61f4f72e8f5c0a",
+      "wireVoiceID" : "English_Whispering_girl"
+    },
+    {
+      "fileName" : "659fc1d0c3f018464bc005bcd57bac1dd3f3fe569574a22efbeba0c6ecf30d6d.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9283aac26757b423e2df6ee9b2edd4a7f429921c61a863dd0744b91ef03ab931",
+      "wireVoiceID" : "English_Diligent_Man"
+    },
+    {
+      "fileName" : "1b83daaaafdd856977f3c2c09224864b38d20522de296fd53cfc6f6f4160f1ca.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ee2ff84b469e2bb042a34e4526d56e50bcf3c14ee73a8ccb470f032f2af807cb",
+      "wireVoiceID" : "English_Graceful_Lady"
+    },
+    {
+      "fileName" : "b8cd141ee0f4315fe6679a981a283a2f3d1c582a26c9b6c748e9cb77f54c0cb1.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.3e076752de5bce7220a0bc150b99b2b7440f46ffd5d55e9561df9fcdc9e78ecb",
+      "wireVoiceID" : "English_ReservedYoungMan"
+    },
+    {
+      "fileName" : "8a65eb5b19d3f690ed425dec112f67da9b03e5485479470b284d54b49e71f28e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7113a8007779cab2c1d5c763af1a2ce329c7fa4637a04fea33243e7b424df76e",
+      "wireVoiceID" : "English_PlayfulGirl"
+    },
+    {
+      "fileName" : "154e0afd02f61d62bec15737942ac7df58887f1e09dbac25fa6ab490f1e0b26c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.43da8676768dc91fce51f7d66fa639ad58974e81130eeb91b273345debcbabb0",
+      "wireVoiceID" : "English_ManWithDeepVoice"
+    },
+    {
+      "fileName" : "bc8b8f8529aa4cc807e80e43577f4ec9124c7f53c89d1d89de84590c9efc928e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8288188b0f011e555fdac6e9296995e14fb9bd579695a3a4dabfef26a00c8c16",
+      "wireVoiceID" : "English_MaturePartner"
+    },
+    {
+      "fileName" : "ae85b1b384c1b2e681c9ede2b164d47b539b8e82069d95d4f2acb34e3948237b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.80a8602ef3f98c2d8de2c4906eab934e66a53d459d78072659a49e38f64105ee",
+      "wireVoiceID" : "English_FriendlyPerson"
+    },
+    {
+      "fileName" : "59170aa41ee705e2584c618f647d432ab288d83d53e5a71176f42bb0a03f4fe1.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.217e06bd7bf95ea8bf3559fcd1d5dede2f3d3aa13bef3136631846e523e00aed",
+      "wireVoiceID" : "English_MatureBoss"
+    },
+    {
+      "fileName" : "7f08e8ca6b203529bfb3525d4ab79578e91944c2f603c82afa102dd1f7fc9ecc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.45b99ae144a87f87614507eca222488e34ebfef7631f709f92b210a96aad5c08",
+      "wireVoiceID" : "English_Debator"
+    },
+    {
+      "fileName" : "a10a5d36fa9026b64ae67d315cf1906fc6ef6848143a651f100ed2a452ce79c2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c12fc416346188e2ea1749c0f38b94e69d95d92416f509b0857c91d7bcb241a2",
+      "wireVoiceID" : "English_LovelyGirl"
+    },
+    {
+      "fileName" : "f06729f1703859e81acb748ca28d72cd0a5d80f8f803034515cf20b9abfa37c0.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1ab6e98a5a201becae8394bf4a6ecb3ebe12b34629eab74391e87d105713fc89",
+      "wireVoiceID" : "English_Steadymentor"
+    },
+    {
+      "fileName" : "0b61ac8528bd87fd22a43e2385ce6908ce5e554d5b643c7a162f0206e85fa1e4.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2fa3a2a8b7e6c15499e0af09f406de26257e3d17cb700d0c71f540bcae056303",
+      "wireVoiceID" : "English_Deep-VoicedGentleman"
+    },
+    {
+      "fileName" : "0419f1aa3bcda37d4d8fa64564a600b4f48ffd0dcc7bfaa1abc08b91ab109e63.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b0e4ef2c0e4ba5238c9e4b29a1a38a8ca9ccc70a6da0984621f1ddbcabf1552d",
+      "wireVoiceID" : "English_Wiselady"
+    },
+    {
+      "fileName" : "c3f18952915bc26bb080b60fcfa31f3f6864f8d7dfa0d002592b9cabf7bfc5ab.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.18dc485b55b721749270fbe6e87e1e6f0c0d71394e6b2240c72722a139a69093",
+      "wireVoiceID" : "English_CaptivatingStoryteller"
+    },
+    {
+      "fileName" : "6ace257c984e9b8133481964566aeee5445247dc3e46236c217066db5a99e041.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.0a96895f3f1f279ed97ba2d09a8e8e5ccd198c9f745b0c1777e6cb8d7cfdd82f",
+      "wireVoiceID" : "English_DecentYoungMan"
+    },
+    {
+      "fileName" : "7678df4b9a68f10f6181b580340ae9b80f5b55d8e8329bfe93059fb522e7986b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5aab0043883fa68bafb7d95365e1388294d6fa400f47a32f9ed37d44f4f3074e",
+      "wireVoiceID" : "English_SentimentalLady"
+    },
+    {
+      "fileName" : "451cde935ae8ab7df470dcde413f8ad03a83fd7d78f7dc68ce1bbabf93338abc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6901023dcc85ad80487dda746dd6c83eb9f2821846a237dcb87aa1bb510ce2d2",
+      "wireVoiceID" : "English_ImposingManner"
+    },
+    {
+      "fileName" : "7d3feb5761b373b19fa5cdd8ac9b3a87c8b6b02cebd0b7f27ade9200f1dad08b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7604efdc97601c922a7c4e6966e5e47cf46b4818e2cff439065f629e31a5126a",
+      "wireVoiceID" : "English_SadTeen"
+    },
+    {
+      "fileName" : "c34b132ac056a7dde05329ae890b057d28dd5a852005e83b7da8d095478e2d0f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a84909c3e3a7960942430d0622c501ee255d3266d5dfd3d53e7ecda36a399df3",
+      "wireVoiceID" : "English_PassionateWarrior"
+    },
+    {
+      "fileName" : "f3ca8d422c74eba67af1f36e4031e739141e5f697853b6ca0b254fad0913349c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.100c178750b30f0bacb6fc97f297c44eb8e57c6eab155afc6e41bfd92a707852",
+      "wireVoiceID" : "English_WiseScholar"
+    },
+    {
+      "fileName" : "83b5bfcfad7635debe0780836b45986dbcffc25608c869d1d1c202f22e04b68f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.044e8c4b52fc257ea372468eeb31d95bbf955da1b65566c9695d39e16ecf42b2",
+      "wireVoiceID" : "English_Soft-spokenGirl"
+    },
+    {
+      "fileName" : "8c7a85e23a3dab1c2c286e27fa5620e0197793d4168ef09e02de50837d55ebad.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a3de14ca6fc4e4e3d65d10e3a5920287155deb42d36839dc83603f712b34901a",
+      "wireVoiceID" : "English_SereneWoman"
+    },
+    {
+      "fileName" : "22641cd956e363864fe5cddfa75d84713c145c97d5a8963a35f73c2dd9bf4f6b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7da7b82e970285cf3c3bfb38f8f05b4a76c70bd679eed517eaf4e38777325a80",
+      "wireVoiceID" : "English_ConfidentWoman"
+    },
+    {
+      "fileName" : "48238ed78afa308c692f76ca7ab0011a46f4b07603b1f49f1f04626385ef81c5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f69354bbf2e19bdf64f37e78195fb94e107a373123bfb0553a68771d15e51d80",
+      "wireVoiceID" : "English_PatientMan"
+    },
+    {
+      "fileName" : "703ddbf5684a0e140abac8c34c56c8e79dccbf73af9b3096761056c183615500.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f889bbe5ca2e62f7e899a3ad8cbf25066fc4e36da1b71a45d433ab141bd67794",
+      "wireVoiceID" : "English_Comedian"
+    },
+    {
+      "fileName" : "60fb20f9a25b5b82716442a4398cac201e2199e85f5f0e6ffec26174dbbe38d7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c82f02937c0ed8490a6e607768f26921b8867d09357867b09d869dfb9694444f",
+      "wireVoiceID" : "English_BossyLeader"
+    },
+    {
+      "fileName" : "ca23db9896eff43a59ece6099f7726ce7bf127608e8a60d08a1fc8df6c989c21.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.109239275df724bbc5e81b95da91e310035b0634ca10620de685c5de26a76755",
+      "wireVoiceID" : "English_Strong-WilledBoy"
+    },
+    {
+      "fileName" : "cdd135c602b5dace3ca2b71eeee2964ab354eb17f4fc3ab48464fab577d2ef6f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9d95c7c1e895621dbb10f92b07c86670c0bd4fa8a2d776b1e1a52eab8af10cd5",
+      "wireVoiceID" : "English_StressedLady"
+    },
+    {
+      "fileName" : "a54fe6f8a66fb29ba8a0de39d5771d03134c70928a048b1495266c671c30d706.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e7d69e9059c4f9ebe76cda75c590955cdd2241c6d0b1567c92e82dcfb68a0973",
+      "wireVoiceID" : "English_AssertiveQueen"
+    },
+    {
+      "fileName" : "ed1931db5976af7c741b1e08d196e87f3cbf536ece6dc34b25da17c75640bc2f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a0946e1b137d363f330e42d6b389ad178de4081943a6e104dd6fbcfbd9d3a5a3",
+      "wireVoiceID" : "English_AnimeCharacter"
+    },
+    {
+      "fileName" : "e6dd640b0339eeee80df0d8ea677412ddcd6481390ee0939cc5824eaf27fb1cb.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e9023016975fd45fb3ccf5b5196ca12859d44bb641a7cb61cf6e8bace214dea8",
+      "wireVoiceID" : "English_Jovialman"
+    },
+    {
+      "fileName" : "38119a3b8d4d99f1a4ad35265de0c427bf570c79c01e70ad5080321fa33903ae.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c6a264b849514baf8464fbd01257b2d882ad09a7bd372bfc266875ed448b5edf",
+      "wireVoiceID" : "English_WhimsicalGirl"
+    },
+    {
+      "fileName" : "9700ab8cd1ac6e090e4fe9f5d9622caadbd1b18670bfeff3446dfce9cde570d9.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "en-US",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2aa2336dfc33cdbbba4798916064d1101b2213db94ac8a11e9de9bff05cc65fb",
+      "wireVoiceID" : "English_Kind-heartedGirl"
+    },
+    {
+      "fileName" : "8a9399fd7efe1cadcbb6bd40d94dcc46ac39606f6b52f03957657f88f372d9c4.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.0b6d3e99246324ed707591e0b59d20f0d7e8393dd5a6b788dcaeccd7bbef30c1",
+      "wireVoiceID" : "Chinese (Mandarin)_Reliable_Executive"
+    },
+    {
+      "fileName" : "dd789a0ffb988bfbcdded9c0ae777d284b975ed07c40b816bde4b5909c6a2140.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.69481e71890429ed803bdbc032093dcd0ae4a99e43806610403136cfe1c33786",
+      "wireVoiceID" : "Chinese (Mandarin)_News_Anchor"
+    },
+    {
+      "fileName" : "b0a8e495ae2512f1032543cc80b2cff83ed67f7ac199fe4d6738f7618eb9db9c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c4de8bd2bbcb0122f969be19fcefc683b21540119bd6c788bd65cf55612fb36e",
+      "wireVoiceID" : "Chinese (Mandarin)_Unrestrained_Young_Man"
+    },
+    {
+      "fileName" : "24de2957f3fbaf3c874c93c225125d8caf7b8bc2dff392d53a8e4a4d85a9cd38.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.81422eab3f556f734ef200d850b9255994cb7da64193d0da6e2a9a7ac57dcfd8",
+      "wireVoiceID" : "Chinese (Mandarin)_Mature_Woman"
+    },
+    {
+      "fileName" : "c4122008edf3b7fb7fff1d951a7f1e92e7d9fb367f065f98fe62bcf5b781a56d.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8da1530fe62ce810d0ee37d371c9131ee48d84749870b04c9e7501d949d4b01b",
+      "wireVoiceID" : "Arrogant_Miss"
+    },
+    {
+      "fileName" : "b964886d1696db15e4ff488085b1ae13c864292f3ca171d93fecb84cc4812b95.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2b3a82cdca2dc7e0af413acc9faadfaccf8bebe654ef0adfbca777b9f7ba4d00",
+      "wireVoiceID" : "Robot_Armor"
+    },
+    {
+      "fileName" : "6144a2d28979e590aa0638bb7cc37f2dd4384bda06c5e9c32b5aa5cd915a95fb.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5db0e69b0f0663063579cbf2931dffa6775112ee65787bcb72a2843d0cc4110b",
+      "wireVoiceID" : "Chinese (Mandarin)_Kind-hearted_Antie"
+    },
+    {
+      "fileName" : "a680dfe577b3943e71ae48054e892221745e355d5b07cbf3733e7605c1fbf003.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2c5a92794bafffb4ebee3069ef5b28b220b709327806cae8594ad5acccebbcc2",
+      "wireVoiceID" : "Chinese (Mandarin)_HK_Flight_Attendant"
+    },
+    {
+      "fileName" : "fc1f9ae74d1767e2596753ec2d3d0e0e3a08133cc6baa42cd2e2fa4e394ad63f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5f0f7db5374dc1fd271f1431524c8c0baec4940b2c71b7d452dd8537c01c0cbe",
+      "wireVoiceID" : "Chinese (Mandarin)_Humorous_Elder"
+    },
+    {
+      "fileName" : "eded7b8835d9a77d6f51112e8dd3d77adf12e0ac727523230d4542ea6761833e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.3391ee59c220b66eff047bd123c835bd8c3f371dcd7578e16b3b885b04dbe8bf",
+      "wireVoiceID" : "Chinese (Mandarin)_Gentleman"
+    },
+    {
+      "fileName" : "c62fd5286c02ccd57589d1c4adae3ddc7ae4c26a83fdbd9b93eb289681d8baa2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7f1fc98e506d12d79d7c6cb6a7903c63b1bbe5fdbf738c100b2de0bc3ad0416d",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm_Bestie"
+    },
+    {
+      "fileName" : "137374ab2deed8802f54c4ab916ce45a2869f84d25795090346ac53f1ca005bc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ebd8996b8d4adadc6b7cf0083745a0d365ab50a68ab2a875b35d2f3b878e8fad",
+      "wireVoiceID" : "Chinese (Mandarin)_Stubborn_Friend"
+    },
+    {
+      "fileName" : "cb79505f969691a2e54f3795a8f14edee8e058b9dfdd17c616bd1ac0718939f9.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.511137c6a73e5896a2b749008b3f4d94875aa9f858e3f87a56e53251e52b1f29",
+      "wireVoiceID" : "Chinese (Mandarin)_Sweet_Lady"
+    },
+    {
+      "fileName" : "0d6ae3ebf0ebf5f1b63a4033e93c7559726337a4e46b080a279961c6bbfc61a7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.49d39763e417f31da5215d89db54e036d74817e2640b74b7216cf4b31b4006c5",
+      "wireVoiceID" : "Chinese (Mandarin)_Southern_Young_Man"
+    },
+    {
+      "fileName" : "5f2893b6ad97b6454b33608d689c07be0da291d68d38b53e29c9a36f686056b8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9fc1b4da15a9e3499712a1499cfda38fdd3efd11ccc3edb0ee9ac7e18c2c9513",
+      "wireVoiceID" : "Chinese (Mandarin)_Wise_Women"
+    },
+    {
+      "fileName" : "4523d5f66a7cc85477ea9862c49197a0f7aa6f6a21446edb31881bb0b7a9f33a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4bea50d053b4695d1dac0e7b347a44d3fdf52737539dd13355081dc7ab704ba2",
+      "wireVoiceID" : "Chinese (Mandarin)_Gentle_Youth"
+    },
+    {
+      "fileName" : "04b9667743c20135ceafe5e8b314ec6b6ee0b8c93c9da1d32019247f1c2bc418.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.21adde6c88e9831e15687dc3499f8e6e654957c8e47b056351d18f60d50be04a",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm_Girl"
+    },
+    {
+      "fileName" : "b84384d03c13b4a755b71709363c3a07a662feb93ad829ac92da6f8e7cd641bb.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b66c0a3a33a0f22bac40f37564cd560ead2c1a41bf5e28002b5a47ccc4fdcd87",
+      "wireVoiceID" : "Chinese (Mandarin)_Male_Announcer"
+    },
+    {
+      "fileName" : "b5888697f8e8bc2cfba1c8cddaf7ad2d5d62d9e15b35c577d9cce8a7cbcc60db.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ec1df8b0cc235a24ccab6c3de82328cbe9e98e195407b2ab81a4754a1efdd3bc",
+      "wireVoiceID" : "Chinese (Mandarin)_Kind-hearted_Elder"
+    },
+    {
+      "fileName" : "7a7d7b84e202df4298406c957fcaed29ac72b2eaa3ad5770c0b47e84a0117d47.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8edd28cc0ad8007f66291c426cbd8295b1c9488f54ae4e0815c27019ebc0f86f",
+      "wireVoiceID" : "Chinese (Mandarin)_Cute_Spirit"
+    },
+    {
+      "fileName" : "36097da3a385184f1e48e69106bc828af776cb99647ab77500a0e2b6c4c69361.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.radio-host.default",
+      "wireVoiceID" : "Chinese (Mandarin)_Radio_Host"
+    },
+    {
+      "fileName" : "c5cfaa0978667be871e968ed973cb5a643d468f967e5badb26728fdf6502c900.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.82146135a5ed323a26309bb749ddcc57a6969c69f65f5fb58e7d8e9a54bb18e4",
+      "wireVoiceID" : "Chinese (Mandarin)_Lyrical_Voice"
+    },
+    {
+      "fileName" : "316afed4d784cbea2077af190cbac802527b5539b5b7a983c71af82deeb19fca.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.71c83e8f3dddf164293b70b720463a2a2321b7376385efaba5cec39183bbc46b",
+      "wireVoiceID" : "Chinese (Mandarin)_Straightforward_Boy"
+    },
+    {
+      "fileName" : "310317c9d6f310a6eedece924f4a9927049841f514a3d8e5eadbe4e48b8bdb0f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.beb6d8ce6ad6939d1f13cc3adbf9a5ab19a4c9383344e34e0527f5c6168a8d10",
+      "wireVoiceID" : "Chinese (Mandarin)_Sincere_Adult"
+    },
+    {
+      "fileName" : "3d9930beaaabcbc4eed3a9b9722abd25fe3a3510b5ec88e472859c4bf86a05e6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1d4f9f64d50f443e805eb51ed2aac42c5b421636abcf3ac20a3f98091ad8fda5",
+      "wireVoiceID" : "Chinese (Mandarin)_Gentle_Senior"
+    },
+    {
+      "fileName" : "17fb0009e14c767d1d8cbb7105c06154c8e9ec9b2c9ccdb054cd8afb2a5689e9.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e0f55b719a3843c21a4bbaf59b8bbb7b1d1e7753213b2564865ea2301ad183a6",
+      "wireVoiceID" : "Chinese (Mandarin)_Crisp_Girl"
+    },
+    {
+      "fileName" : "4384a17bdf814ed23e742df95a9905d5bdee5d17c00c734ff3a23b5aa2924dad.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e4f03adf72300ff64a6716080dc33b03b4aaa1d709584113f7a17de29dc437cd",
+      "wireVoiceID" : "Chinese (Mandarin)_Pure-hearted_Boy"
+    },
+    {
+      "fileName" : "3b9c978767b63bcc76a4744f9e9dfef841c11650fabb5d5792d6ca3508e5ed76.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e0ca1430c4cc12853f3e97d5fac4f035355fecd86ae3179b2b2e030f443eb7f7",
+      "wireVoiceID" : "Chinese (Mandarin)_Soft_Girl"
+    },
+    {
+      "fileName" : "b34f546ddff18a60bffa7c81957c1e7ac94f34642b4629abbba1b2c9d12a27f3.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c4b148e37cbe2eac20be4b4c9e39ec0e3afc85c8d02b4dc5396618537e0e6e66",
+      "wireVoiceID" : "Chinese (Mandarin)_IntellectualGirl"
+    },
+    {
+      "fileName" : "616cead459703b4766925e5c6b39363717b363ebf1df436bb661e07aefca862f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ed97c165437dcaabb91e7ed65183ed36dc1f2fde56376be5366b36550c23cfd2",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm_HeartedGirl"
+    },
+    {
+      "fileName" : "b06004bd889de760e9d5d0bb0adddd8c0d54d85d2d4eb1d6c9fe0016140c5a19.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.laid-back-girl.default",
+      "wireVoiceID" : "Chinese (Mandarin)_Laid_BackGirl"
+    },
+    {
+      "fileName" : "0796e146a0c34906f436ba30c258eb41e66450704a82d068c030f54b35f52f5f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.edd84a84165ad500b68ae2dfd47c6fd1941e4a2c240381880cf14a5fce661c8c",
+      "wireVoiceID" : "Chinese (Mandarin)_ExplorativeGirl"
+    },
+    {
+      "fileName" : "ee14a9892f55b038f8203d31f1d61e1c2f0d9ebfc59287c58bf96d85c491f35a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.892a799ed6fd9ca9b0afb4ee7ce60ad8e4023ed259ca320ad3aa19fc8dfd866c",
+      "wireVoiceID" : "Chinese (Mandarin)_Warm-HeartedAunt"
+    },
+    {
+      "fileName" : "b0a0dcdfdb51ba45336f297a1a133f9fa606a25b93b9506c06120985db349295.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "zh-CN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e20f7e5f4e2bf2c4ffe67158c2a90682b2b4641660bc08aeabd8a9fdcfb9e4f9",
+      "wireVoiceID" : "Chinese (Mandarin)_BashfulGirl"
+    },
+    {
+      "fileName" : "c2bf508ad2daa710cfa3fc6331c70c507ae3e89c784ec78eaa7e53e493881daf.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e2a7f0a7a5106735e6d298cfd6e77fedc5c635bcc0a4facadcabeb426062b346",
+      "wireVoiceID" : "Japanese_IntellectualSenior"
+    },
+    {
+      "fileName" : "a841999a0aa04cc91d1ea05b29d3fcbadc88e6d4eb3f555fc9d57639a610cbff.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.03db28f1be780282693b6c97446f3934db72fce48cff66a5ef1fc4eb897dce58",
+      "wireVoiceID" : "Japanese_DecisivePrincess"
+    },
+    {
+      "fileName" : "29116e506017a12d8e2f1633d81829a1713b1f98d7d77840478bd8b15e9593dc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.25f82b21e57ea311c1a5ec5901212ecc6a078f2671fb4567421dd214dc956e89",
+      "wireVoiceID" : "Japanese_LoyalKnight"
+    },
+    {
+      "fileName" : "be932ff841b322084e3ca5f9a299672d7126039ca761958e629df517b584b140.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ffb8e67a626a70b361cca1d82efac0d7128dbc925448f2c506ca299fb8b66730",
+      "wireVoiceID" : "Japanese_DominantMan"
+    },
+    {
+      "fileName" : "d144e20cf2c6876ca68cfe4f53c2f47a0501e8369592e837857894f3ed8e54e3.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.657209e03577eddb839079bb7ed7b7f01dfba55b25db1a2cb92d10314d76586b",
+      "wireVoiceID" : "Japanese_SeriousCommander"
+    },
+    {
+      "fileName" : "321d416b8e47bf95c302a9b4e7be230d20738237e030ae3be3aa3a8bad7aa453.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.3c767988d38f79a21a326bfa285a8de509bb7ff7fb02ea6b5ec88c2294654ad8",
+      "wireVoiceID" : "Japanese_ColdQueen"
+    },
+    {
+      "fileName" : "8686a87e948bbd4f8857bbb559f2f8d5951220663ed2409923af3b7c97a50fd6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a6a25b9f3486c29b257cabebe420850c8313c6ab91a55fe32a8c8312172176d0",
+      "wireVoiceID" : "Japanese_DependableWoman"
+    },
+    {
+      "fileName" : "3c9e1b88343a7e5589961ec12f18c7376c34be774fea30c5a7f395668d6b8c65.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.64746bd4ca63928182a58825f92ff23ab77413f34a9a1d3bfe5e651487569f90",
+      "wireVoiceID" : "Japanese_GentleButler"
+    },
+    {
+      "fileName" : "e182f1626dc712e0e1a0b7d31c207477305d75b8dd4723f9d89f368a355ca2a9.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.508891d1828008e9897c8f18f9e24ffdaa1e3d3815c76356482b0a1372a0b17d",
+      "wireVoiceID" : "Japanese_KindLady"
+    },
+    {
+      "fileName" : "b12b22527a464ea9b0e3964dbf70d18828577024425c9c031aaafb4f49917eea.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f64c16e57d1c67d9e31225d05f3f2ea8d60e573e8e32b75b5a0b41747a831199",
+      "wireVoiceID" : "Japanese_CalmLady"
+    },
+    {
+      "fileName" : "420cf981d69f145801ca0446e930dfcbd3efdaf0fc8aac42dc91bafd424be147.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9b083ec9f9d638a208b2768a4c7cb5303333b29937dd8c116a654b4c5dd7330d",
+      "wireVoiceID" : "Japanese_OptimisticYouth"
+    },
+    {
+      "fileName" : "a87044b7c0c27aaa5219df436ee773dcbc26340736fc571c59ddf546fb5ea0a8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.81b6801db651c3894e62570d23dff99bb6b3b61a0110b9940646582f6b93f83c",
+      "wireVoiceID" : "Japanese_GenerousIzakayaOwner"
+    },
+    {
+      "fileName" : "5cc07b6ee41b545e69ad6f4807e4af7435011006d72b1bff9f06bf94aa249702.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.586b370ea503bcd6a2eab3f7802d136dea26b3f41b0f1e84f4512ab7e252c115",
+      "wireVoiceID" : "Japanese_SportyStudent"
+    },
+    {
+      "fileName" : "5cb4d9d92c69559a5c76a17e9ae4eb62fa8fea9b14407985fc3c296b87be5190.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7b97fac0819ca37ed6247b6a46cf01fdb20a792280fa6162cf1dbef33b018502",
+      "wireVoiceID" : "Japanese_InnocentBoy"
+    },
+    {
+      "fileName" : "76bfb51f1a889213d84d6335006798f0f5066815c5b3f5aa8bee144e05a0c3ad.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ja-JP",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7ab9a1da0ee6896edc60a2008228f43083fd832753b120bb513e6141431d82b5",
+      "wireVoiceID" : "Japanese_GracefulMaiden"
+    },
+    {
+      "fileName" : "7dc3e551d75166266ec882d7bb6e1e2b26b9aeb7acac8063434789e411f38983.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "yue-HK",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.642ea2fa179d129510666bfd6ec07c5c660a282a24a2815d81e1064ee91a0c8a",
+      "wireVoiceID" : "Cantonese_ProfessionalHost（F)"
+    },
+    {
+      "fileName" : "3fc03861f9d3995fc3cfc572d76a15c6b1b75d5d28f0a6b004e730cd648b164f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "yue-HK",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.be0bd743beeedf222043d5efc3f782d1524443fbc71996e6533b9635426b89f1",
+      "wireVoiceID" : "Cantonese_GentleLady"
+    },
+    {
+      "fileName" : "f271d9fe58c7873b5493e1a30cad9d3c3675392cb782be994ea23bc493502795.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "yue-HK",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.53763a1b0803829670ccda61f2a155f332ec0da84395eae9e2886df6866f7029",
+      "wireVoiceID" : "Cantonese_ProfessionalHost（M)"
+    },
+    {
+      "fileName" : "750de5c8434ef22f3f43f44d83ed863234f6fcac8622963bc0fbceea2127eb57.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "yue-HK",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.46ae8e7547465fedea9f8e9cd78962fc2250d629430599129f383186b36c411f",
+      "wireVoiceID" : "Cantonese_PlayfulMan"
+    },
+    {
+      "fileName" : "4fd7bcff4d9b3f17b9c672475e32f2b73067ed81cdb960410770c770135db0e6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "yue-HK",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c1d075973fcbaff59dbfa85089641862b3656193becf6cdf75377db4a189a414",
+      "wireVoiceID" : "Cantonese_CuteGirl"
+    },
+    {
+      "fileName" : "c7ff48116a2cff77aeb9f056d53b2771abba0368d394e9de8265c1b1428bab13.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "yue-HK",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.80bad92fd41bf825a40c89a38ba2258134b0638f16f616f4546cfb247430cbcb",
+      "wireVoiceID" : "Cantonese_KindWoman"
+    },
+    {
+      "fileName" : "bc942952119ca31dbb63c456cb0e2ee04d400e31014085922e2d4ad4ac1a28dc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8dc1f42bbf6273ebfc2854a8daea28ae59e6429691aa8fa79930c9554e65b481",
+      "wireVoiceID" : "Korean_AirheadedGirl"
+    },
+    {
+      "fileName" : "a02788ec7dcc9b6792ea025ec46ce223381fa1ea6c74dd16d3eaa7f9469a85b1.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e638fbb7af20f6e90b5df1067d3f29b8e4199a22a9d00e548c41d1472b1a017a",
+      "wireVoiceID" : "Korean_AthleticGirl"
+    },
+    {
+      "fileName" : "7f37bd6862855d02cd0e6081e02cb5e8c3ef1f6f18d38040d78bb92feec60693.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4df07d6f1da1835ccf79fc94e263604827dce6397674b95ad3c48d1427c8e964",
+      "wireVoiceID" : "Korean_AthleticStudent"
+    },
+    {
+      "fileName" : "3cd598281a3fdb76a1ed863dd249e7ce503ab8047fdd7d43b0e16a4602908fc6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1d0e4a336b53a1add97b1808e6ec616e45b452120927bcd3a3e194f85f390f76",
+      "wireVoiceID" : "Korean_BraveAdventurer"
+    },
+    {
+      "fileName" : "56859284151c001967a64bb72e3ed3be4ea6dcba2b377abed6ea2e642752ffbc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8f280ce27cfa1014abce1c882fc197c1f70a797c845cc42cec87275f4b01b124",
+      "wireVoiceID" : "Korean_BraveFemaleWarrior"
+    },
+    {
+      "fileName" : "23fcec504b7fc682ed3611a6a2095f3cc074ea041ce3e4e9a1f26e0d24edf1c3.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6656c7704b93d1af87673d913191655b3b21585aa1edb0d509f0d0b8214f645c",
+      "wireVoiceID" : "Korean_BraveYouth"
+    },
+    {
+      "fileName" : "7441b606393d82509ffeb485fb7dd8cff5a9fbc7182d565ce8fed1697b348a7d.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.599d2bd32624f2a8a13699f12c16e867113bc9e8f5c248ce60482cd72d40e247",
+      "wireVoiceID" : "Korean_CalmGentleman"
+    },
+    {
+      "fileName" : "f990c0cccd2a54585504d96533e538c60b030e5791fc6753d946d8c568cefce0.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.79597ed877de5987ac552336ff4483436fcafeb3cdc1e07214f8463e0a5ec586",
+      "wireVoiceID" : "Korean_CalmLady"
+    },
+    {
+      "fileName" : "530086f98f561c5e8f0a8be1ae68c2d7e324ad2546eebf1bc8f770e01e0d6fe5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.29e5d4b10a7d420d379ab75a9cb6353b194ffc14aa13dd058e188365d57475e4",
+      "wireVoiceID" : "Korean_CaringWoman"
+    },
+    {
+      "fileName" : "44962bfb4a46dc5d81bc3464ba006d25be7dc5f6fc9a86e1743e0a206aa54546.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.048ed0e0098b69cf2c3cd32a71a99ec9b88266cdefcbe52a6e195410b84c64ab",
+      "wireVoiceID" : "Korean_CharmingElderSister"
+    },
+    {
+      "fileName" : "abeed81894fa1e17be37090e4c1cb3a80b1c6e30abcc048cdee6c7534ac7bf28.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f91e4f750baa291f335d8cad5bf363f6c397f4fcf579fd4d48aadcd875dabf7b",
+      "wireVoiceID" : "Korean_CharmingSister"
+    },
+    {
+      "fileName" : "d4004c1827815ea6734f634c75a7077fa442960020f7b69a62bfb6747ea52171.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.41abf0e336b929657f89e1d61f2bd4c958fb652938e6eec296d13d22e16a8544",
+      "wireVoiceID" : "Korean_CheerfulBoyfriend"
+    },
+    {
+      "fileName" : "91390ea1b5e63f371aa06abef1ded3b13a6963a1efd5bb97764e2b2facbd8c8e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.054cb9042d398beb424c72a4e7c6caa0defa0b1f0856ef62dd9dedb8103a8d2f",
+      "wireVoiceID" : "Korean_CheerfulCoolJunior"
+    },
+    {
+      "fileName" : "26c20281c5ab296c845ac6ef52859043869167770f6c27e7f0a83058f24bfe39.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c208cfe30afa3e84afe2476face967b69207a7d8a9b56b814a73f380503bcc2e",
+      "wireVoiceID" : "Korean_CheerfulLittleSister"
+    },
+    {
+      "fileName" : "95c7674d84389b1881cebbf048cb98130afb9c415702e4f3efe0b85dc21b2fa7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2a64e60393b1466d75011ba18c9647b3765dd00405db8decb0305109021e3b00",
+      "wireVoiceID" : "Korean_ChildhoodFriendGirl"
+    },
+    {
+      "fileName" : "3fe28a6af7366a5bdab40e025ef6febf1959fe66b4ecc0c7b347dff2efde0498.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.cbb1075e5619e8dcae49121a12652fc9282f30d139f97624e76fe27e9e6542f4",
+      "wireVoiceID" : "Korean_CockyGuy"
+    },
+    {
+      "fileName" : "e8d10b3dd7b33bacbc56a899e40da9851ebb9334012559ebdb294bece53b613c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.0c43e9035c043b9b283caa03127f6d8ad412107477631d8835409c3bf7029497",
+      "wireVoiceID" : "Korean_ColdGirl"
+    },
+    {
+      "fileName" : "2910237461f24afb7afc0e01dc934f0a743d852393a07942b333dceb4d8576e7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.56c6b3177032fe3319c3c470584dfb8da9197060e6e9ae9be036fffe83abce25",
+      "wireVoiceID" : "Korean_ColdYoungMan"
+    },
+    {
+      "fileName" : "5c6600c7f686ca272a6a7423e8eafbcce02473de41796534d7305a5226c40f7d.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.67c6d005f82fefcbba19c332e67d2d667031dca324c948e64a0ce76852f05905",
+      "wireVoiceID" : "Korean_ConfidentBoss"
+    },
+    {
+      "fileName" : "77d302a6bd136ab34ff318f4235760b7eb16486776c608357711debd7798aa09.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b5dcad88ef40634720c41493d2f4b244a9dbc763b6dd118cb827cf2cbd530fcd",
+      "wireVoiceID" : "Korean_ConsiderateSenior"
+    },
+    {
+      "fileName" : "8956e3d1cd8672219f3403e80dcb6970c9a5f69bb2058cd31c8dca21d79c2efd.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.92e3b41512dbf26b9bee2d2184b105e8577f741a0e1f81825c5a867c43b759d6",
+      "wireVoiceID" : "Korean_DecisiveQueen"
+    },
+    {
+      "fileName" : "d4327b40da5a5f71edda8ef5c37e4cea1524fdf829d7add71d73b93f78b0265e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.dd16e503d8d4c16bae9a2f413b3a094e65a244cf3aa30069a03b238074fcb6ea",
+      "wireVoiceID" : "Korean_DominantMan"
+    },
+    {
+      "fileName" : "44fe39eedb41d2d5bd248f4e46593d4d9841c6ce31ef82c7644e82f0b4ff8b17.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e4f4bb1bd73ed40f0e2bd695af189a6d11edd7e674bed1346e49140d1c18d4bf",
+      "wireVoiceID" : "Korean_ElegantPrincess"
+    },
+    {
+      "fileName" : "c83e06e658ab5e5d38c86477f31ccc8fe2f18f6ace78210db403689aad8f350c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a5ec62a0da987d9c9d679d770604f7beaf33ed8d3ab702a59baa7888d17baee4",
+      "wireVoiceID" : "Korean_EnchantingSister"
+    },
+    {
+      "fileName" : "6d008bd8fe4352b9d6330e0af7be9fe60fe29b5e897666da4f7e4ada13db81b7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.51a85c3e1ffbf6f61969bd41773123ea24df65ee876f8a1b784f829398343d60",
+      "wireVoiceID" : "Korean_EnthusiasticTeen"
+    },
+    {
+      "fileName" : "7590fb7d833cd3ddaf26851cd507bd6737ad90fd191a4e2802b5026915034a27.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1e02002a34e3b0691ae7f836baeea6a7b940815c4169402decd1423b58fbaa88",
+      "wireVoiceID" : "Korean_FriendlyBigSister"
+    },
+    {
+      "fileName" : "5b0998f717cd4faa01582dc7a1dc93722430b575d43484a5c77125e943cf6513.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9c18770aa0a7ef96e0ff5c4fcfd6569e8ab58a8eaccb9440d660533fcc303c08",
+      "wireVoiceID" : "Korean_GentleBoss"
+    },
+    {
+      "fileName" : "2c990aada761eed6f9bd17f10d31decda95717341ab82fd118c42ba7b8ce9420.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.62a2f023dece4226945b4f2f6742356735b99a190c32ed3cb17d53e21358cd8d",
+      "wireVoiceID" : "Korean_GentleWoman"
+    },
+    {
+      "fileName" : "d6386c75176a2496b2f4277028002325867220b22e196331b4456af695f1f17f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4ed5e8089d91c505e2238ffea19b8590ae222d59cc38e413a18328f3696bc48e",
+      "wireVoiceID" : "Korean_HaughtyLady"
+    },
+    {
+      "fileName" : "16247c7361a3ff7df95dbdb53dde239bcaa2ca4600f940b18cdaf91f91a4a968.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6d120ad662d530420c777be1e3f60f6aa6b5ddb475d37daa1fc46ebeb781dec6",
+      "wireVoiceID" : "Korean_InnocentBoy"
+    },
+    {
+      "fileName" : "b505e8dca15c1cf7d25d6e8d4524bbc17e67e0f622c1ed03e534cf0522a5762b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.63795ba96ee0ff6c51a7330caa9042fe2d003d38bef18b6373e8c25e55596bcf",
+      "wireVoiceID" : "Korean_IntellectualMan"
+    },
+    {
+      "fileName" : "22e360a68b1b1fd112eac4edba063a495d129a5f6d7c71c4a3d94a503189954d.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8297c3c7006f7749cfd4aa108ceb4278dd8ed6117a94c2ffedc3e1bb564457ab",
+      "wireVoiceID" : "Korean_IntellectualSenior"
+    },
+    {
+      "fileName" : "7c899457e1d93219e4f81a3f3b58643cee86ede6a18b9d5eba5c2e2d9c1f4a49.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5c84961d965eca2dadbd4bb02fd8316b3e4bf8425940dc97dcb76368235e446e",
+      "wireVoiceID" : "Korean_LonelyWarrior"
+    },
+    {
+      "fileName" : "f618fff73b44b4811dea1fe82955c8e7ddcc6c1e25d567b7a8fc33cc80fbd68d.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4b80efc23d4d254b1ae3f1b59b23a70cd1c559084aafa98198ea89c6cff1493d",
+      "wireVoiceID" : "Korean_MatureLady"
+    },
+    {
+      "fileName" : "19de775d0f77711e8b4e7aab0de8682fc9743f7969e9a47e042d3670cc4850fe.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d44d15859f15bc28d9ac36c28919a6370fff718ad53488a63dfe2f90918c17df",
+      "wireVoiceID" : "Korean_MysteriousGirl"
+    },
+    {
+      "fileName" : "33b8d092a4db4bb2c95cad05ecfb4290850fbf18b3c18b69e7eb01d0a76a9f8e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.90e70b7baaed6c6764a724369f92f8ddbdbddcb39e9ddff61d6a89518dc32163",
+      "wireVoiceID" : "Korean_OptimisticYouth"
+    },
+    {
+      "fileName" : "ee1c74f36ddc2bf569b4a0bc4ed4fc02143f42848572927ae2f6c40b4ed38d79.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.79d6a5441ac09b5fe79ee5566f774df2520ca4cefd718c4376f4c22a21bc9623",
+      "wireVoiceID" : "Korean_PlayboyCharmer"
+    },
+    {
+      "fileName" : "406e815bfbbd3ddee2a8dd5f850de131a23c4f0cfd72b263335a2cb013cb7267.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f8aba65ebbb4da338798b9222589af26454b085c2f298350e48dc84a62d285b9",
+      "wireVoiceID" : "Korean_PossessiveMan"
+    },
+    {
+      "fileName" : "47264373142cc8c7bb80628b7f1dcc03c143c7254f929c91ad310108bf1f39a1.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bc1aa630ad6601cc05e8d8f70afcafb56b780f5ea6b0c3c632907a5bd5bc6093",
+      "wireVoiceID" : "Korean_QuirkyGirl"
+    },
+    {
+      "fileName" : "5189b75d6d2f96ea608a0bbe21a212434e041664dd3ea3d5369cac93bba4ab76.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.be2b03d0f96d4b9a2fc047f621ef89e5edcff44603a5219314370b505de751cc",
+      "wireVoiceID" : "Korean_ReliableSister"
+    },
+    {
+      "fileName" : "8e388fbe2c54d8975e2b3f5f2dc8ca0f098e71a27abaae0921daddd0b740c083.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.08cdf002d1d2ea7931b748320b6b5d3bba9eb1375825427e3582e04e94a1229f",
+      "wireVoiceID" : "Korean_ReliableYouth"
+    },
+    {
+      "fileName" : "e57eba70a7be61cc3b0943506cd7bd1825e327bdff38f6054600b144cfe3d3f8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5a15f8444a7856a6c1164acb94776899143a8c4718ad114b8b8486458a01c263",
+      "wireVoiceID" : "Korean_SassyGirl"
+    },
+    {
+      "fileName" : "868e8914521350426e87a202ad884a0b5c8361b60f1eb1a817e6b8c73e9a56be.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b97e83f5f232921f09630433f0abfe89f4aa12bfebce56bfb5bf6f51746e5c96",
+      "wireVoiceID" : "Korean_ShyGirl"
+    },
+    {
+      "fileName" : "ccdf3f5c9b06377e5ac9a0b10e07cb55b737a1160e0920d07cbaf0a5020b1760.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b8cdccfe5601b85f37a7f9412ed8dc9eda221e53f8ce6fb36d7369d52c196663",
+      "wireVoiceID" : "Korean_SoothingLady"
+    },
+    {
+      "fileName" : "7df63718c496ec7ebfc4fc59f324b1a25cd8208db58c20b044671653627bf9da.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6d46287ae24586e3823a1ab1a8e61efc36b56215ffea106c6bdd63a4c7ed2b54",
+      "wireVoiceID" : "Korean_StrictBoss"
+    },
+    {
+      "fileName" : "29613e903a8004f2dc0387860cc09ab42da002efbf93eb93275c8100f50203ab.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e68d32929f9e58cdf866e2ba84748a8ad50d78243f901d478f412dda69ac1b2d",
+      "wireVoiceID" : "Korean_SweetGirl"
+    },
+    {
+      "fileName" : "bb01c797bbdb5a6f0dab494e12e8a2bec05b815ba646a99397d3e235af88f9bc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bb9e3c9bbe2858b51f776d77ab3830c6400beebf9fcc41dbfad81815068729aa",
+      "wireVoiceID" : "Korean_ThoughtfulWoman"
+    },
+    {
+      "fileName" : "b56f560bd7a52a63c709039a33938c2e4eb22c5afcdf69e9064986ab68aaad1b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b6ba447a24cf1f56939db2619550e349147165103f55ac3b4a92ce5a81b80af9",
+      "wireVoiceID" : "Korean_WiseElf"
+    },
+    {
+      "fileName" : "ee16d60c350bbb92e177e8ac5e1d141df498be9d820408a50b70384c2afe67d5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ko-KR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.176258b0b6df9f1dcd43ea9e6611f17cef28969fd01ee576a2297164deeba555",
+      "wireVoiceID" : "Korean_WiseTeacher"
+    },
+    {
+      "fileName" : "a8c8e4fd23a5a7afa70ec6cd3447a3077fc6e8f4f6e9321bae89b81889218ab9.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.92cff527641976d2aa5d886aeadfd8bbec16725c4acaa7e4c7c06ca8567970a4",
+      "wireVoiceID" : "Spanish_SereneWoman"
+    },
+    {
+      "fileName" : "a70f40b13058dbc9a6ae3f4b362947418eb8cd0a0dd184ab150e606ad0cc7f30.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.3e48fb1b8fc2ae2f6e055818491b57c51e67a131072121e40a9b01468a16fda1",
+      "wireVoiceID" : "Spanish_MaturePartner"
+    },
+    {
+      "fileName" : "05aa69eefcb0916aa48055e0b36545d98105e311169fa31f5ea847f2f289c9c1.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5500c6dcf12f7ef21ec9258ba771cbf305f6741a6be780ac906be8d0a21ee5f3",
+      "wireVoiceID" : "Spanish_CaptivatingStoryteller"
+    },
+    {
+      "fileName" : "c297dd0cb099028cb8640835e11b11f3b243a8276c9082448659e11ed1900448.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.28356fa78d87f5bf10f0d20e12655af4b6fad22f9fe1e132de11bd515b08a0db",
+      "wireVoiceID" : "Spanish_Narrator"
+    },
+    {
+      "fileName" : "b0386cb952977266fa07a1bdd4f57f8f7e0751999876d3cd67f2fe8472ed8a84.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d58c96b1b0fee61f3dd55e534ff79a6d6d98feb96859e6f9afc07763f4af2b8e",
+      "wireVoiceID" : "Spanish_WiseScholar"
+    },
+    {
+      "fileName" : "ff29e416e531bd83af043d3d0f8a4e4dfe1572a2bb6036a9902b6535782e94b4.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ac8eeba3219538b0ef6207b0df8a12e74a73861f0160e275d21d6136a8d386f0",
+      "wireVoiceID" : "Spanish_Kind-heartedGirl"
+    },
+    {
+      "fileName" : "e509e12aa3609bf2d4cf8a657cfece86bf01af7f478cd5b5f480ec810be45e9a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f97a4002ae704d523f1938725bc067888d1df51a66eb56edfe6f0f365bdc28c3",
+      "wireVoiceID" : "Spanish_DeterminedManager"
+    },
+    {
+      "fileName" : "2c759c0c984335eb24b1c953904c5fe69a9494d7cb0074a9ca1914861d778af2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6daa2de42dc1e8ea2f914c143d6fad08017d33e7da5843ecc056d53411adb4d1",
+      "wireVoiceID" : "Spanish_BossyLeader"
+    },
+    {
+      "fileName" : "536fd05aa892d9b5d86076507885932b1ae834eb30a9c977400ae708e408e1f3.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.08e48aa36636e8deb34916060622b8808d793888166e1f2da1ecc5c80fbe68ac",
+      "wireVoiceID" : "Spanish_ReservedYoungMan"
+    },
+    {
+      "fileName" : "7115247da3f28caf894df1cdf2b4ce3fa41b4e570443ae8a6ee9ea3b22c83aad.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e4810c708651b673a3c3d2cd2a3a94e25df436187df20d99a11e9d68eedb08fc",
+      "wireVoiceID" : "Spanish_ConfidentWoman"
+    },
+    {
+      "fileName" : "bb92e8eaa868babae005630fcc726aa3d011970c5f45ee5aff96b3d3fa3b0d1e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.75ffa0aa8e283910f403ee5a558b8796ca8fd04bc6e0d05a7c390d1b72e2e82e",
+      "wireVoiceID" : "Spanish_ThoughtfulMan"
+    },
+    {
+      "fileName" : "0fbcd03fe4253257663e92cad6a54ad2309d3d5fdb26dee33d55f5457fdaf5c5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9b3b1a3e5c28d95e70bdd70a7cf1d733218d2f9d271300b637a1ed37ed4d0541",
+      "wireVoiceID" : "Spanish_Strong-WilledBoy"
+    },
+    {
+      "fileName" : "72c3fbefa7ab02e4ea5a04d0b431009e88556f4d60de0490e53652fd4c92e842.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.24d92bd5c0496c4a5d86c8aadbf5fd64e2e85d79836211f6d35d155c8f38bf53",
+      "wireVoiceID" : "Spanish_SophisticatedLady"
+    },
+    {
+      "fileName" : "6551e410c25cdfe9ba8db80c2e654e24c731673eaf49c72c393993269667ad9c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ba5fd074893e7656c04a6429f5a2fbb1416482d10eb1514832bf0f568869ca0d",
+      "wireVoiceID" : "Spanish_RationalMan"
+    },
+    {
+      "fileName" : "ff849db0c4450d56110e32ff5491ae52e3075f4d87c693ec08f191685c177983.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4f53be2570a7e587786569915ba6e184b3d969d82442b71090d4dbf2468913cd",
+      "wireVoiceID" : "Spanish_AnimeCharacter"
+    },
+    {
+      "fileName" : "357fe282dbafeb7b6f2d5876e85f09e4777997ea237ec5bd84db2d98b782fab6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1977d6b9e01a26446f1fb0eee6c979950374ef2af411236eb3dfc3046ca3f3c9",
+      "wireVoiceID" : "Spanish_Deep-tonedMan"
+    },
+    {
+      "fileName" : "af5abd0e7deebde2b62edcd6d979b3768aa22f6e34a1e9aff0598acf28358c51.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8fbb3d8c2d6d13b5cda966c787d518865cae891b84bd351a3a5a704838cd259e",
+      "wireVoiceID" : "Spanish_Fussyhostess"
+    },
+    {
+      "fileName" : "9b2f528c60da93e1c6c34d027e6cd49f7318cdc7f887852e18d963d7ca65948c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.599f2b6d0acd03d36e6bbbfe2f9c4894f3be331b13449ba683723f37837c8591",
+      "wireVoiceID" : "Spanish_SincereTeen"
+    },
+    {
+      "fileName" : "8302112e12a2e4cd56fb94501a69a22dc7d210fb54ecfde164c633c590945177.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4275114dfb7884327a9cf3449deb1321a8f22e270e2aae6186e5f358a2510fac",
+      "wireVoiceID" : "Spanish_FrankLady"
+    },
+    {
+      "fileName" : "62d286be8d5349630f6887c88194965f6a02b11b32e4c1f16a8c94f4c56ee29f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8fff237f47a07062c306df5aae8490033b20126ce3f4a28469669c85b8cfbfa3",
+      "wireVoiceID" : "Spanish_Comedian"
+    },
+    {
+      "fileName" : "257bcde7342d8bc7df0e815d6ac31d38233945c8ce85e18ac1fdf4d952ff64b4.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9e6b99fb5a0c8a390765bf37fe3433dd4859d92cb5153d5e2452bd3abe4c2e21",
+      "wireVoiceID" : "Spanish_Debator"
+    },
+    {
+      "fileName" : "61e900a97ed0d3454844135fea2f85376f313adc7f32d29b27c506a1c5545582.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.0a0335a4523df01f32088bb2f0821433b59d066729a51e89d1b63f760b9fe9c8",
+      "wireVoiceID" : "Spanish_ToughBoss"
+    },
+    {
+      "fileName" : "6d2b9ebf4cecdf5ee43cf48292c38d58cf28fc8c54e7dd79e1de4b3bf41792ae.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6e78af8494b800c704bbee69dd9923c0f744916a5e42504970e500fc6a455d27",
+      "wireVoiceID" : "Spanish_Wiselady"
+    },
+    {
+      "fileName" : "76f7f38de7fcc53ddc2d30df60731b2fd3ca520a838bfd1ba78fa8d4bc9b1bda.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6a6f6d604407e188a214a4d70c67567f4af03472a3472116969c0bc4f31649bb",
+      "wireVoiceID" : "Spanish_Steadymentor"
+    },
+    {
+      "fileName" : "fbfef56c41b3aad752f4a91288bfc1a678a4f3288880805ec8bc4631a4d3c0de.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c2cd0435a4b0f1437ab706f00cf2c702ed99a465cf744d1ff35c7ff4c559cb84",
+      "wireVoiceID" : "Spanish_Jovialman"
+    },
+    {
+      "fileName" : "e146f943002b27910fbaa4dce157ecc13bd9f8ff862df24180f835b6ff1cb8d7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d11c8dde0fbb3030188a690f9a0a63f0e252f6014eecf42579c63724e27c64ac",
+      "wireVoiceID" : "Spanish_SantaClaus"
+    },
+    {
+      "fileName" : "f05a12348c9d2bfb557233114f9490ab1ded4ea8db3200b53dd7d260f3bd309e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6f00ee836d48884643e5ccfedb486dac9ae5bb7e39d5a75e0fef37531cbf5c80",
+      "wireVoiceID" : "Spanish_Rudolph"
+    },
+    {
+      "fileName" : "2e964aa180c2066413f5e76d3b463e5e3d0ffef0fc656143d662d5fbde9096ab.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.77f86ba1003591d78e633499260496ec40681f932c8c0cfa6b43acbec2098d6b",
+      "wireVoiceID" : "Spanish_Intonategirl"
+    },
+    {
+      "fileName" : "933388f4a75fe049430e792aed9196e86227a49a0ce48a1e2b9fb282e25cc7a2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e69cda464f4df14d39c706a730aa42e330e6e4467b2095700ab7982243dc438b",
+      "wireVoiceID" : "Spanish_Arnold"
+    },
+    {
+      "fileName" : "3fc342c1bc29d332556b5b2f360234e21abd3c1bf954e2cf7354c865fa04b902.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d69e98bfbff86ce0bb59fe5e8704f873798433cfc989b685a659490f901883dc",
+      "wireVoiceID" : "Spanish_Ghost"
+    },
+    {
+      "fileName" : "844acc78fa088bfbb9e65e4591d2cd7530749d43f847d7775f43abbf0387509b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.61e3989ea0715aa5ee02ddf26befca4649c895bf7c4a70342493d3f4ce4c507d",
+      "wireVoiceID" : "Spanish_HumorousElder"
+    },
+    {
+      "fileName" : "922244950c0cffc13a109ca8b67ba7c32654e8c0912f949509cae49a59b61893.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1cc40477dc443a8404087d8c67c527614b73bf1c329719fbeef2c21ff360a850",
+      "wireVoiceID" : "Spanish_EnergeticBoy"
+    },
+    {
+      "fileName" : "8b901b06c4704ba127ce885084a5a87553b18d7ae9ac14a708c602e86d1861e5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f3f4c255e2a013fddf893dd452c5cc701e03dbd62cdc0bd136f08ac8e97c7475",
+      "wireVoiceID" : "Spanish_WhimsicalGirl"
+    },
+    {
+      "fileName" : "cc668c2acdd3391719c5461df81992b5ae6e0580a3b835f2bb12c342de9a3a1b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.14f345623961de650a7c4626aabd80364982b25cc7dd2064130c7bf740d2456c",
+      "wireVoiceID" : "Spanish_StrictBoss"
+    },
+    {
+      "fileName" : "d8e7ae94fe7bfeee4e4e6fb32b49b97c3910e26e4d9f11f95c606b6961eb5260.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e5f22d57fc3a498b8f994d5587de5e542720f33a1d6674d472c46ca151fa63fc",
+      "wireVoiceID" : "Spanish_ReliableMan"
+    },
+    {
+      "fileName" : "8e2b2e6dc8b5538d9af05504d551c65f080fd9dca54cadd7accf5b04a5270fa7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.17af6dc7cb32e5654da491c619932879403637c18cc6e8dd639f328204364771",
+      "wireVoiceID" : "Spanish_SereneElder"
+    },
+    {
+      "fileName" : "3d9d69aa22a6a67dc663f5f44b3d73f4eb807013dc93f59ef1e9acc1144a9731.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.821b6ce909b39e8f41eb8d21d30e30c0bf807db880f6acd216b10b9f0aaea7c4",
+      "wireVoiceID" : "Spanish_AngryMan"
+    },
+    {
+      "fileName" : "e845628d014adfa165537d716c2f4d6690560cd8fc6d0806a5548ecd10f15333.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.eacebe90b372f9753792c42d5688788d4b19b520404d03d43d40636209e28dab",
+      "wireVoiceID" : "Spanish_AssertiveQueen"
+    },
+    {
+      "fileName" : "d8a24942e66f0a049a359ad31cc133ebf095d174923c2f8d1d59ea65ef7f79d6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9a7396060665cb1556d04a1f21eb05d9dc827999e9594ee802063149d3746e38",
+      "wireVoiceID" : "Spanish_CaringGirlfriend"
+    },
+    {
+      "fileName" : "b4a7dcc560cccb22202cc5cf25aa945b6dce0435bca2176c7545904764f7373a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.63306ff043343ab82cd85baca982605a60e04f9553ef208039aa2db3b4acf920",
+      "wireVoiceID" : "Spanish_PowerfulSoldier"
+    },
+    {
+      "fileName" : "7d9b11e7f76cd8fb3f2bd015d1ff7980335d88061b51759963914893c207de80.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5fbdbf866cefd75d5d8dc965c8f1a336d7299b3d16b64bbad49e209d46fcaaa3",
+      "wireVoiceID" : "Spanish_PassionateWarrior"
+    },
+    {
+      "fileName" : "9b09fdb6020bd22e86732e9768ca949fa9d84f5b9f7965cae683fd3aa714714c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5a0b5a50ba92548f68dd0b35df300d5ff4d6a69668a23eb15f75c2f9806bda05",
+      "wireVoiceID" : "Spanish_ChattyGirl"
+    },
+    {
+      "fileName" : "38a17d5ac42a83eedb3b495205718ff5e3614c935bbf9b40fcfcb1e5612f3494.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.509be270e05537dadf5705f93c61e827f43ae41a2f87cd3f3deae9c7cb681059",
+      "wireVoiceID" : "Spanish_RomanticHusband"
+    },
+    {
+      "fileName" : "78030d23661d64d555a07ffbb8f7e35ad37fa293d278fda0c64a00dfd761146b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.dfba7fee749dc8c62e906224530cc03dc0e544296bfe35a49de0d9047fe18d10",
+      "wireVoiceID" : "Spanish_CompellingGirl"
+    },
+    {
+      "fileName" : "c829d48b491c28d9a51e662271f28b365ec188683d0f76f8f4c6e624a71e2979.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2e859676769f3b3298d107916d293a3c536d945890843fdd0316020bff04c8cb",
+      "wireVoiceID" : "Spanish_PowerfulVeteran"
+    },
+    {
+      "fileName" : "cabba6af7855c30f961e2228db22c79ffaf7acd316eb8ff2beccddfdf0c86545.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b48ed1422f5f25e05cfb1bc5948c9b8961602812716479099a9e18ce48a7de38",
+      "wireVoiceID" : "Spanish_SensibleManager"
+    },
+    {
+      "fileName" : "02fd4cd2eb45bf5304bb13bab90c14af3487fbe39b7614933756bc07a61ae863.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "es-ES",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.cfc6e0efc0ed846c1471cd8867a963e7edf4a2cf609fd0b1512c95abae8e2c5c",
+      "wireVoiceID" : "Spanish_ThoughtfulLady"
+    },
+    {
+      "fileName" : "c0d8181141e0a2029c0cb0238c4a1e21ce0d6be4eee402e87954e2729e38a74b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c4d06f716a6c58281e2376b5195179563c91d4e6a85a7668802d239465d7ddd3",
+      "wireVoiceID" : "Portuguese_SentimentalLady"
+    },
+    {
+      "fileName" : "7f9e672c10107e3e922e78f3b019e79463523100b4af4c608e56b3447ee4275a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.cfdb04d5c3b8c6b63b8daccc42c46ffde2d13cd105d735b9ff31d797216089f1",
+      "wireVoiceID" : "Portuguese_BossyLeader"
+    },
+    {
+      "fileName" : "41f1d7452f82ecdbf7cbd6a70f276c27790ec12b089c3b10f786ca49d7594a0b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d14554705a59b342b9d9d71f24cf004644b2c038e9b033551aeb762ece399029",
+      "wireVoiceID" : "Portuguese_Wiselady"
+    },
+    {
+      "fileName" : "1ed74827527a47a7c9e5a77ad6170b65e2491acca82af96f75fc718007744005.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e58689f081dfb1702c7f7a9491f4f2eb3d9ff5d30125ff5faaf6a60b3e488b70",
+      "wireVoiceID" : "Portuguese_Strong-WilledBoy"
+    },
+    {
+      "fileName" : "db708564444d8ea557b40f67871249ec5400425fc546d6bd9739585859e6e112.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a830ead515db5bcee06986bae7c80f62c844269f19a270d018e8d83384f304f0",
+      "wireVoiceID" : "Portuguese_Deep-VoicedGentleman"
+    },
+    {
+      "fileName" : "45500c6d4f7b5392a00a347eac4c8c2b83952264aae65f4097d095c6fd1e8208.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.976f4e52f710558ed7a9a4ab1c50335f1a60d0e7594bed398d6e29e1d09001eb",
+      "wireVoiceID" : "Portuguese_UpsetGirl"
+    },
+    {
+      "fileName" : "a3ce86a076f76659adc574906208eec9def9ea964614704b9f4418be9088e246.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d47e1404077def8cc5dabf36422b8786bfd79ff8561d76f5af3afff53dbdef56",
+      "wireVoiceID" : "Portuguese_PassionateWarrior"
+    },
+    {
+      "fileName" : "45877be3ce67cdfe7847a3c2a6cfd348b82f8277890279f283dcc167db7464f7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.3558b7565a57490df5e1135719498239ad7c0f9d23f972073c251810e7fd2272",
+      "wireVoiceID" : "Portuguese_AnimeCharacter"
+    },
+    {
+      "fileName" : "337d1dcd51625496b52f0c8f3273f6ebcd5374bd684fb60a29dce9623a9ac7e3.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.953c7050539dbe0a5927b20c9684490c87631c330ba74a8116698d04ad359704",
+      "wireVoiceID" : "Portuguese_ConfidentWoman"
+    },
+    {
+      "fileName" : "ade3ec6035e8cd7ee847c91bb4fb5492957f41c486bbb55b002a5089aeab20ff.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f9bb1284c035c1a5b395c088128bd6662d9064e4356911caab74d8652a45ac8a",
+      "wireVoiceID" : "Portuguese_AngryMan"
+    },
+    {
+      "fileName" : "e7d506fcd76be2ac98f59c3308f99286ae5e1cff11ea6cf25b2beb899233d7fe.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d331f04e38738b57eaf9a9f86e6af34593692845cb3525c7b0b8225a2968ed85",
+      "wireVoiceID" : "Portuguese_CaptivatingStoryteller"
+    },
+    {
+      "fileName" : "44b757881ce9cec7658a71066d7b1d927fe3acbee0aa802038cae470175d108f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f1bc61fcd46d79da588e930fc20535fb510f38d3c2679543bf7a437854a69bbb",
+      "wireVoiceID" : "Portuguese_Godfather"
+    },
+    {
+      "fileName" : "202ee4df19cb82c0cb72a5ea7a2fe5761cea850fd637542ab5b845942e425ad7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a5419c47b06e5304f8f6359465fc806eddab14c0ee83023fc97b3ea30ad5e5f8",
+      "wireVoiceID" : "Portuguese_ReservedYoungMan"
+    },
+    {
+      "fileName" : "e028b6580dcdc64e75b6605130ce1af08e410969aafdfe9102c4937666cef883.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7cee8f9230bce8542abbfbcdcdaac7f204b35209c38af0c105ba6ecc6c29ee85",
+      "wireVoiceID" : "Portuguese_SmartYoungGirl"
+    },
+    {
+      "fileName" : "3d57856182bd87fce4d55ad02bd5f7ab53d52e1b8239a1cc0f7474a48d72145b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.0f95a9b279d0ef0dacad26d0f420c0ce67b8cf0fb7642c277fd2d7834e6e2509",
+      "wireVoiceID" : "Portuguese_Kind-heartedGirl"
+    },
+    {
+      "fileName" : "a9580b3d32b9bdb0f5605d388485ade75c3e8f0bb99a363ea469052779a66fa7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.68bc02c5c51965ea8c5dc4ad948920a6c512836c98db4959d019adc92549e10b",
+      "wireVoiceID" : "Portuguese_Pompouslady"
+    },
+    {
+      "fileName" : "3184c9506d9112c70fcdf1ba70956030fe9a4c563f88599c127fdb841d158aac.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.21580351a312d9070f5e75c77a09fd355639b7a9ab5e1404f3923a9f0fca3ee9",
+      "wireVoiceID" : "Portuguese_Grinch"
+    },
+    {
+      "fileName" : "ed4ad41a27565d2e1077a7f3380c01524493a525b17ceb42f1555444874c2091.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f98f32f067e502d3c5e480f827334c494f4b9bdb9f9c5e3291a8015482e9acbe",
+      "wireVoiceID" : "Portuguese_Debator"
+    },
+    {
+      "fileName" : "c6e5c6af526cd11d95091e31951547819c1c5df29626c455e587b9ebafbca556.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.41742041eabc8f58a7653b12eb348a840cb7da29c8de686a2b24ec5b3f147971",
+      "wireVoiceID" : "Portuguese_SweetGirl"
+    },
+    {
+      "fileName" : "c4a796857e87f975ee4bc39d693eecb2a1396038878e7a7ba4af288b53eb29f5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.53e84fb14b39e3a24f57d07ca0c11f9c3a3b98190722c1ac892fcbb45cff8613",
+      "wireVoiceID" : "Portuguese_AttractiveGirl"
+    },
+    {
+      "fileName" : "e8fad2c27fed24546471de653276c2f283be1406060bc7a9dcef3668609b73c1.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.21ed53da9c0344a7e293053df3057ebf70a33e969faf010cdd54a075cda1d432",
+      "wireVoiceID" : "Portuguese_ThoughtfulMan"
+    },
+    {
+      "fileName" : "cefcc653677f52d4d211cb61835ceb296607efeefa7ac0429886d678dd47768a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7001e2e518f4f742e4c5c15082c25c0fbfc417ffdd9f7b5a665999614c8ebd5a",
+      "wireVoiceID" : "Portuguese_PlayfulGirl"
+    },
+    {
+      "fileName" : "5274c95d94a1eaa3e93cff572c2bd182cbe31275b790ea7f661502ea89ad0382.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6df4ed1f5e6c9dd831c225d56de57d9cdf0513ce79447cafb67c58c528284454",
+      "wireVoiceID" : "Portuguese_GorgeousLady"
+    },
+    {
+      "fileName" : "53f71a30e807ba8d2eb28f8f35b3ef1769f721a0df3a03082edf3563503636aa.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8d3fb306b4fa9fe445b80bbadf8b1fcfaa640dbaec846f4b5b094f9128e361ba",
+      "wireVoiceID" : "Portuguese_LovelyLady"
+    },
+    {
+      "fileName" : "69e63abbda7ef917afd6e25ba6c60b8649a5e8c9e4b930455cf40b97c1d01c0b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.540befb492eebadbdb146f4f916fc133fd0095f999d64a2407b19b20daaab407",
+      "wireVoiceID" : "Portuguese_SereneWoman"
+    },
+    {
+      "fileName" : "d42d294d0e5c2d735d983d95f447cd9d063f231a39e6883f0f2ce008cde5cee8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.afaecf0603ed337b89303549853d8bfaeec87f2da092bfcd8f02e9b5a3486ca1",
+      "wireVoiceID" : "Portuguese_SadTeen"
+    },
+    {
+      "fileName" : "d7ba4528a801218a64517871a36f84ab60e6498fbc7228c44cfeb3508167294f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.410b64e0c5cf510b5c0b4c6f859b5df95e6926123368544afd79cfaa48a9e7b3",
+      "wireVoiceID" : "Portuguese_MaturePartner"
+    },
+    {
+      "fileName" : "deb0124aa4d02d76edc841f17d2b697cc3bf8537d27b9d083b72fbe6ea6b53bc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.758756243e912111eb533e4d12a026ba6d00cbd9ddb45c689147f4949c45eb7d",
+      "wireVoiceID" : "Portuguese_Comedian"
+    },
+    {
+      "fileName" : "ee6632855e081ed0fb57b965bdbdb8c1380a33e735ba9488050c4b4fe5ce4868.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a874a51e6466456de5bcff592b0fbac6b906b4f528e2dd4ba271565b26160478",
+      "wireVoiceID" : "Portuguese_NaughtySchoolgirl"
+    },
+    {
+      "fileName" : "4faa94dd5e743212fc6706eb235c5e07aa67a4357df2cce50cf9da519c22ab1f.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.90ea8258ab99cc209356072a661dd9f0d6b637a6a58ef34e07aa09b7d1e3e4c4",
+      "wireVoiceID" : "Portuguese_Narrator"
+    },
+    {
+      "fileName" : "01ac248cfa21d7d918dd07a801679627c61bfe07db2cc9d809d3ff3ee2c2e40a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f9c11b0ea22cd79b80a2da3f112c8b58d188af364a82a3d3adc973ee746f72ba",
+      "wireVoiceID" : "Portuguese_ToughBoss"
+    },
+    {
+      "fileName" : "0d67d0ffdb996395924eba62940d4c3043617ec1cdf178b13466d21ccab1b840.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a9a5c09994bd46dca21c3cce8b3ca352f02f240ee3e06c919119c26639b371af",
+      "wireVoiceID" : "Portuguese_Fussyhostess"
+    },
+    {
+      "fileName" : "36c816e36ff386c309a42173528c3bb91e01b62c0d22d4ddeef8a0e8b6b0c995.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ac647bcc7c70dbf56e7d21cfc93a0388c9df61b7f3d8f65fc2ee0c4fd39fb568",
+      "wireVoiceID" : "Portuguese_Dramatist"
+    },
+    {
+      "fileName" : "4fd8697a37e382a5943d10607f9e00ed8f5e7de3595c63630816e09679d1b2e3.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c09c263732fc347d0a1bca666a05f17474fbf1179aae876e4dfdd1dd89047cf5",
+      "wireVoiceID" : "Portuguese_Steadymentor"
+    },
+    {
+      "fileName" : "c31f060d82a8f8b4266b81ec17f2f523899e2eced4860c1815b4075861e25c05.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.81f84cea634ef0e05b0ce3f49d49b1cf40661ec26b195d8d80908c9be1c27419",
+      "wireVoiceID" : "Portuguese_Jovialman"
+    },
+    {
+      "fileName" : "9152adadbf07d5c398e79a9ab273e2b76647ac2cafbf730d31d5bbe249dea722.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2a8426f5d3e0328db62ba86dd306e3725f535c44c61ef8491c9ecd124cd49213",
+      "wireVoiceID" : "Portuguese_CharmingQueen"
+    },
+    {
+      "fileName" : "a7114e13dc7a38f965fb88a563c71e0941d82aa5e98366511c7326d0d2e203bc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a9ce2ff299955e92da96158e4e910dcb104199257021d4a0cd5b8e5ad1f2e3e6",
+      "wireVoiceID" : "Portuguese_SantaClaus"
+    },
+    {
+      "fileName" : "46a4818665ab4efd29504bf8339998c4768901ec13c5b005da22be6a012d178c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.464ec4e82682071e2f9ce715b0901543964cac466317349e409159721ba099a0",
+      "wireVoiceID" : "Portuguese_Rudolph"
+    },
+    {
+      "fileName" : "75b28c6c6c1a0b54cf28628eee030ee651c6d93598d6e0c191728521e67c0fa3.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e78dfcbd3be0e2bfab4fa5aa29f20c5a32a89ba2a7291b6cff8f5233d31aac07",
+      "wireVoiceID" : "Portuguese_Arnold"
+    },
+    {
+      "fileName" : "7b2d9211a07983512df27c754c02d6cd9b4f4880aec5e4b570b35228b65b6f4e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c160c40526afd04ac4084322658239d1dc123561d5e5b15ba8d56131e71e6d49",
+      "wireVoiceID" : "Portuguese_CharmingSanta"
+    },
+    {
+      "fileName" : "1b3a26a649c53a427da379bf947767543225e37c9909fecf72205c780da4a337.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.cf0ec7db3c836a5dc29447efe498fb01495da90dfdd7969500025ecf331581bc",
+      "wireVoiceID" : "Portuguese_CharmingLady"
+    },
+    {
+      "fileName" : "a96ab4c4019ccecc3e96e4ea8c7c4ec522334b035443f22b399091be282b0a5c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.95429f921b8a10eaba3fc63bd85b5750656017078be66edcd317f00b98b99afd",
+      "wireVoiceID" : "Portuguese_Ghost"
+    },
+    {
+      "fileName" : "2b4fea0f68cbb71836c062c681eb17c119f21e86c1d84d66e0eb9447ff806050.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bc92c3c2e4b38ee2229d8b58bfd3f2333882936c5655f36f0f6f628e6328557d",
+      "wireVoiceID" : "Portuguese_HumorousElder"
+    },
+    {
+      "fileName" : "ed8f7c35f7a9bd8cf2f3aaba9afc204f4e074014d116f1717da79f0cf9a5e7ab.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bd7979cea351264e255c03e945bb62ff365bbd53df86cd5fa1aa45afccd1b43b",
+      "wireVoiceID" : "Portuguese_CalmLeader"
+    },
+    {
+      "fileName" : "9168347551a429b6c657b8fe7d97b3979358937633b606361f4d9a12f4273f12.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1d9166432e92d6dec66dc3aab3bfba5500b126b1906e9d0c1afd9fe476888ff0",
+      "wireVoiceID" : "Portuguese_GentleTeacher"
+    },
+    {
+      "fileName" : "dfa01b3074a706dacf921bd65bcd3c21f94268721e2949099ef74d30258c952b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.63ba4c43a112c46a3cbfff7850ba608a4a6faf991588b056e67a6879d003dead",
+      "wireVoiceID" : "Portuguese_EnergeticBoy"
+    },
+    {
+      "fileName" : "f522dc7797e7978798999f61c5d641e8b4293ae746eaeb8b3c559a91a06886f0.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6f20d7456c1347f644fc3a8dd5b2ea1e5d281f8e38267f878980d850d782438a",
+      "wireVoiceID" : "Portuguese_ReliableMan"
+    },
+    {
+      "fileName" : "048f1111ac5a981137ad69663cb0cfeab9868c90224c1b777560efe1d0a23739.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.950bfe616c131edb18f86395cea6946cca99ebdb317bb4b757d6180513d1ef53",
+      "wireVoiceID" : "Portuguese_SereneElder"
+    },
+    {
+      "fileName" : "9b1c5007380177ae93f2351707ee04e3442545d9b636d0cb4094f0d814adbfdd.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7787dc159f1824856035bdf5b9f911077b5931dc8afa2d20919850ec3a218a58",
+      "wireVoiceID" : "Portuguese_GrimReaper"
+    },
+    {
+      "fileName" : "f179cef7c76a0718a6a9264efae4b425f2749613a628928d023cb959fe2bb33b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1ed82dd579fa826e5b8f80a75c69542ff5fd8b62ab9587c545be89f3b91f675e",
+      "wireVoiceID" : "Portuguese_AssertiveQueen"
+    },
+    {
+      "fileName" : "b88598a4bce931930dbecc55bce0c5fb4aa678e24c1802e6a7e94ba311969b18.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a25a0d1c3ff3ef1d6d371f19992ce96068cdbebf29b27e3848bd752d0d8d0ebc",
+      "wireVoiceID" : "Portuguese_WhimsicalGirl"
+    },
+    {
+      "fileName" : "04dcda9842e175f835dc596082faceb06b51eb333ef597862065e329d608670e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6d55fdb1c3a7a7d16944769039f096839da3e5c576ec5da32b1ee153bc8546d3",
+      "wireVoiceID" : "Portuguese_StressedLady"
+    },
+    {
+      "fileName" : "172847fa182f21ccb01315c731aa2dc7c3588a1a9074c870567c0b96f55d2f91.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2f6e2338172cc539c697c43558de9e97ebba900d024fd5a4d986dec1983d6384",
+      "wireVoiceID" : "Portuguese_FriendlyNeighbor"
+    },
+    {
+      "fileName" : "253bd24f045db8d4a1dfb3cb933f6fe648010c20cf9ce53d57359322ad31a3fb.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.412a7083d4c1016135ce6a07212f081295b9d7dd144fc5b1beb0cab1862a649f",
+      "wireVoiceID" : "Portuguese_CaringGirlfriend"
+    },
+    {
+      "fileName" : "c9ea156f5403512fd7c4f24918d108cd3a83c43df199e01d90fc6678b468b769.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e8b4de5950802aa43a960b1957dd63c908a5d0f169ae43152b2b2a8cee298af3",
+      "wireVoiceID" : "Portuguese_PowerfulSoldier"
+    },
+    {
+      "fileName" : "ecd42aa382cf899c4c10ae032e86a8b9f99d344c53ab205283cb8baf648245eb.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7b37435119a0990a412a308ded91e091978521ea960ec6942eadedbc0344dd93",
+      "wireVoiceID" : "Portuguese_FascinatingBoy"
+    },
+    {
+      "fileName" : "24a81d7c1ae7096a8f20031939216d63b645f9502a5549ab8bdcf30d41065918.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6812e961009a94494adfdce89b22a9c2e3c49ee267cb6fa63a33efd4703eeb20",
+      "wireVoiceID" : "Portuguese_RomanticHusband"
+    },
+    {
+      "fileName" : "e5d5a115a058d6f4b12a1eb7405c0a86d7c6063a34887a5af48cf398b56699f0.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6becd85b0df2af1409a207c81c6917bd600a374837cf99441686009a2a53914f",
+      "wireVoiceID" : "Portuguese_StrictBoss"
+    },
+    {
+      "fileName" : "a7a42cf82bc81dc9ef6af7822dce7e5083d59f2a938865ad9779410c5b86afc8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c8149ed19a05b621ce0621217a831ea625b8675594396a08028a0e7b611e2a6c",
+      "wireVoiceID" : "Portuguese_InspiringLady"
+    },
+    {
+      "fileName" : "bdf2f016571b532e7a5e24a8f95cb1ed75dd6fa746048ab802341331b45de7af.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.03d01b625c2e33b0b651e5b673a49b254e081cae4e6e527bdbe2eceae54c9223",
+      "wireVoiceID" : "Portuguese_PlayfulSpirit"
+    },
+    {
+      "fileName" : "15611f77d07cbea6cbb34c7cab3bc95c506a397e412cd02e0dfd32679450d1d7.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.34f7e6c4c6e1a99e5fccc5fa265a35e56647dcb4e43d5d478e087dfb15f6c8b8",
+      "wireVoiceID" : "Portuguese_ElegantGirl"
+    },
+    {
+      "fileName" : "690660ef97dd8e661a1ad89a3fc27c223afbaaf4510ad28e766b7aeea5936090.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f0fcdd3cdd0b1eca8115f2f01b63b2fee250a3c129f4152b46eff72b41524c76",
+      "wireVoiceID" : "Portuguese_CompellingGirl"
+    },
+    {
+      "fileName" : "a9bb57a25157e47d1bff4520f65d6e000c7cf2c85db98d2403c1236594bd6f67.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.da21991be495779d50bd92b92eaa5841be838987b138c9d817d8f56147b00871",
+      "wireVoiceID" : "Portuguese_PowerfulVeteran"
+    },
+    {
+      "fileName" : "ff445224eb886730f35dcf41691215ac913e9c74730b31b00edd8a30a14f4e7a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.fd0d1181e284d03a5c7325a82bfa0a2107e383a872b5c222820c51ec87a009c4",
+      "wireVoiceID" : "Portuguese_SensibleManager"
+    },
+    {
+      "fileName" : "0b478d4c890c80748d147e20c9e9aefb79887a17bd08b09a4e64051b3bb16060.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1b4e11396f118eaa4df9dbfb8ab6695cb4a31dc65cca50d0da9f99a09e7e982a",
+      "wireVoiceID" : "Portuguese_ThoughtfulLady"
+    },
+    {
+      "fileName" : "ad3041fbca96f44ce5faa7fc79fe9c6b0d3563d5cb3d8503080b23dba7690b44.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.294e9df120f6663477d1aae1cfb812d814738318968d8870546bed53e219d8a5",
+      "wireVoiceID" : "Portuguese_TheatricalActor"
+    },
+    {
+      "fileName" : "0d2295cb7c540a6b644c85c0d73f427748bcd32b6c3877112e43840a1a1d13fb.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9c31d1cf76696a48aef20eeef4d2e584a1d40e5f53e05189f673fe824152f4e5",
+      "wireVoiceID" : "Portuguese_FragileBoy"
+    },
+    {
+      "fileName" : "fe9949f71f8aef19c9ec497cf89c1241208a2387782f7c8feffb68d56bb3856e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.051254137cff9dd86eae8216bc6e5a3be7bcf2920968834254a8cd2ad051b7f8",
+      "wireVoiceID" : "Portuguese_ChattyGirl"
+    },
+    {
+      "fileName" : "336337839e16b2419a5edc4001eaff00e4e376fa2e1679786b75d9550fd7d844.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c99d52aa6b3fd9106e2bea48689605003d8a6b54c464251cf17a80d99a6b4982",
+      "wireVoiceID" : "Portuguese_Conscientiousinstructor"
+    },
+    {
+      "fileName" : "19999a9e2784359b057804105190e577668bdb65830e9ed26dc64931e5ab11f8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.35d4c1131bd1591be12ca53f162b2c58691809c6faf41afb0900ee02913c4216",
+      "wireVoiceID" : "Portuguese_RationalMan"
+    },
+    {
+      "fileName" : "7fb45c00f8596c3605038e3adc5ba555a7924dff9156bca1b07003fd4413e989.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a34ba777644820bb4a027690033c143f0d6fd82c6f3e3ebf51fb2bb14431ade3",
+      "wireVoiceID" : "Portuguese_WiseScholar"
+    },
+    {
+      "fileName" : "d9c5105ed38e78dab8ad2d246b2a90af500f63f78efb8e7896deb69b9c233f8c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a365abc289a1a9d15ea1b8fcf65f3a4a71cb26c6c71434e6d625a06170e3aef9",
+      "wireVoiceID" : "Portuguese_FrankLady"
+    },
+    {
+      "fileName" : "e5f562e8256b6eaace62ad60502ddf216777347140e0a3170101ab4ba2bad9a2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pt-PT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.569f11ac8bdcd1bc85af1a786be989dd156ef28d27416b3c4f973e4927d9f019",
+      "wireVoiceID" : "Portuguese_DeterminedManager"
+    },
+    {
+      "fileName" : "d2e6e3028cf1c0a7ab9a0c06f39d0539ef56be1eacaa5b75ad505ec949fc17b2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fr-FR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.163ce017b61990d723b7ee375fe908b3fef6e57751cc8c28015507d6d7480f09",
+      "wireVoiceID" : "French_Male_Speech_New"
+    },
+    {
+      "fileName" : "48cf8e8164ad18886eb40f775b3aba33308733ab531c4c405928e2b575908fef.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fr-FR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bea1b82118710cf8d48e16e698b5930945b78d34f02ba7055588ac8f8fef9802",
+      "wireVoiceID" : "French_Female_News Anchor"
+    },
+    {
+      "fileName" : "793977a6be2a6f28d34747924cfc504c980a7902439a45b1ad28703b13a6e36a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fr-FR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b54e568c7355954fa3f5eafee20bca86ce77a124e21ca548674576aaa63ea308",
+      "wireVoiceID" : "French_CasualMan"
+    },
+    {
+      "fileName" : "f9f39ac8f1488f7e20745d786a32212923b96a8988bf8a1e20fe3d680872df1b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fr-FR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a20e10b45f51c96984cabeb5bb35f0f085d59483bca3091cf2bf9c175e54b7b6",
+      "wireVoiceID" : "French_MovieLeadFemale"
+    },
+    {
+      "fileName" : "7329b25f841b54f9a8dff96b3a207bea6e59f1b81356ac04bc7f063b7d5908d6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fr-FR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.adfc63dc8ace41d472de86c867fa2f10ad17c7bb78e217dc89cc6adf771cbbd9",
+      "wireVoiceID" : "French_FemaleAnchor"
+    },
+    {
+      "fileName" : "0885e2a45231c835df8250334288c85c09b7c6a59c04c67520ea8c2f7bfd6552.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fr-FR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.033c19f4f2bec91b71e6e4218d154fd44fe753762d72a5de0c8b1fe7b77b864d",
+      "wireVoiceID" : "French_MaleNarrator"
+    },
+    {
+      "fileName" : "02be22c6529abb5e9bc56e5632b49fb70213be8148beba8b71c45e0b226083fc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.c13b668aa4b1855a64a146146bbf28a8af162064eae620154c1c25252e498ee8",
+      "wireVoiceID" : "Indonesian_SweetGirl"
+    },
+    {
+      "fileName" : "98ac03296479c16bdb30d29b09511b2b6a2a8f68836f29dc9c8bba279cc99830.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.3c473621d8e78eb5172f2d174fc54234174ffe8c7336aa7b6b477e0dd07e03b7",
+      "wireVoiceID" : "Indonesian_ReservedYoungMan"
+    },
+    {
+      "fileName" : "53537c41b7ab24ba915b918c44da912ab15fc7f32651199593ebf29bd89370ba.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ab6744e46de6f67a9e808c0177b40cce91e7e83433014af2be823a5778d868d5",
+      "wireVoiceID" : "Indonesian_CharmingGirl"
+    },
+    {
+      "fileName" : "67ac4ebc142163c264c60239462ec611b0c042316c20fb1d477223a7bcd468a0.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b8febdb8d2402c1e1a08f833799ff313148a7e335232a24fd0afd971ff30d8c5",
+      "wireVoiceID" : "Indonesian_CalmWoman"
+    },
+    {
+      "fileName" : "ed894838dba92c32d4a0579736387dcfa056806c8ba4e60c5dec52dfae6bfd41.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ae68d2984fd946b7a773c6bccb8e2db57f208921399f091f7efde32d2e6116a3",
+      "wireVoiceID" : "Indonesian_ConfidentWoman"
+    },
+    {
+      "fileName" : "5e783dff3ebf012f6b2aaeab93ee997d1c99ba7e4be44162485136f7a0dccabf.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.12079e1c37c4250fce01e571041107fe14e0c07787878229824b9cfd34df9c1a",
+      "wireVoiceID" : "Indonesian_CaringMan"
+    },
+    {
+      "fileName" : "214dea6dac26a775dd7d7612f985614233c179a5922923a36fd793df482c6a97.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.8ea99c2777970de0aa5dafe3973f9fc0cd452e11e93d4cd5eb5c9d34093263f4",
+      "wireVoiceID" : "Indonesian_BossyLeader"
+    },
+    {
+      "fileName" : "b577a78cd543919f4613ee23681d4aaac0ae630d1e837c11288cbeddc2f201ec.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e2c39dff37865bc0068872671c10ed1fca1b15d968a608c9b712ab356e6f4c9f",
+      "wireVoiceID" : "Indonesian_DeterminedBoy"
+    },
+    {
+      "fileName" : "d1efcfc989626180de398be05857f4c087d7f79c6b87a825b7613cb1a7b966dd.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "id-ID",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.749fa03d54c938694a858fefab2e7d03115ce4d10711fd1653c31b911791b3bf",
+      "wireVoiceID" : "Indonesian_GentleGirl"
+    },
+    {
+      "fileName" : "083c87ddbf0f15fb22fbcdbb26bf77d17cb0848874c97af9dcab46779d088b85.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "de-DE",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.cd468d12d83367e9a7dce0f54f3befc8248a74cb814b71f5e19f0ee1bfabb739",
+      "wireVoiceID" : "German_FriendlyMan"
+    },
+    {
+      "fileName" : "d057dad048708356d0729b5e7ed49ff9c6ca951108c38f61e93c47af02b0ff8b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "de-DE",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2d7aa59c9177e320d287998e7ede7b84814a4965f030c2e5721fde9a7ad47bb1",
+      "wireVoiceID" : "German_SweetLady"
+    },
+    {
+      "fileName" : "34235f6012770bcd86e1de83b7ae0c3df1ae1b5c9844d54c1039751ba13e43bd.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "de-DE",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6817a62d340c88469960b6c84c71a738338f8862d89884ac0502f9b3f53b11b2",
+      "wireVoiceID" : "German_PlayfulMan"
+    },
+    {
+      "fileName" : "8bcc50314d5e2b038e0ce92c2dfe2bba012c48f22680e629c4b2964a862b5ea4.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b01bc2803d6387d56a3b3990896b5550ac28a65ff0b6192a8cb1c7a95990d8b0",
+      "wireVoiceID" : "Russian_HandsomeChildhoodFriend"
+    },
+    {
+      "fileName" : "fa99a2478cd611c9fea93d0613680c21d9f2d9d30973b462355a4e62cd291183.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f49cc675bdcb7af6c4295c862d58655cf3b08ecabe756550a4906602e2d05a1c",
+      "wireVoiceID" : "Russian_BrightHeroine"
+    },
+    {
+      "fileName" : "5566f1d75f555e474895b72e7fd78c54057327c05d30b21db546bc5a4d53bdf4.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4fc45fe4a0fd5f2acdc92611a3248dcc4bce9b581bea51a0163d8b2af023b96b",
+      "wireVoiceID" : "Russian_AmbitiousWoman"
+    },
+    {
+      "fileName" : "c5f04abcf64332cf51860815d89fadf7b502621f89c1497dbf2cb2d620ba6168.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.fbbd51d968a7936f361e8f3fad9b91f350566765a1f455fa363fb911e33fd976",
+      "wireVoiceID" : "Russian_ReliableMan"
+    },
+    {
+      "fileName" : "4cd53eff7e0b4e7f35b514682ca6e6279329fd3f2e92d047b9a34df4c64575f5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9f7f15f7f346c29385c3f574cb3a223a09bbb3e4292f9abca6c6176b8ebdd4f7",
+      "wireVoiceID" : "Russian_CrazyQueen"
+    },
+    {
+      "fileName" : "b3c2d5b30fe28e6ac6ea2e6a82640cf04ee881ce1fcf67953b094c5ed30b8097.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.70f2c95f634e12b5452dba9402574db595f494cc777a94fa46fc7a1dc5b776b0",
+      "wireVoiceID" : "Russian_PessimisticGirl"
+    },
+    {
+      "fileName" : "9c4e03751aeda99ce94e2ff41446e1cb59a89bcab4890fee19917afbe4d96a44.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.48f84bf9acba3663e788729ceee9aedfefea60c933f158c8e3a97db4ba5fdfdb",
+      "wireVoiceID" : "Russian_AttractiveGuy"
+    },
+    {
+      "fileName" : "d5682c4727bbb14dc3d87ff9d8fda64d659bec5ad133ad1660d03d042afacc8b.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ru-RU",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.49a080033b5aa061a21cde047876cf82af149bd5f9d61b6393fe883c8b6a977e",
+      "wireVoiceID" : "Russian_Bad-temperedBoy"
+    },
+    {
+      "fileName" : "a2cf0f630a3a2f426ac7e4e855569dbdd5901ac5158e611285a34ed21e33b100.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "it-IT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.cad1bf53af64bb073f5a1783894cc52b848948800d48fe169d01cfc90144e831",
+      "wireVoiceID" : "Italian_BraveHeroine"
+    },
+    {
+      "fileName" : "e4dff1d3a06490baff6886871e68fb5994bcef35126ad8d6faa356ba82720be8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "it-IT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.e0ba6f9933a0dd4d291910c1f946de6d8d9c0cc2aaa8a14f139f4d2b290e83fc",
+      "wireVoiceID" : "Italian_Narrator"
+    },
+    {
+      "fileName" : "9bc90d728c7cf923b64c2ee0050f7e4f0a099835d337aa88549e19041b78a51a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "it-IT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.73745cf821da53091abbb1b508546a99b5f61cadd808afd27b2d4ca3828252cf",
+      "wireVoiceID" : "Italian_WanderingSorcerer"
+    },
+    {
+      "fileName" : "0c2e00458627b65e4f3c7a7f1310a9517602cbe590e6abc19ddf1a07d03fb158.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "it-IT",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.0e14e211c9c6b1eac1cf52c90dfca6b6edfc529c72b058fe81857924549cfaa6",
+      "wireVoiceID" : "Italian_DiligentLeader"
+    },
+    {
+      "fileName" : "997e44bd399fd5a6eb1bb3c3496181b51d67881d5b080eef6b07ceaccc7afaed.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "nl-NL",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.d75c204d6c8f96cd8db17a3f09bc369ef5e44ef2f652aa31f29f261a598d9180",
+      "wireVoiceID" : "Dutch_kindhearted_girl"
+    },
+    {
+      "fileName" : "3531223fd4216d463269a33cae5761d1a5ba93908beac8dfdb191081590aeaf2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "nl-NL",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.020a483162259a4482b3a4794793ef0ce011ac889f85b5ff1d7d448833d764d3",
+      "wireVoiceID" : "Dutch_bossy_leader"
+    },
+    {
+      "fileName" : "cb649bd2c318d9f9eff98d2dfc9f734cc6985c78845b88162043cc5205ef3c9c.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "vi-VN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7a1b3bd31ee3698fd84c60b7a2841ce10655e2d4c31f40dd165465d951782067",
+      "wireVoiceID" : "Vietnamese_kindhearted_girl"
+    },
+    {
+      "fileName" : "a1ea86127d9db698027e4d1b7607f308f88a2f24f60820b908c8180ac7f3388a.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ar-SA",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.eaed550b4d037646dac396cea636578a1f1ff2468adbec2f428db78cc7b3dfa6",
+      "wireVoiceID" : "Arabic_CalmWoman"
+    },
+    {
+      "fileName" : "15341d9eefb424bcfe0acf02792b2e05abf912a98a963b4bcee05e430019d292.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ar-SA",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f42278af68de5e25c2bf6c78f9dca4a8b2d6940fb84a9325d9ee78aa8c47e3ea",
+      "wireVoiceID" : "Arabic_FriendlyGuy"
+    },
+    {
+      "fileName" : "f308067a6b0f691bb4ce73c524b8948627e9cfb1caef7a2a8a7120d381b6d02e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "tr-TR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5b93acb38a3cfa53541e3fda5cff88ded5d0f9f14ac9f336d2534fefa16d0084",
+      "wireVoiceID" : "Turkish_CalmWoman"
+    },
+    {
+      "fileName" : "987ddf4cf9d968f1c8980c4d29f70d321e0043cf27aea17820ca4f835d10d4be.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "tr-TR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b0690983520bb5109908f4d9434ee496b423eeff953cb97eba7e1584d934d6d4",
+      "wireVoiceID" : "Turkish_Trustworthyman"
+    },
+    {
+      "fileName" : "7877916fd9e91ca0579fdc633a50ee499c3dc8501e8d6ed3652935af80d8ccea.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "uk-UA",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.ece7a735887a14b352622bf305a51bd23648be7b0d0f9c222466f518ac4c97d7",
+      "wireVoiceID" : "Ukrainian_CalmWoman"
+    },
+    {
+      "fileName" : "cfd01ea69fd86d6726c597bb25ad221e137e5ba42d7b4b55a2354491c23af921.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "uk-UA",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.34b14581f18ae9d5003b2356334d7d65ff14d21076c9109d4598cad6d0cda6be",
+      "wireVoiceID" : "Ukrainian_WiseScholar"
+    },
+    {
+      "fileName" : "94c861b41f3d5d2c47379324d0200b220da1ce96883994d9db14503d64875634.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "th-TH",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.87cc36db5940b0dfd118afe34f02dd2e0861909db70f70a4dd3930bffab78f21",
+      "wireVoiceID" : "Thai_male_1_sample8"
+    },
+    {
+      "fileName" : "65d6b8072454313766720162db4966748ff1c70924f4850dc44451dca80ce7f8.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "th-TH",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.9c436a91c1f46637ba2665dc2b18de3122dfd91fb21536e20a21c14bb7cd6d6b",
+      "wireVoiceID" : "Thai_male_2_sample2"
+    },
+    {
+      "fileName" : "efe1e0e76c2a655c3a80012ca1bbe8a7e986fd0f6d924f918e1d70fa5ccae03e.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "th-TH",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f6865a2a2c8466e161c8f25233887961cdd2066e1a2827b7550884fd70fcf504",
+      "wireVoiceID" : "Thai_female_1_sample1"
+    },
+    {
+      "fileName" : "638bc0e069e77e2ea73650503d4831998e6712631f02205b9621eaf08e1f1866.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "th-TH",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.27ae8cb22fe7bb82007f7fc26556596e8ea5f00de7e0314b5a09cedb8599ee81",
+      "wireVoiceID" : "Thai_female_2_sample2"
+    },
+    {
+      "fileName" : "4b1440a0d67a9074114c18a62cefdf6b01400e109895bd8e7df4697f1e5fcd43.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pl-PL",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.53f13018b48649a0f3fddcc2386c9af85957d30ac7986fcec0011e3190ec486c",
+      "wireVoiceID" : "Polish_male_1_sample4"
+    },
+    {
+      "fileName" : "2e26ab42e4d67abf40bfe8357bab06e4ef4a656e22f4de66e7ecc1889099d792.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pl-PL",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bfefd5c0d69a3dab91cc7b3a7b7050931bac7f5c189a71f22fe3887206a6f41e",
+      "wireVoiceID" : "Polish_male_2_sample3"
+    },
+    {
+      "fileName" : "7cc3f08e99d0c69e82ea0b449444c9de979ed910fa759e35d3723647c10677d6.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pl-PL",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.3d77de49e5e3254ef4533f23d1921b9fd984f534b95ff62e71b2be7cd6396721",
+      "wireVoiceID" : "Polish_female_1_sample1"
+    },
+    {
+      "fileName" : "2660028462e9f3e8eb303f3fda7acc3de1d5a856d6b469a5aa9bee0c2e4f6916.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "pl-PL",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f12298eed802bc8c69898b778378620a12c9314b6983fd09692dae5c9ede3623",
+      "wireVoiceID" : "Polish_female_2_sample3"
+    },
+    {
+      "fileName" : "ed2a15f3aefd71bfd0a6a563b5b014dfcbbf0b145d2f68159ac4b29dbe3301c5.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ro-RO",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.421e0c3ed3b5548d697505f6067d6fc66213cb1edaba9a0a538ebe5f8d924260",
+      "wireVoiceID" : "Romanian_male_1_sample2"
+    },
+    {
+      "fileName" : "54aa03429de0d62abf142b0f87209cb322eaadefa3a7b135c62481c907f5ff57.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ro-RO",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.6e054b8ac950b4c90dfe4717ca40ce15afd45d8638dc36c36540706f00c15475",
+      "wireVoiceID" : "Romanian_male_2_sample1"
+    },
+    {
+      "fileName" : "c490cb897e404812dd2dc6c8f6c1614f0649e3cc963f1223b927d377d90279df.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ro-RO",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5de76db4846051aa9c93dcc4566a4f458dbd142d1e6165bd9280d2658dc2f4fe",
+      "wireVoiceID" : "Romanian_female_1_sample4"
+    },
+    {
+      "fileName" : "2ec89c281223914b32ecf894b1f975ce82d199f48b8dde00b931b56ec8faffa2.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "ro-RO",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.2fa1f83f995db553f47663793bb003b5b2e88a767dfd4c839d57df26129e895e",
+      "wireVoiceID" : "Romanian_female_2_sample1"
+    },
+    {
+      "fileName" : "4c7fae99c8011fc361480d7f4e6b7a711fa16b7aac903f2bb6417aa826f72810.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "el-GR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bae4115c2eedc60e32429cd57ab8ca030372d8327a56d6e54d43e4c56dfbc825",
+      "wireVoiceID" : "greek_male_1a_v1"
+    },
+    {
+      "fileName" : "a59062a6c0e1d8e9a8e89b4abcdff44693d14bc4d3e134a90b61df2daa20c7fc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "el-GR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.4c70d285de262a564a1799c9dfcbbea825861ae62f1f65ec3dd00025070eb5de",
+      "wireVoiceID" : "Greek_female_1_sample1"
+    },
+    {
+      "fileName" : "02a4184bf912a6f5b910832343100cf50948ba03a702862f52b47bef550842f4.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "el-GR",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7221deccfc7428f90a5e7ad1104184cfc7a506fc3158e906da1d9c1abae2421d",
+      "wireVoiceID" : "Greek_female_2_sample3"
+    },
+    {
+      "fileName" : "8039c5776d64c41f6564b37eac9ffc84498a386afb8ba16e2262659c9c2b8497.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "cs-CZ",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.bf0a4c60192de50c5795d7978dbf3b911d3c3c69cd3559dedbc12b400303d8ef",
+      "wireVoiceID" : "czech_male_1_v1"
+    },
+    {
+      "fileName" : "27bc898bb01edc2c8b55d023f26818046c25c48140a51a46e38a0b4478aadb28.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "cs-CZ",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.b43f127d8c749893b2c0f3cf2d299c0e09ea640d08ddea9fdc8af197d02cb7d2",
+      "wireVoiceID" : "czech_female_5_v7"
+    },
+    {
+      "fileName" : "4f6b492e6ca3d25325a9db99e2a34447c07098d7dc8aa6c58a9c80c5c01adbbf.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "cs-CZ",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.f28b8583af6ffe07f61161272f38e1fd001955448e3c7a766611d2700fca03fe",
+      "wireVoiceID" : "czech_female_2_v2"
+    },
+    {
+      "fileName" : "a8105a33d80a5ff22d46c792025e5997af6a7f53d0f4aa9ef91fdc1e6da0af79.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fi-FI",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5bf0ea957344791279d1753d8cf47e54519c6738a461eb8a80138d9ac665b598",
+      "wireVoiceID" : "finnish_male_3_v1"
+    },
+    {
+      "fileName" : "dd6ec0fc5324ed786c320ed74cd669d8aa806251c2ffd42435ebb25ec347a6fe.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fi-FI",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1ae2f02aea4a72cb92c0810c59f9fc881cfbc831b53bdc6321b2b73ce2fb6c1c",
+      "wireVoiceID" : "finnish_male_1_v2"
+    },
+    {
+      "fileName" : "74c1c0c9c4df2c1b3bbe952c49df9220a615364b1818f11373f236ec072ab4ff.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "fi-FI",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.a1848fc06ab2628591c2349f4a00a5ac4c509ba17c7a4021b1d5841ba32f94a1",
+      "wireVoiceID" : "finnish_female_4_v1"
+    },
+    {
+      "fileName" : "4a8a6fd0d6cd3b8c27cc96ad34306d7a7edc9f2dbf5fc29a33175ed0bd56c3dc.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "hi-IN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.5bf7225d61365982641c3c677000d9287b72bb363039b398daf1d1b16a1a2062",
+      "wireVoiceID" : "hindi_male_1_v2"
+    },
+    {
+      "fileName" : "53477efea21f7bad91a23cd144fe3fa98ed795874f2e7e5b2170d21f0f113810.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "hi-IN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.7544eb8d06dce161f557b0f9e57f788651e083b22c568ab1b3e763a540a9db8a",
+      "wireVoiceID" : "hindi_female_2_v1"
+    },
+    {
+      "fileName" : "8e756158010a4dbef55204fde1919f516a9bf15b22101a3706d9c6b8d0ca3772.m4a",
+      "generatedModelID" : "speech-2.8-hd",
+      "languageTag" : "hi-IN",
+      "modelID" : "speech-2.8-hd",
+      "providerID" : "minimax",
+      "stableVoiceID" : "minimax.dynamic.1c48a817bf72cbbba600bbb1fe76d4ceb5d1058ae86c630f9b95473569a76c8f",
+      "wireVoiceID" : "hindi_female_1_v2"
+    }
+  ],
+  "phraseVersion" : "bundled-system-voice-sample-v1",
+  "schemaVersion" : 1
+}
