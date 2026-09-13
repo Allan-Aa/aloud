@@ -8,8 +8,6 @@ import SwiftUI
 final class PrefsSideEffects: @unchecked Sendable {
     static let live = PrefsSideEffects()
 
-    func setPlaybackSpeed(_ speed: Double) { Player.shared.setSpeed(speed) }
-
     func setMenuBarOnly(_ enabled: Bool) {
         NSApp.setActivationPolicy(enabled ? .accessory : .regular)
         if !enabled { NSApp.activate(ignoringOtherApps: true) }
@@ -463,9 +461,13 @@ final class Engine: ObservableObject {
             return false
         }
         do {
+            let previous = await store.prefsSnapshot().selections[selection.providerID]
             try await store.updateInMemory { $0.selections[selection.providerID] = selection }
             storedPrefs = await prefsMutations.syncFromStore()
-            coordinator.requestSelectionChange(providerID: selection.providerID, stopPlayer: stopPlayer)
+            // A reading keeps its synthesis selection snapshot until it finishes.
+            if previous?.modelID != selection.modelID || previous?.voiceID != selection.voiceID {
+                coordinator.requestSelectionChange(providerID: selection.providerID, stopPlayer: stopPlayer)
+            }
             return await reloadProviderSettingsState(resetHealthFor: [selection.providerID])
         } catch {
             toast = "语音选择保存失败"
@@ -851,8 +853,7 @@ final class Engine: ObservableObject {
         mutatePrefs { $0.voice = voice }
     }
     func setRate(_ rate: Int) {
-        speechCoordinator.requestSelectionChange(providerID: .minimax, stopPlayer: stopPlayerCommand())
-        mutatePrefs { $0.rate = rate }
+        Task { @MainActor [weak self] in _ = await self?.updateCurrentDefaultRate(rate) }
     }
     func setStripMarkdown(_ value: Bool) { mutatePrefs { $0.stripMarkdown = value } }
     func setSkipCode(_ value: Bool) { mutatePrefs { $0.skipCode = value } }
@@ -1138,7 +1139,9 @@ final class Engine: ObservableObject {
         for (index, part) in partURLs.enumerated() {
             if index == 0 {
                 try await token.performCurrent {
-                    try self.player.play(file: part, prefs: snapshot.prefs, streaming: partURLs.count > 1)
+                    var playbackPrefs = snapshot.prefs
+                    playbackPrefs.playbackSpeed = self.prefs.playbackSpeed
+                    try self.player.play(file: part, prefs: playbackPrefs, streaming: partURLs.count > 1)
                 }
                 try await token.performCurrent { self.phase = .playing }
             } else {
@@ -1308,7 +1311,9 @@ final class Engine: ObservableObject {
         for (index, part) in partURLs.enumerated() {
             if index == 0 {
                 try await token.performCurrent {
-                    try self.player.play(file: part, prefs: snapshot.prefs, streaming: partURLs.count > 1)
+                    var playbackPrefs = snapshot.prefs
+                    playbackPrefs.playbackSpeed = self.prefs.playbackSpeed
+                    try self.player.play(file: part, prefs: playbackPrefs, streaming: partURLs.count > 1)
                 }
                 try await token.performCurrent { self.phase = .playing }
                 Diag.record(.speechStage(providerID: provider.id, stage: .playbackLaunched))
@@ -1435,12 +1440,16 @@ final class Engine: ObservableObject {
     func seek(_ delta: Double) { player.seek(relative: delta) }
 
     func setSpeed(_ s: Double) {
-        let effects = prefsEffects
-        mutatePrefsThenEffect({ $0.playbackSpeed = s }, apply: { prefs in
-            await effects.setPlaybackSpeed(prefs.playbackSpeed)
-        }, compensate: { prefs in
-            await effects.setPlaybackSpeed(prefs.playbackSpeed)
+        mutatePrefsThenEffect({ $0.playbackSpeed = s }, apply: { [weak self] prefs in
+            await self?.applyPlaybackSpeed(prefs.playbackSpeed)
+        }, compensate: { [weak self] prefs in
+            await self?.applyPlaybackSpeed(prefs.playbackSpeed)
         })
+    }
+
+    private func applyPlaybackSpeed(_ speed: Double) {
+        storedPrefs.playbackSpeed = speed
+        player.setSpeed(speed)
     }
 
     func readClipboard() {

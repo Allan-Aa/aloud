@@ -96,7 +96,7 @@ struct GhostIcon: View {
     }
 }
 
-/// 速度滑块:一条能拖的进度条,两端 −/+ 微调,右侧常驻数值。
+/// 速度滑块:一条能拖的进度条,右侧常驻数值。
 /// 轨道点哪跳哪(minimumDistance: 0),不用先摸到把手再拖。
 struct InkSlider: View {
     @Binding var value: Double
@@ -104,6 +104,9 @@ struct InkSlider: View {
     let step: Double
     let format: (Double) -> String
     var showsButtons: Bool = true
+    var snapPoints: [Double] = []
+    var resetTitle: String? = nil
+    var accessibilityLabel: String = ""
     var valueWidth: CGFloat = 50
     var trackHeight: CGFloat = 4
     var knob: CGFloat = 12
@@ -119,7 +122,22 @@ struct InkSlider: View {
         min(range.upperBound, max(range.lowerBound, (v / step).rounded() * step))
     }
 
+    private func snapped(_ v: Double) -> Double {
+        guard let point = snapPoints.min(by: { abs($0 - v) < abs($1 - v) }), abs(point - v) <= step * 0.6 else {
+            return clamp(v)
+        }
+        return point
+    }
+
     var body: some View {
+        slider.accessibilityActions {
+            if let resetTitle, abs(value - 1) >= 0.001 {
+                Button(resetTitle) { value = 1 }
+            }
+        }
+    }
+
+    private var slider: some View {
         HStack(spacing: 7) {
             if showsButtons {
                 stepButton("minus", enabled: value > range.lowerBound) { value = clamp(value - step) }
@@ -133,6 +151,12 @@ struct InkSlider: View {
                         .frame(height: trackHeight)
                     Capsule().fill(p.seal)
                         .frame(width: max(0, x), height: trackHeight)
+                    ForEach(snapPoints, id: \.self) { point in
+                        Circle()
+                            .fill(p.ink.opacity(0.26))
+                            .frame(width: 3, height: 3)
+                            .offset(x: max(0, min(w - 3, w * (point - range.lowerBound) / span - 1.5)))
+                    }
                     Circle()
                         .fill(.white)
                         .frame(width: dragging ? knob + 2 : knob, height: dragging ? knob + 2 : knob)
@@ -150,7 +174,7 @@ struct InkSlider: View {
                         .onChanged { g in
                             dragging = true
                             let r = max(0, min(1, g.location.x / max(w, 1)))
-                            value = clamp(range.lowerBound + r * span)
+                            value = snapped(range.lowerBound + r * span)
                         }
                         .onEnded { _ in dragging = false }
                 )
@@ -167,6 +191,32 @@ struct InkSlider: View {
                 .monospacedDigit()
                 .foregroundStyle(dragging ? p.seal : p.inkDim)
                 .frame(width: valueWidth, alignment: .trailing)
+
+            if let resetTitle {
+                Button { value = 1 } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                        .font(.system(size: 10, weight: .medium))
+                        .frame(width: 16, height: 16)
+                }
+                .buttonStyle(.plain)
+                .focusEffectDisabled()
+                .foregroundStyle(p.inkDim)
+                .help(resetTitle)
+                .accessibilityLabel(resetTitle)
+                .accessibilityHidden(true)
+                .opacity(abs(value - 1) < 0.001 ? 0 : 1)
+                .disabled(abs(value - 1) < 0.001)
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel)
+        .accessibilityValue(format(value))
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment: value = clamp(value + step)
+            case .decrement: value = clamp(value - step)
+            @unknown default: break
+            }
         }
     }
 
@@ -185,23 +235,35 @@ struct InkSlider: View {
 }
 
 extension InkSlider {
+    private static func speedFormat(_ value: Double) -> String {
+        let hundredths = Int((value * 100).rounded())
+        if hundredths.isMultiple(of: 100) { return "\(hundredths / 100)×" }
+        if hundredths.isMultiple(of: 10) { return String(format: "%.1f×", value) }
+        return String(format: "%.2f×", value)
+    }
+
     /// 合成语速:−50%–+100%,5% 一档
-    static func rate(_ binding: Binding<Int>, valueWidth: CGFloat = 46) -> InkSlider {
+    static func rate(_ binding: Binding<Int>, valueWidth: CGFloat = 46,
+                     accessibilityLabel: String = "Synthesis rate") -> InkSlider {
         InkSlider(
             value: Binding(get: { Double(binding.wrappedValue) },
                            set: { binding.wrappedValue = Int($0.rounded()) }),
             range: -50...100, step: 5,
             format: { $0 >= 0 ? "+\(Int($0))%" : "\(Int($0))%" },
+            accessibilityLabel: accessibilityLabel,
             valueWidth: valueWidth
         )
     }
 
     /// 播放倍速:0.5×–3×,0.05 一档。播放层的,拖着就立即变
     static func speed(_ binding: Binding<Double>, showsButtons: Bool = true,
-                      valueWidth: CGFloat = 40) -> InkSlider {
+                      valueWidth: CGFloat = 40, resetTitle: String? = nil,
+                      accessibilityLabel: String = "Speed") -> InkSlider {
         InkSlider(value: binding, range: 0.5...3.0, step: 0.05,
-                  format: { String(format: "%.2g×", $0) },
-                  showsButtons: showsButtons, valueWidth: valueWidth)
+                  format: { Self.speedFormat($0) },
+                  showsButtons: showsButtons, snapPoints: [1, 1.25, 1.5, 2],
+                  resetTitle: resetTitle, accessibilityLabel: accessibilityLabel,
+                  valueWidth: valueWidth)
     }
 }
 

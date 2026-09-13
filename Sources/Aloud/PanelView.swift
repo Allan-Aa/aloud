@@ -10,7 +10,6 @@ struct PanelView: View {
             state: PanelViewState(
                 text: engine.text,
                 phase: engine.phase,
-                rate: engine.prefs.rate,
                 playbackSpeed: engine.prefs.playbackSpeed,
                 position: engine.position,
                 duration: engine.duration
@@ -19,7 +18,6 @@ struct PanelView: View {
                 seek: { engine.seek($0) },
                 togglePause: { engine.togglePause() },
                 stop: { engine.stop() },
-                setRate: { engine.setRate($0) },
                 setPlaybackSpeed: { engine.setSpeed($0) },
                 openMain: { openWindow(id: "main") },
                 quit: { NSApplication.shared.terminate(nil) }
@@ -40,14 +38,12 @@ private struct PanelViewActions {
     let seek: (Double) -> Void
     let togglePause: () -> Void
     let stop: () -> Void
-    let setRate: (Int) -> Void
     let setPlaybackSpeed: (Double) -> Void
     let openMain: () -> Void
     let quit: () -> Void
 
     static let none = PanelViewActions(
-        seek: { _ in }, togglePause: {}, stop: {}, setRate: { _ in },
-        setPlaybackSpeed: { _ in }, openMain: {}, quit: {}
+        seek: { _ in }, togglePause: {}, stop: {}, setPlaybackSpeed: { _ in }, openMain: {}, quit: {}
     )
 }
 
@@ -102,21 +98,17 @@ private struct PanelViewBody: View {
                     .help(T.openMain(lang))
             }
 
-            VStack(spacing: 9) {
-                HStack(spacing: 8) {
-                    Text(T.synthRate(lang))
-                        .font(.system(size: 10))
-                        .foregroundStyle(p.inkFaint)
-                        .frame(width: 46, alignment: .leading)
-                    InkSlider.rate(Binding(get: { state.rate }, set: actions.setRate))
-                }
-                HStack(spacing: 8) {
-                    Text(T.playbackSpeed(lang))
-                        .font(.system(size: 10))
-                        .foregroundStyle(p.inkFaint)
-                        .frame(width: 46, alignment: .leading)
-                    InkSlider.speed(Binding(get: { state.playbackSpeed }, set: actions.setPlaybackSpeed))
-                }
+            HStack(spacing: 8) {
+                Text(T.playbackSpeed(lang))
+                    .font(.system(size: 10))
+                    .foregroundStyle(p.inkFaint)
+                    .frame(width: 46, alignment: .leading)
+                InkSlider.speed(
+                    Binding(get: { state.playbackSpeed }, set: actions.setPlaybackSpeed),
+                    showsButtons: false,
+                    resetTitle: T.resetSpeed(lang),
+                    accessibilityLabel: T.playbackSpeed(lang)
+                )
             }
 
             Divider().overlay(p.line)

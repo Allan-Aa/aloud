@@ -47,8 +47,9 @@ enum T {
     static let idle           = Str(zh: "空闲", en: "Idle")
     static let panelIdleHint  = Str(zh: "选中任意文字，按 ⌃` 开读",
                                     en: "Select text anywhere, then press ⌃`")
-    static let synthRate      = Str(zh: "合成语速", en: "Rate")
-    static let playbackSpeed  = Str(zh: "倍速", en: "Speed")
+    static let synthRate      = Str(zh: "合成语速", en: "Synthesis rate")
+    static let playbackSpeed  = Str(zh: "语速", en: "Speed")
+    static let resetSpeed     = Str(zh: "恢复 1×", en: "Reset to 1×")
     static let readSelection  = Str(zh: "⌃` 读选中", en: "⌃` read selection")
     static let quit           = Str(zh: "退出", en: "Quit")
     static let openMain       = Str(zh: "打开主窗口", en: "Open main window")
@@ -69,6 +70,8 @@ enum T {
     static let defaultRate    = Str(zh: "默认合成语速", en: "Default synthesis rate")
     static let rateNote       = Str(zh: "改了要重新合成，缓存按语速分开存",
                                     en: "Changing this re-synthesises; cache is keyed by rate")
+    static let advancedVoiceSettings = Str(zh: "高级语音设置", en: "Advanced voice settings")
+    static let synthRateNextReadNote = Str(zh: "下次朗读生效", en: "Applies to your next reading")
     static let stripMarkdown  = Str(zh: "去除 Markdown 标记", en: "Strip Markdown")
     static let stripMdNote    = Str(zh: "读文档时不会把 # 和 * 念出来",
                                     en: "Won't read out # and * when reading documents")

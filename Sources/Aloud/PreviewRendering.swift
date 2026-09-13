@@ -127,7 +127,6 @@ struct MainViewState: Sendable {
     let voiceControl: ProviderVoiceControlState?
     let voiceSampleState: VoiceSamplePlaybackState
     let voiceLabel: String
-    let rate: Int
     let playbackSpeed: Double
     let position: Double
     let duration: Double
@@ -138,7 +137,6 @@ struct MainViewState: Sendable {
 struct PanelViewState: Sendable {
     let text: String
     let phase: Phase
-    let rate: Int
     let playbackSpeed: Double
     let position: Double
     let duration: Double
@@ -194,7 +192,7 @@ enum PreviewSceneCatalog {
     static var all: [PreviewScene] {
         let sample = "念念不忘，必有回响。这段字用来看合成和播放的动效。"
         let sampleEN = "Read anything aloud. Select text anywhere and press the hotkey."
-        let panelText = "为什么用合成语速而不是倍速：合成语速是让模型按那个节奏去说…"
+        let panelText = "朗读时可随时调整播放语速，保持当前进度。"
 
         return [
             main("01-主窗口-空闲-浅色", .light),
@@ -218,13 +216,17 @@ enum PreviewSceneCatalog {
             settings("13-设置-快捷键", .light, tab: 1),
             settings("14-设置-词典", .dark, tab: 2),
             settings("15-设置-高级", .dark, tab: 3),
-            panel("16-菜单栏面板-深色", .dark, text: panelText),
-            panel("17-菜单栏面板-浅色", .light, text: panelText),
+            panel("16-菜单栏面板-空闲-浅色", .light, text: panelText, phase: .idle),
+            panel("17-菜单栏面板-合成中-深色", .dark, text: panelText, phase: .synthesizing),
+            panel("18-菜单栏面板-播放-1×-浅色", .light, text: panelText, phase: .playing),
+            panel("19-菜单栏面板-播放-1.25×-深色", .dark, text: panelText, phase: .playing, playbackSpeed: 1.25),
+            panel("20-菜单栏面板-暂停-深色", .dark, text: panelText, phase: .paused, playbackSpeed: 1.25),
             main("EN-01-main-idle", .light, language: .en),
             main("EN-02-main-playing", .dark, language: .en, text: sampleEN, phase: .playing, position: 28),
             main("EN-03-main-history", .light, language: .en, text: sampleEN, historyOpen: true),
             settings("EN-04-settings-hotkeys", .light, language: .en, tab: 1),
-            panel("EN-05-panel", .dark, language: .en, text: panelText),
+            panel("EN-05-panel-playing-1×", .dark, language: .en, text: sampleEN, phase: .playing),
+            panel("EN-06-panel-paused-1.25×", .light, language: .en, text: sampleEN, phase: .paused, playbackSpeed: 1.25),
         ]
     }
 
@@ -254,7 +256,6 @@ enum PreviewSceneCatalog {
                     voiceControl: nil,
                     voiceSampleState: .idle,
                     voiceLabel: Voices.label(defaultVoice, language),
-                    rate: 50,
                     playbackSpeed: 1,
                     position: position,
                     duration: 64,
@@ -344,7 +345,9 @@ enum PreviewSceneCatalog {
         _ name: String,
         _ scheme: ColorScheme,
         language: Lang = .zh,
-        text: String
+        text: String,
+        phase: Phase,
+        playbackSpeed: Double = 1
     ) -> PreviewScene {
         PreviewScene(
             name: name,
@@ -353,10 +356,9 @@ enum PreviewSceneCatalog {
             content: .panel(
                 PanelViewState(
                     text: text,
-                    phase: .playing,
-                    rate: 50,
-                    playbackSpeed: 1,
-                    position: 23,
+                    phase: phase,
+                    playbackSpeed: playbackSpeed,
+                    position: phase.isLive ? 23 : 0,
                     duration: 64
                 )
             )

@@ -25,7 +25,6 @@ struct MainView: View {
                 voiceControl: engine.currentDefaultVoiceControlState,
                 voiceSampleState: engine.voiceSamplePlaybackState,
                 voiceLabel: engine.currentVoiceDisplayLabel,
-                rate: engine.currentDefaultVoiceControlState?.rate.value ?? engine.prefs.rate,
                 playbackSpeed: engine.prefs.playbackSpeed,
                 position: engine.position,
                 duration: engine.duration,
@@ -38,9 +37,6 @@ struct MainView: View {
                 setText: { engine.text = $0 },
                 setVoice: { voiceID in
                     Task { @MainActor in _ = await engine.updateCurrentDefaultVoice(voiceID) }
-                },
-                setRate: { value in
-                    Task { @MainActor in _ = await engine.updateCurrentDefaultRate(value) }
                 },
                 toggleVoiceSample: { providerID, voiceID in engine.toggleVoiceSample(providerID: providerID, voiceID: voiceID) },
                 setPlaybackSpeed: { engine.setSpeed($0) },
@@ -89,7 +85,6 @@ struct MainPreviewView: View {
 private struct MainViewActions {
     let setText: (String) -> Void
     let setVoice: (VoiceID) -> Void
-    let setRate: (Int) -> Void
     let toggleVoiceSample: (ProviderID, VoiceID) -> Void
     let setPlaybackSpeed: (Double) -> Void
     let readClipboard: () -> Void
@@ -105,7 +100,7 @@ private struct MainViewActions {
     let openSettings: () -> Void
 
     static let none = MainViewActions(
-        setText: { _ in }, setVoice: { _ in }, setRate: { _ in }, toggleVoiceSample: { _, _ in }, setPlaybackSpeed: { _ in },
+        setText: { _ in }, setVoice: { _ in }, toggleVoiceSample: { _, _ in }, setPlaybackSpeed: { _ in },
         readClipboard: {}, speak: {}, seek: { _ in }, togglePause: {}, stop: {}, saveAudio: {},
         replay: { _ in }, load: { _ in }, copy: { _ in }, dismissToast: {}, openSettings: {}
     )
@@ -237,8 +232,17 @@ private struct MainViewBody: View {
                 }
             }
 
-            InkSlider.rate(Binding(get: { state.rate }, set: actions.setRate))
-                .frame(width: 168)
+            Text(T.playbackSpeed(lang))
+                .font(.system(size: 10))
+                .foregroundStyle(p.inkFaint)
+            InkSlider.speed(
+                Binding(get: { state.playbackSpeed }, set: actions.setPlaybackSpeed),
+                showsButtons: false,
+                valueWidth: 36,
+                resetTitle: T.resetSpeed(lang),
+                accessibilityLabel: T.playbackSpeed(lang)
+            )
+            .frame(width: 120)
 
             Button(action: actions.readClipboard) {
                 HStack(spacing: 4) {
@@ -293,11 +297,6 @@ private struct MainViewBody: View {
                 GhostIcon(systemName: "goforward.10") { actions.seek(10) }
                 GhostIcon(systemName: "stop.fill", action: actions.stop)
                 Spacer()
-                InkSlider.speed(
-                    Binding(get: { state.playbackSpeed }, set: actions.setPlaybackSpeed),
-                    showsButtons: false
-                )
-                .frame(width: 128)
                 GhostIcon(systemName: "square.and.arrow.down", action: actions.saveAudio)
             }
         }
