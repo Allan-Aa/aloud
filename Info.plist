@@ -7,8 +7,8 @@
   <key>CFBundleName</key><string>念</string>
   <key>CFBundleDisplayName</key><string>念</string>
   <key>CFBundlePackageType</key><string>APPL</string>
-  <key>CFBundleShortVersionString</key><string>0.2.28</string>
-  <key>CFBundleVersion</key><string>30</string>
+  <key>CFBundleShortVersionString</key><string>0.2.29</string>
+  <key>CFBundleVersion</key><string>31</string>
   <key>CFBundleIconFile</key><string>Aloud</string>
   <key>LSMinimumSystemVersion</key><string>14.0</string>
   <key>NSHighResolutionCapable</key><true/>

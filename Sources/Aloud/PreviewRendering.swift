@@ -135,6 +135,8 @@ struct MainViewState: Sendable {
 }
 
 struct PanelViewState: Sendable {
+    var voiceLabel: String = "清朗男声"
+    var toast: String? = nil
     let text: String
     let phase: Phase
     let playbackSpeed: Double
@@ -221,6 +223,12 @@ enum PreviewSceneCatalog {
             panel("18-菜单栏面板-播放-1×-浅色", .light, text: panelText, phase: .playing),
             panel("19-菜单栏面板-播放-1.25×-深色", .dark, text: panelText, phase: .playing, playbackSpeed: 1.25),
             panel("20-菜单栏面板-暂停-深色", .dark, text: panelText, phase: .paused, playbackSpeed: 1.25),
+            panel("21-菜单栏-空白-浅色", .light, text: "", phase: .idle),
+            panel("22-菜单栏-空白-深色", .dark, text: "", phase: .idle),
+            panel("23-菜单栏-错误", .light, text: sample, phase: .idle,
+                  toast: "语音服务暂时不可用，请检查网络或在设置中切换服务后重试。"),
+            panel("EN-07-panel-empty", .light, language: .en, text: "", phase: .idle),
+            panel("EN-08-panel-preparing", .dark, language: .en, text: sampleEN, phase: .synthesizing),
             main("EN-01-main-idle", .light, language: .en),
             main("EN-02-main-playing", .dark, language: .en, text: sampleEN, phase: .playing, position: 28),
             main("EN-03-main-history", .light, language: .en, text: sampleEN, historyOpen: true),
@@ -347,7 +355,8 @@ enum PreviewSceneCatalog {
         language: Lang = .zh,
         text: String,
         phase: Phase,
-        playbackSpeed: Double = 1
+        playbackSpeed: Double = 1,
+        toast: String? = nil
     ) -> PreviewScene {
         PreviewScene(
             name: name,
@@ -355,6 +364,8 @@ enum PreviewSceneCatalog {
             language: language,
             content: .panel(
                 PanelViewState(
+                    voiceLabel: language == .zh ? "清朗男声" : "Clear voice",
+                    toast: toast,
                     text: text,
                     phase: phase,
                     playbackSpeed: playbackSpeed,

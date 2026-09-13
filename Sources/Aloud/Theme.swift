@@ -22,13 +22,13 @@ struct Palette {
     let line: Color        // 描边
 
     static let paper = Palette(
-        bg: Color(0xF7F4ED), surface: Color(0xFFFFFF, alpha: 0.62),
-        ink: Color(0x1A1A1C), inkDim: Color(0x6B6862), inkFaint: Color(0xA8A399),
+        bg: Color(0xF6F5F2), surface: Color(0xFFFFFF),
+        ink: Color(0x1A1A1C), inkDim: Color(0x6B6862), inkFaint: Color(0x827F78),
         seal: Color(0xC1352B), line: Color(0x1A1A1C, alpha: 0.10))
 
     static let ink_ = Palette(
         bg: Color(0x141416), surface: Color(0xFFFFFF, alpha: 0.05),
-        ink: Color(0xF5F3EE), inkDim: Color(0x9A968E), inkFaint: Color(0x6A665F),
+        ink: Color(0xF5F3EE), inkDim: Color(0x9A968E), inkFaint: Color(0xA09C95),
         seal: Color(0xD94F3D), line: Color(0xFFFFFF, alpha: 0.10))
 
     static func of(_ scheme: ColorScheme) -> Palette { scheme == .dark ? .ink_ : .paper }

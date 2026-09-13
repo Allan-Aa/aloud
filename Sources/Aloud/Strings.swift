@@ -29,10 +29,35 @@ extension EnvironmentValues {
 enum T {
     // 主窗口
     static let appName        = Str(zh: "念", en: "Aloud")
-    static let speak          = Str(zh: "念", en: "aloud")
-    static let synthesizing   = Str(zh: "合成中", en: "synthesizing")
-    static let placeholder    = Str(zh: "输入或粘贴文本，或按 ⌃` 读选中的字",
-                                    en: "Type or paste text, or press ⌃` to read your selection")
+    static let speak          = Str(zh: "开始朗读", en: "Read aloud")
+    static let synthesizing   = Str(zh: "正在生成语音…", en: "Preparing audio…")
+    static let placeholder    = Str(zh: "在这里输入，或按 ⌘V 粘贴文字…",
+                                    en: "Type here, or press ⌘V to paste text…")
+    static let editorTitle    = Str(zh: "把文字，交给声音。", en: "Give your words a voice.")
+    static let editorSubtitle = Str(zh: "文章、笔记、灵感，放在这里慢慢听。", en: "A place to listen to articles, notes and ideas.")
+    static let readingText    = Str(zh: "朗读文本", en: "Text to read")
+    static let pasteText      = Str(zh: "粘贴文本", en: "Paste text")
+    static let clipboardEmpty = Str(zh: "剪贴板里没有文字", en: "No text on the clipboard")
+    static let settings       = Str(zh: "设置", en: "Settings")
+    static let expandWindow   = Str(zh: "展开窗口", en: "Expand window")
+    static let pause          = Str(zh: "暂停", en: "Pause")
+    static let resume         = Str(zh: "继续朗读", en: "Resume")
+    static let stop           = Str(zh: "停止", en: "Stop")
+    static let cancel         = Str(zh: "取消生成", en: "Cancel")
+    static let saveAudio      = Str(zh: "保存音频", en: "Save audio")
+    static let voice          = Str(zh: "音色", en: "Voice")
+    static let configureVoice = Str(zh: "选择语音服务", en: "Set up a voice")
+    static let dismiss        = Str(zh: "关闭提示", en: "Dismiss message")
+    static let backTen        = Str(zh: "后退 10 秒", en: "Back 10 seconds")
+    static let forwardTen     = Str(zh: "前进 10 秒", en: "Forward 10 seconds")
+    static let noHistory      = Str(zh: "还没有朗读记录", en: "No reading history yet")
+    static let noHistoryMatch = Str(zh: "没有匹配的记录", en: "No matching entries")
+    static let loadText       = Str(zh: "载入文本", en: "Load text")
+    static let replay         = Str(zh: "重新朗读", en: "Read again")
+    static let copyText       = Str(zh: "复制文本", en: "Copy text")
+    static func characterCount(_ count: Int, _ lang: Lang) -> String {
+        lang == .zh ? "\(count) 字" : "\(count) characters"
+    }
     static let readClipboard  = Str(zh: "读剪贴板", en: "Clipboard")
     static let clipboardMock  = Str(zh: "（剪贴板内容）", en: "(clipboard contents)")
     static let providerSettings = Str(zh: "语音服务与 API Key 设置", en: "Voice providers and API keys")

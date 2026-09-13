@@ -1,7 +1,6 @@
 import SwiftUI
 
-/// 可折叠历史。收起时只占一行(一个触发条),展开时从底部长出来。
-/// 设计要点:收起态必须轻到"看不见",否则极简就没了;展开态必须能搜、能重播。
+/// 可折叠历史，搜索与折叠分别操作；载入、重播和复制始终可发现。
 struct HistoryPanel: View {
     @Binding var expanded: Bool
     var entries: [HistoryEntry]
@@ -32,31 +31,28 @@ struct HistoryPanel: View {
     }
 
     private var trigger: some View {
-        Button {
-            withAnimation(Motion.rise) { expanded.toggle() }
-        } label: {
-            HStack(spacing: 7) {
-                Image(systemName: "chevron.up")
-                    .font(.system(size: 9, weight: .bold))
-                    .rotationEffect(.degrees(expanded ? 180 : 0))
-                Text(T.history(lang))
-                    .font(.system(size: 12, weight: .medium))
-                Text("\(entries.count)")
-                    .font(.system(size: 11))
-                    .monospacedDigit()
-                    .foregroundStyle(p.inkFaint)
-                Spacer()
-                if expanded {
-                    searchField
+        HStack(spacing: 12) {
+            Button {
+                withAnimation(Motion.rise) { expanded.toggle() }
+            } label: {
+                HStack(spacing: 8) {
+                    Image(systemName: "clock.arrow.circlepath")
+                    Text(T.history(lang)).fontWeight(.medium)
+                    Text("\(entries.count)").monospacedDigit().foregroundStyle(p.inkFaint)
+                    Image(systemName: "chevron.down")
+                        .font(.system(size: 9, weight: .semibold))
+                        .rotationEffect(.degrees(expanded ? 180 : 0))
                 }
+                .contentShape(Rectangle())
             }
-            .foregroundStyle(p.inkDim)
-            .padding(.horizontal, 20)
-            .padding(.vertical, 9)
-            .contentShape(Rectangle())
+            .buttonStyle(.plain)
+            Spacer()
+            if expanded { searchField }
         }
-        .buttonStyle(.plain)
-        .focusEffectDisabled()
+        .font(.system(size: 12))
+        .foregroundStyle(p.inkDim)
+        .padding(.horizontal, 28)
+        .padding(.vertical, 14)
     }
 
     private var searchField: some View {
@@ -80,13 +76,21 @@ struct HistoryPanel: View {
     @ViewBuilder private var list: some View {
         // ScrollView + LazyVStack 在 ImageRenderer 里渲染为空(懒加载没有可见区域可依据),
         // 导出时退回普通 VStack。
-        if exporting {
+        if filtered.isEmpty {
+            Text(query.isEmpty ? T.noHistory(lang) : T.noHistoryMatch(lang))
+                .font(.system(size: 13))
+                .foregroundStyle(p.inkDim)
+                .frame(maxWidth: .infinity)
+                .frame(height: 90)
+        } else if exporting {
             VStack(spacing: 0) {
-                ForEach(filtered.prefix(4)) { e in
+                ForEach(filtered.prefix(2)) { e in
                     row(e)
                     Divider().overlay(p.line.opacity(0.6)).padding(.leading, 20)
                 }
             }
+            .frame(height: 128, alignment: .top)
+            .clipped()
         } else {
             ScrollView {
                 LazyVStack(spacing: 0) {
@@ -96,7 +100,7 @@ struct HistoryPanel: View {
                     }
                 }
             }
-            .frame(height: 186)
+            .frame(height: 128)
         }
     }
 
@@ -104,36 +108,45 @@ struct HistoryPanel: View {
         let eligibility = HistoryEligibility(for: e)
         let policy = Self.actionPolicy(for: e)
         return HStack(alignment: .top, spacing: 10) {
-            VStack(alignment: .leading, spacing: 3) {
-                Text(e.text ?? eligibility.contentMessage ?? "")
-                    .font(.system(size: 12))
-                    .foregroundStyle(p.ink)
-                    .lineLimit(1)
-                HStack(spacing: 8) {
-                    Text(String(format: "%d:%02d", e.seconds / 60, e.seconds % 60))
-                        .monospacedDigit()
-                    Text(e.displayLabelSnapshot)
-                    Text(e.rate.value >= 0 ? "+\(e.rate.value)%" : "\(e.rate.value)%").monospacedDigit()
-                    Text(e.agoText(lang))
-                    if let selection = eligibility.selectionMessage { Text(selection) }
+            Button { if policy.allows(.load) { onLoad(e) } } label: {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(e.text ?? eligibility.contentMessage ?? "")
+                        .font(.system(size: 12))
+                        .foregroundStyle(p.ink)
+                        .lineLimit(1)
+                    HStack(spacing: 8) {
+                        Text(String(format: "%d:%02d", e.seconds / 60, e.seconds % 60))
+                            .monospacedDigit()
+                        Text(e.displayLabelSnapshot)
+                        Text(e.rate.value >= 0 ? "+\(e.rate.value)%" : "\(e.rate.value)%").monospacedDigit()
+                        Text(e.agoText(lang))
+                        if let selection = eligibility.selectionMessage { Text(selection) }
+                    }
+                    .font(.system(size: 10))
+                    .foregroundStyle(p.inkFaint)
                 }
-                .font(.system(size: 10))
-                .foregroundStyle(p.inkFaint)
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .contentShape(Rectangle())
             }
-            .contentShape(Rectangle())
-            .onTapGesture { if !exporting && policy.allows(.load) { onLoad(e) } }
+            .buttonStyle(.plain)
+            .disabled(!policy.allows(.load))
+            .help(T.loadText(lang))
             Spacer(minLength: 8)
-            // 操作只在 hover 时出现,静止时列表是干净的
-            if hoveredID == e.id || exporting {
-                HStack(spacing: 0) {
-                    if policy.allows(.replay) { GhostIcon(systemName: "arrow.counterclockwise") { onReplay(e) } }
-                    if policy.allows(.copy) { GhostIcon(systemName: "doc.on.doc") { onCopy(e) } }
+            HStack(spacing: 12) {
+                if policy.allows(.replay) {
+                    Button(T.replay(lang)) { onReplay(e) }
+                        .buttonStyle(.plain)
+                        .font(.system(size: 12, weight: .medium))
+                        .foregroundStyle(p.inkDim)
                 }
-                .transition(.opacity)
+                if policy.allows(.copy) {
+                    GhostIcon(systemName: "doc.on.doc") { onCopy(e) }
+                        .help(T.copyText(lang)).accessibilityLabel(T.copyText(lang))
+                }
             }
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 9)
+        .padding(.horizontal, 28)
+        .padding(.vertical, 12)
         .background(hoveredID == e.id ? p.ink.opacity(0.04) : .clear)
         .contentShape(Rectangle())
         .onHover { hoveredID = $0 ? e.id : nil }

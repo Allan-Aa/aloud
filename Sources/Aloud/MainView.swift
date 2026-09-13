@@ -11,8 +11,10 @@ struct MainView: View {
     @Environment(\.openSettings) private var openSettings
     @Environment(\.openWindow) private var openWindow
     @State private var historyOpen: Bool
+    let compact: Bool
 
-    init(engine: Engine, historyOpen: Bool = false) {
+    init(engine: Engine, historyOpen: Bool = false, compact: Bool = false) {
+        self.compact = compact
         self.engine = engine
         _historyOpen = State(initialValue: historyOpen)
     }
@@ -33,6 +35,7 @@ struct MainView: View {
             ),
             historyOpen: $historyOpen,
             exporting: false,
+            compact: compact,
             actions: MainViewActions(
                 setText: { engine.text = $0 },
                 setVoice: { voiceID in
@@ -40,7 +43,13 @@ struct MainView: View {
                 },
                 toggleVoiceSample: { providerID, voiceID in engine.toggleVoiceSample(providerID: providerID, voiceID: voiceID) },
                 setPlaybackSpeed: { engine.setSpeed($0) },
-                readClipboard: { engine.readClipboard() },
+                pasteClipboard: {
+                    guard let text = NSPasteboard.general.string(forType: .string), !text.isEmpty else {
+                        engine.toast = T.clipboardEmpty(Lang.system)
+                        return
+                    }
+                    engine.text = text
+                },
                 speak: { engine.speak() },
                 seek: { engine.seek($0) },
                 togglePause: { engine.togglePause() },
@@ -53,12 +62,21 @@ struct MainView: View {
                     if let text = entry.text { NSPasteboard.general.setString(text, forType: .string) }
                 },
                 dismissToast: { engine.toast = nil },
-                openSettings: { openSettings() }
+                openSettings: {
+                    NSApp.activate(ignoringOtherApps: true)
+                    openSettings()
+                },
+                openMain: {
+                    AppDelegate.backToDock()
+                    openWindow(id: "main")
+                    NSApp.activate(ignoringOtherApps: true)
+                },
+                quit: { NSApp.terminate(nil) }
             )
         )
         .onAppear {
             AppDelegate.openMain = { openWindow(id: "main") }
-            AppDelegate.backToDock()
+            if !compact { AppDelegate.backToDock() }
         }
     }
 }
@@ -66,8 +84,10 @@ struct MainView: View {
 struct MainPreviewView: View {
     let state: MainViewState
     @State private var historyOpen: Bool
+    var compact: Bool = false
 
-    init(state: MainViewState, historyOpen: Bool) {
+    init(state: MainViewState, historyOpen: Bool, compact: Bool = false) {
+        self.compact = compact
         self.state = state
         _historyOpen = State(initialValue: historyOpen)
     }
@@ -77,17 +97,18 @@ struct MainPreviewView: View {
             state: state,
             historyOpen: $historyOpen,
             exporting: true,
+            compact: compact,
             actions: .none
         )
     }
 }
 
-private struct MainViewActions {
+struct MainViewActions {
     let setText: (String) -> Void
     let setVoice: (VoiceID) -> Void
     let toggleVoiceSample: (ProviderID, VoiceID) -> Void
     let setPlaybackSpeed: (Double) -> Void
-    let readClipboard: () -> Void
+    let pasteClipboard: () -> Void
     let speak: () -> Void
     let seek: (Double) -> Void
     let togglePause: () -> Void
@@ -98,143 +119,239 @@ private struct MainViewActions {
     let copy: (HistoryEntry) -> Void
     let dismissToast: () -> Void
     let openSettings: () -> Void
+    let openMain: () -> Void
+    let quit: () -> Void
 
     static let none = MainViewActions(
         setText: { _ in }, setVoice: { _ in }, toggleVoiceSample: { _, _ in }, setPlaybackSpeed: { _ in },
-        readClipboard: {}, speak: {}, seek: { _ in }, togglePause: {}, stop: {}, saveAudio: {},
-        replay: { _ in }, load: { _ in }, copy: { _ in }, dismissToast: {}, openSettings: {}
+        pasteClipboard: {}, speak: {}, seek: { _ in }, togglePause: {}, stop: {}, saveAudio: {},
+        replay: { _ in }, load: { _ in }, copy: { _ in }, dismissToast: {}, openSettings: {}, openMain: {}, quit: {}
     )
 }
 
-private struct MainViewBody: View {
+struct MainViewBody: View {
     let state: MainViewState
     @Binding var historyOpen: Bool
     let exporting: Bool
+    var compact: Bool = false
     let actions: MainViewActions
 
     @Environment(\.colorScheme) private var scheme
     @Environment(\.lang) private var lang
-    @State private var focused = false
+    @FocusState private var editorFocused: Bool
 
     private var p: Palette { Palette.of(scheme) }
+    private var inset: CGFloat { compact ? 20 : 28 }
+    private var busy: Bool { state.phase == .synthesizing }
+    private var canSpeak: Bool { !state.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
 
     var body: some View {
         VStack(spacing: 0) {
             header
-            editor
-            Divider().overlay(p.line)
-            controls
-            if state.phase.isLive {
-                player.transition(.move(edge: .bottom).combined(with: .opacity))
+            if !compact && !historyOpen {
+                VStack(alignment: .leading, spacing: 6) {
+                    Text(T.editorTitle(lang))
+                        .font(.system(size: 26, weight: .semibold))
+                        .tracking(-0.6)
+                        .foregroundStyle(p.ink)
+                    Text(T.editorSubtitle(lang))
+                        .font(.system(size: 13))
+                        .foregroundStyle(p.inkDim)
+                }
+                .frame(maxWidth: .infinity, alignment: .leading)
+                .padding(.horizontal, inset)
+                .padding(.bottom, 22)
             }
-            HistoryPanel(
-                expanded: $historyOpen,
-                entries: state.history,
-                exporting: exporting,
-                onReplay: actions.replay,
-                onLoad: actions.load,
-                onCopy: actions.copy
-            )
+            editor
+                .padding(.horizontal, inset)
+            voiceControls
+            if state.phase.isLive {
+                player
+            } else {
+                readingAction
+            }
+            if let message = state.toast {
+                HStack(alignment: .top, spacing: 10) {
+                    Image(systemName: "info.circle")
+                    Text(message).textSelection(.enabled).fixedSize(horizontal: false, vertical: true)
+                    Spacer(minLength: 0)
+                    Button(action: actions.dismissToast) { Image(systemName: "xmark") }
+                        .buttonStyle(.plain)
+                        .accessibilityLabel(T.dismiss(lang))
+                }
+                .font(.system(size: 12))
+                .foregroundStyle(p.ink)
+                .padding(12)
+                .background(p.seal.opacity(0.08), in: RoundedRectangle(cornerRadius: 10))
+                .padding(.horizontal, inset)
+                .padding(.bottom, 14)
+            }
+            if compact {
+                HStack {
+                    Button(action: actions.openMain) {
+                        Label(T.expandWindow(lang), systemImage: "arrow.up.left.and.arrow.down.right")
+                    }
+                    Spacer()
+                    Button(T.quit(lang), action: actions.quit)
+                }
+                .buttonStyle(.plain)
+                .font(.system(size: 12, weight: .medium))
+                .foregroundStyle(p.inkDim)
+                .padding(.horizontal, inset)
+                .padding(.vertical, 15)
+                .overlay(alignment: .top) { p.line.frame(height: 1) }
+            } else {
+                HistoryPanel(
+                    expanded: $historyOpen,
+                    entries: state.history,
+                    exporting: exporting,
+                    onReplay: actions.replay,
+                    onLoad: actions.load,
+                    onCopy: actions.copy
+                )
+            }
         }
         .background(p.bg)
         .environment(\.palette, p)
-        .animation(Motion.rise, value: state.phase)
-        .overlay(alignment: .top) { toast }
-        .frame(minWidth: 620, minHeight: 480)
-    }
-
-    @ViewBuilder private var toast: some View {
-        if let message = state.toast {
-            Text(message)
-                .font(.system(size: 12))
-                .foregroundStyle(.white)
-                .padding(.horizontal, 14).padding(.vertical, 8)
-                .background(Capsule().fill(Color(0x2A2A2E)))
-                .padding(.top, 10)
-                .onTapGesture(perform: actions.dismissToast)
-                .transition(.move(edge: .top).combined(with: .opacity))
-        }
+        .tint(p.seal)
+        .frame(minWidth: compact ? 420 : 620, minHeight: compact ? nil : (state.phase.isLive ? 620 : 560))
+        .onAppear { if !exporting { editorFocused = true } }
     }
 
     private var header: some View {
-        HStack(spacing: 9) {
+        HStack(spacing: 10) {
             Text("念")
                 .font(.custom("STSongti-SC-Bold", size: 25))
-                .foregroundStyle(p.ink)
-            Text("Aloud")
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(p.inkFaint)
-                .padding(.top, 3)
+                .foregroundStyle(.white)
+                .frame(width: 40, height: 40)
+                .background(p.seal, in: RoundedRectangle(cornerRadius: 12))
+            VStack(alignment: .leading, spacing: 2) {
+                Text("Aloud").font(.system(size: 15, weight: .semibold)).foregroundStyle(p.ink)
+                Text(T.readingText(lang)).font(.system(size: 11)).foregroundStyle(p.inkDim)
+            }
             Spacer()
-            GhostIcon(systemName: "gearshape") { actions.openSettings() }
-                .accessibilityLabel(T.providerSettings(lang))
+            Button(action: actions.openSettings) {
+                Label(T.settings(lang), systemImage: "gearshape")
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(p.inkDim)
+                    .padding(.horizontal, 10)
+                    .padding(.vertical, 8)
+                    .background(p.surface, in: RoundedRectangle(cornerRadius: 8))
+            }
+            .buttonStyle(.plain)
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 14)
+        .padding(.horizontal, inset)
+        .padding(.top, compact ? 20 : 24)
+        .padding(.bottom, compact ? 20 : 26)
     }
 
     private var editor: some View {
-        ZStack(alignment: .topLeading) {
-            if state.text.isEmpty {
-                Text(T.placeholder(lang))
-                    .font(.system(size: 14))
-                    .foregroundStyle(p.inkFaint)
-                    .padding(.horizontal, 24)
-                    .padding(.top, 18)
-                    .allowsHitTesting(false)
+        VStack(spacing: 0) {
+            ZStack(alignment: .topLeading) {
+                if state.text.isEmpty {
+                    Text(T.placeholder(lang))
+                        .font(.system(size: compact ? 14 : 16))
+                        .foregroundStyle(p.inkFaint)
+                        .padding(.horizontal, 16)
+                        .padding(.top, 15)
+                        .allowsHitTesting(false)
+                }
+                if exporting {
+                    Text(state.text)
+                        .font(.system(size: compact ? 14 : 16))
+                        .lineSpacing(6)
+                        .foregroundStyle(p.ink)
+                        .padding(16)
+                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                } else {
+                    TextEditor(text: Binding(get: { state.text }, set: actions.setText))
+                        .font(.system(size: compact ? 14 : 16))
+                        .lineSpacing(6)
+                        .foregroundStyle(p.ink)
+                        .scrollContentBackground(.hidden)
+                        .padding(.horizontal, 11)
+                        .padding(.top, 9)
+                        .focused($editorFocused)
+                        .accessibilityLabel(T.readingText(lang))
+                        .accessibilityIdentifier("reading-editor")
+                }
             }
-            if exporting {
-                Text(state.text)
-                    .font(.system(size: 14))
-                    .foregroundStyle(p.ink)
-                    .padding(.horizontal, 24)
-                    .padding(.top, 18)
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-            } else {
-                TextEditor(text: Binding(get: { state.text }, set: actions.setText))
-                    .font(.system(size: 14))
-                    .foregroundStyle(p.ink)
-                    .scrollContentBackground(.hidden)
-                    .padding(.horizontal, 20)
-                    .padding(.top, 12)
+            .frame(minHeight: compact ? 130 : (historyOpen ? 60 : 100), maxHeight: compact ? 130 : .infinity)
+            HStack {
+                Button(action: {
+                    actions.pasteClipboard()
+                    editorFocused = true
+                }) {
+                    Label(T.pasteText(lang), systemImage: "doc.on.clipboard")
+                }
+                .buttonStyle(.plain)
+                .accessibilityIdentifier("paste-text")
+                Spacer()
+                Text(T.characterCount(state.text.count, lang)).monospacedDigit()
             }
+            .font(.system(size: 12))
+            .foregroundStyle(p.inkDim)
+            .padding(.horizontal, 16)
+            .padding(.vertical, 12)
         }
-        .frame(minHeight: 120, maxHeight: .infinity)
-        .background(p.surface)
-        .overlay(alignment: .bottom) {
-            Rectangle().fill(focused ? p.seal : .clear).frame(height: 1.5)
-                .animation(Motion.fade, value: focused)
+        .background(p.surface, in: RoundedRectangle(cornerRadius: 14))
+        .overlay {
+            RoundedRectangle(cornerRadius: 14)
+                .stroke(editorFocused ? p.seal.opacity(0.5) : p.line, lineWidth: 1)
         }
-        .onTapGesture { focused = true }
     }
 
-    private var controls: some View {
-        HStack(spacing: 12) {
-            if exporting {
-                HStack(spacing: 4) {
-                    Text(state.voiceLabel).font(.system(size: 12, weight: .medium))
-                    Image(systemName: "chevron.down").font(.system(size: 9, weight: .semibold))
+    private var voiceControls: some View {
+        Group {
+            if !compact {
+                HStack(spacing: 16) {
+                    voicePicker.disabled(busy || state.phase.isLive)
+                    Spacer(minLength: 0)
+                    speedControl
                 }
-                .foregroundStyle(p.ink)
             } else {
-                if let control = state.voiceControl {
-                    ProviderVoicePicker(
-                        voices: control.voices,
-                        providerID: control.providerID,
-                        selection: Binding(get: { control.selectedVoiceID }, set: actions.setVoice),
-                        sampleState: state.voiceSampleState,
-                        toggleSample: actions.toggleVoiceSample,
-                        showsFieldLabel: false
-                    )
-                    .fixedSize()
-                } else {
-                    Text("当前音色不可用").font(.system(size: 12, weight: .medium)).foregroundStyle(p.ink)
+                VStack(alignment: .leading, spacing: 12) {
+                    voicePicker.disabled(busy || state.phase.isLive)
+                    speedControl
                 }
+                .frame(maxWidth: .infinity, alignment: .leading)
             }
+        }
+        .padding(.horizontal, inset)
+        .padding(.vertical, 16)
+    }
 
-            Text(T.playbackSpeed(lang))
-                .font(.system(size: 10))
-                .foregroundStyle(p.inkFaint)
+    private var voicePicker: some View {
+        HStack(spacing: 8) {
+            Text(T.voice(lang)).font(.system(size: 12)).foregroundStyle(p.inkDim)
+            if exporting {
+                Text(state.voiceLabel)
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(p.ink)
+                Image(systemName: "chevron.down").font(.system(size: 9)).foregroundStyle(p.inkDim)
+            } else if let control = state.voiceControl {
+                ProviderVoicePicker(
+                    voices: control.voices,
+                    providerID: control.providerID,
+                    selection: Binding(get: { control.selectedVoiceID }, set: actions.setVoice),
+                    sampleState: state.voiceSampleState,
+                    toggleSample: actions.toggleVoiceSample,
+                    showsFieldLabel: false
+                )
+                .fixedSize()
+                .disabled(!control.canMutate)
+            } else {
+                Button(T.configureVoice(lang), action: actions.openSettings)
+                    .buttonStyle(.plain)
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(p.seal)
+            }
+        }
+    }
+
+    private var speedControl: some View {
+        HStack(spacing: 8) {
+            Text(T.playbackSpeed(lang)).font(.system(size: 12)).foregroundStyle(p.inkDim)
             InkSlider.speed(
                 Binding(get: { state.playbackSpeed }, set: actions.setPlaybackSpeed),
                 showsButtons: false,
@@ -242,68 +359,89 @@ private struct MainViewBody: View {
                 resetTitle: T.resetSpeed(lang),
                 accessibilityLabel: T.playbackSpeed(lang)
             )
-            .frame(width: 120)
-
-            Button(action: actions.readClipboard) {
-                HStack(spacing: 4) {
-                    Image(systemName: "doc.on.clipboard").font(.system(size: 10))
-                    Text(T.readClipboard(lang)).font(.system(size: 11))
-                }
-                .foregroundStyle(p.inkDim)
-            }
-            .buttonStyle(.plain)
-            .focusEffectDisabled()
-
-            Spacer()
-
-            SealButton(
-                title: state.phase == .synthesizing ? T.synthesizing(lang) : T.speak(lang),
-                busy: state.phase == .synthesizing,
-                enabled: !state.text.isEmpty,
-                action: actions.speak
-            )
+            .frame(width: compact ? 240 : 168)
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 12)
-        .background(p.bg)
+        .fixedSize()
+    }
+
+    private var readingAction: some View {
+        HStack(spacing: 12) {
+            if busy {
+                if exporting {
+                    Image(systemName: "waveform").foregroundStyle(p.seal)
+                } else {
+                    ProgressView().controlSize(.small)
+                }
+                Text(T.synthesizing(lang))
+                    .font(.system(size: 12))
+                    .foregroundStyle(p.inkDim)
+                Spacer(minLength: 0)
+                Button(T.cancel(lang), action: actions.stop)
+                    .buttonStyle(.plain)
+                    .font(.system(size: 12, weight: .medium)).foregroundStyle(p.ink)
+                    .padding(.horizontal, 12).padding(.vertical, 9)
+                    .background(p.surface, in: RoundedRectangle(cornerRadius: 8))
+            } else {
+                Text("⌘ ↵").font(.system(size: 12, weight: .medium)).foregroundStyle(p.inkFaint)
+                Spacer()
+                SealButton(title: T.speak(lang), enabled: canSpeak, action: actions.speak)
+                    .accessibilityIdentifier("read-aloud")
+            }
+        }
+        .padding(.horizontal, inset)
+        .padding(.bottom, 20)
     }
 
     private var player: some View {
-        VStack(spacing: 8) {
+        VStack(spacing: 14) {
             HStack(spacing: 10) {
                 Waveform(active: state.phase == .playing, color: p.seal)
-                Text(String(state.text.prefix(26)))
-                    .font(.system(size: 12))
-                    .foregroundStyle(p.inkDim)
-                    .lineLimit(1)
+                Text(state.phase == .playing ? T.nowReading(lang) : T.paused(lang))
+                    .font(.system(size: 12, weight: .medium))
+                    .foregroundStyle(p.ink)
                 Spacer()
                 Text("\(fmt(state.position)) / \(fmt(state.duration))")
-                    .font(.system(size: 11)).monospacedDigit()
-                    .foregroundStyle(p.inkFaint)
+                    .font(.system(size: 11)).monospacedDigit().foregroundStyle(p.inkDim)
             }
-
             GeometryReader { geometry in
                 ZStack(alignment: .leading) {
                     Capsule().fill(p.ink.opacity(0.10))
-                    Capsule().fill(p.seal)
-                        .frame(width: geometry.size.width * progress)
+                    Capsule().fill(p.seal).frame(width: geometry.size.width * progress)
                 }
             }
-            .frame(height: 3)
-
-            HStack(spacing: 2) {
+            .frame(height: 4)
+            HStack(spacing: 8) {
                 GhostIcon(systemName: "gobackward.10") { actions.seek(-10) }
-                GhostIcon(systemName: state.phase == .playing ? "pause.fill" : "play.fill", action: actions.togglePause)
+                    .help(T.backTen(lang)).accessibilityLabel(T.backTen(lang))
+                Button(action: actions.togglePause) {
+                    Label(state.phase == .playing ? T.pause(lang) : T.resume(lang),
+                          systemImage: state.phase == .playing ? "pause.fill" : "play.fill")
+                        .font(.system(size: 13, weight: .semibold))
+                        .foregroundStyle(p.seal)
+                        .padding(.horizontal, 12).padding(.vertical, 9)
+                        .background(p.seal.opacity(0.10), in: RoundedRectangle(cornerRadius: 9))
+                }
+                .buttonStyle(.plain)
+                .keyboardShortcut(.return, modifiers: .command)
                 GhostIcon(systemName: "goforward.10") { actions.seek(10) }
-                GhostIcon(systemName: "stop.fill", action: actions.stop)
+                    .help(T.forwardTen(lang)).accessibilityLabel(T.forwardTen(lang))
+                Spacer(minLength: 0)
+                Button(T.stop(lang), action: actions.stop)
+                    .buttonStyle(.plain).font(.system(size: 12)).foregroundStyle(p.inkDim)
+            }
+            HStack {
                 Spacer()
-                GhostIcon(systemName: "square.and.arrow.down", action: actions.saveAudio)
+                Button(action: actions.saveAudio) {
+                    Label(T.saveAudio(lang), systemImage: "square.and.arrow.down")
+                }
+                .buttonStyle(.plain).font(.system(size: 12)).foregroundStyle(p.inkDim)
             }
         }
-        .padding(.horizontal, 20)
-        .padding(.vertical, 13)
-        .background(p.ink.opacity(0.04))
-        .overlay(alignment: .top) { Rectangle().fill(p.line).frame(height: 1) }
+        .padding(16)
+        .background(p.surface, in: RoundedRectangle(cornerRadius: 14))
+        .overlay(RoundedRectangle(cornerRadius: 14).stroke(p.line, lineWidth: 1))
+        .padding(.horizontal, inset)
+        .padding(.bottom, 20)
     }
 
     private var progress: Double {
