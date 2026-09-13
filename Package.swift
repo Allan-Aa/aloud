@@ -11,7 +11,10 @@ let package = Package(
             resources: [.process("Resources")],
             // 先用 v5 并发模式推进功能;等链路稳定再收紧到 Swift 6 严格并发。
             swiftSettings: [.swiftLanguageMode(.v5)],
-            linkerSettings: [.linkedFramework("AVFoundation")]
+            linkerSettings: [
+                .linkedFramework("AVFoundation"),
+                .linkedLibrary("sqlite3"),
+            ]
         ),
         .testTarget(
             name: "AloudTests",

@@ -1,16 +1,18 @@
 import AppKit
 import ApplicationServices
 
-/// 读「选中的文字」。macOS 没有公开 API 直接拿别的 app 的选区,
-/// 只能模拟一次 ⌘C 再读剪贴板。旧版在这里踩过三个坑,全都在下面防住了。
+/// 优先通过辅助功能读取明确选区；普通复制路径保留给不暴露选区的 app。
 enum Selection {
     enum Failure: LocalizedError {
         case noAccessibility
+        case selectionUnavailable
         case selfIsFrontmost
         case nothingCopied(app: String)
 
         var errorDescription: String? {
             switch self {
+            case .selectionUnavailable:
+                return "当前控件未提供选区信息，请重新选择后再试"
             case .noAccessibility:
                 return "需要辅助功能权限：系统设置 → 隐私与安全性 → 辅助功能，勾上「念」"
             case .selfIsFrontmost:
@@ -28,6 +30,74 @@ enum Selection {
         AXIsProcessTrustedWithOptions(opts)
     }
 
+    /// 优先只读 AX 选区；AI 控件不支持时，使用受保护的选区复制。
+    @MainActor
+    static func readIfPresent() async throws -> String? {
+        guard hasAccessibility else { throw Failure.noAccessibility }
+        guard let front = NSWorkspace.shared.frontmostApplication else { return nil }
+        guard front.bundleIdentifier != Bundle.main.bundleIdentifier else { throw Failure.selfIsFrontmost }
+        let app = AXUIElementCreateApplication(front.processIdentifier)
+        AXUIElementSetMessagingTimeout(app, 0.2)
+        let window = elementAttribute(kAXFocusedWindowAttribute, of: app)
+        let focused = elementAttribute(kAXFocusedUIElementAttribute, of: app)
+        let text: String?
+        do {
+            text = try selectedText(startingAt: focused ?? window)
+        } catch Failure.selectionUnavailable {
+            if ["com.openai.codex", "com.anthropic.claudefordesktop"].contains(front.bundleIdentifier ?? "") {
+                text = try await copyIfPresent { try await copyCurrentSelection() }
+            } else {
+                text = nil
+            }
+        }
+        try Task.checkCancellation()
+        guard NSWorkspace.shared.frontmostApplication?.processIdentifier == front.processIdentifier,
+              elementAttribute(kAXFocusedWindowAttribute, of: app) == window else {
+            throw CurrentAIReplyFailure.frontmostApplicationDrift
+        }
+        return text
+    }
+
+    static func selectedText(
+        startingAt focused: AXUIElement?,
+        attribute: (String, AXUIElement) -> CFTypeRef? = { attribute($0, of: $1) }
+    ) throws -> String? {
+        var current = focused
+        var visited: [AXUIElement] = []
+        var supportsSelection = false
+        let deadline = Date().addingTimeInterval(0.5)
+        while let element = current, visited.count < 64, Date() < deadline {
+            try Task.checkCancellation()
+            guard !visited.contains(element) else { break }
+            visited.append(element)
+            if let text = attribute(kAXSelectedTextAttribute, element) as? String {
+                supportsSelection = true
+                if !text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty { return text }
+            }
+            guard let parent = attribute(kAXParentAttribute, element),
+                  CFGetTypeID(parent) == AXUIElementGetTypeID() else { break }
+            current = (parent as! AXUIElement)
+        }
+        guard supportsSelection else { throw Failure.selectionUnavailable }
+        return nil
+    }
+
+    static func copyIfPresent(using copy: () async throws -> String) async throws -> String? {
+        do { return try await copy() }
+        catch PasteboardTransportError.timeout { return nil }
+    }
+
+    private static func attribute(_ name: String, of element: AXUIElement) -> CFTypeRef? {
+        var value: CFTypeRef?
+        guard AXUIElementCopyAttributeValue(element, name as CFString, &value) == .success else { return nil }
+        return value
+    }
+
+    private static func elementAttribute(_ name: String, of element: AXUIElement) -> AXUIElement? {
+        guard let value = attribute(name, of: element), CFGetTypeID(value) == AXUIElementGetTypeID() else { return nil }
+        return (value as! AXUIElement)
+    }
+
     static func read() async throws -> String {
         guard hasAccessibility else { throw Failure.noAccessibility }
 
@@ -38,19 +108,30 @@ enum Selection {
         }
         let appName = front?.localizedName ?? "未知 app"
 
-        // 坑2(实翻车过):热键触发的瞬间用户手指还压着 ⌃/⌥,这时发 ⌘C 会叠成 ⌃⌘C —— 不是复制。
-        // 固定 sleep 是在赌用户手速,改成轮询物理修饰键状态,等它们真的全松开。
-        await waitForModifiersReleased(timeout: 3.0)
+        do { return try await copyCurrentSelection() }
+        catch is CancellationError { throw CancellationError() }
+        catch { throw Failure.nothingCopied(app: appName) }
+    }
 
+    @MainActor
+    private static func copyCurrentSelection() async throws -> String {
+        let front = NSWorkspace.shared.frontmostApplication
+        let app = front.map { AXUIElementCreateApplication($0.processIdentifier) }
+        let window = app.flatMap { elementAttribute(kAXFocusedWindowAttribute, of: $0) }
+        // 等真实修饰键松开，避免 ⌃Z 变成 ⌃⌘C。
+        await waitForModifiersReleased(timeout: 3.0)
+        try Task.checkCancellation()
         let client = SystemPasteboardClient()
         let transport = PasteboardTransport(client: client, interference: SystemCopyInterferenceMonitor())
-        do {
-            return try await transport.readSelection { ownership in
+        return try await transport.readSelection { ownership in
+            try await MainActor.run {
+                guard NSWorkspace.shared.frontmostApplication?.processIdentifier == front?.processIdentifier,
+                      app.flatMap({ elementAttribute(kAXFocusedWindowAttribute, of: $0) }) == window else {
+                    throw CurrentAIReplyFailure.frontmostApplicationDrift
+                }
                 sendCommandC(operation: ownership.marker)
                 ownership.copyCommandDispatched()
             }
-        } catch {
-            throw Failure.nothingCopied(app: appName)
         }
     }
 
@@ -94,7 +175,7 @@ private final class SystemMonitorTokenBox: @unchecked Sendable {
     init(_ tokens: [Any]) { self.tokens = tokens }
 }
 
-private struct SystemCopyInterferenceMonitor: CopyInterferenceMonitor {
+struct SystemCopyInterferenceMonitor: CopyInterferenceMonitor {
     func start(operation: PasteboardOperationMarker, onInterference: @escaping @Sendable () -> Void) -> any CopyInterferenceLease {
         let classifier = SystemCopyInterferenceClassifier(operation: operation)
         let inspect: @Sendable (NSEvent) -> Void = { event in

@@ -21,6 +21,7 @@ struct ProcessCLIArguments: CLIArgumentSource {
 
 enum CLIRoute: Equatable {
     case launchApp
+    case diagnoseCurrentAIReply
     case exportShots(outputDirectory: String)
     case terminate(status: Int32, stdout: Data, stderr: Data)
 
@@ -47,6 +48,24 @@ enum CLIDispatcher {
         if first == "--export-shots", arguments.count == 3 {
             return .exportShots(outputDirectory: arguments.argument(at: 2))
         }
+        if first == "--diagnose-current-ai-reply", arguments.count == 2 {
+            return .diagnoseCurrentAIReply
+        }
         return .invalidArguments
+    }
+}
+
+enum CurrentAIReplyDiagnosticCLI {
+    // Uses the production reader without launching the app or emitting reply text.
+    static func run(reader: any CurrentAIReplyReading) async -> (status: Int32, output: Data) {
+        do {
+            guard let text = try await reader.readIfSupported() else {
+                return (69, Data("ai-reply status=failed code=unsupportedAIApplication\n".utf8))
+            }
+            return (0, Data("ai-reply status=success count=\(text.count)\n".utf8))
+        } catch {
+            let code = (error as? CurrentAIReplyFailure)?.rawValue ?? "unavailable"
+            return (69, Data("ai-reply status=failed code=\(code)\n".utf8))
+        }
     }
 }
