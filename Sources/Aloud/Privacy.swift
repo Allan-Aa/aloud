@@ -12,6 +12,7 @@ enum DiagnosticSpeechStage: String, Sendable {
 
 enum DiagnosticEvent: Sendable {
     case selectionRead(status: DiagnosticStatus, characterCount: Int?)
+    case currentAIReplyFailure(CurrentAIReplyFailure)
     case providerFailure(providerID: ProviderID, code: DiagnosticTechnicalCode)
     case speechStage(providerID: ProviderID, stage: DiagnosticSpeechStage)
     case cacheEviction(fileCount: Int, remainingMegabytes: Int)
@@ -32,6 +33,8 @@ final class PrivacySafeDiagnostics: @unchecked Sendable {
         switch event {
         case .selectionRead(let status, let count):
             return "selection status=\(status.rawValue)" + (count.map { " count=\($0)" } ?? "")
+        case .currentAIReplyFailure(let failure):
+            return "ai-reply status=failed code=\(failure.rawValue)"
         case .providerFailure(let providerID, let code):
             return "provider id=\(providerID.rawValue) code=\(code.rawValue)"
         case .speechStage(let providerID, let stage):
@@ -93,6 +96,19 @@ enum PrivacySafeMessage {
     }
     static func selectionFailed(_ error: Error) -> String {
         switch error {
+        case CurrentAIReplyFailure.invalidClaudeLocalID:
+            return "未能识别 Claude 当前会话，请切回对话面板后重试。"
+        case CurrentAIReplyFailure.invalidClaudeTranscript:
+            return "Claude 会话记录格式无法读取，请先复制回复并用剪贴板朗读。"
+        case CurrentAIReplyFailure.oversizedClaudeTranscript:
+            return "Claude 会话记录或回复超过读取上限，请复制需要朗读的文字，再用剪贴板朗读。"
+        case CurrentAIReplyFailure.incompleteClaudeReply, CurrentAIReplyFailure.incompleteCodexReply:
+            return "当前 AI 回复尚未完成，请等回复结束后再按快捷键。"
+        case CurrentAIReplyFailure.frontmostApplicationDrift, CurrentAIReplyFailure.claudeLocalIDDrift,
+             CurrentAIReplyFailure.claudeTranscriptDrift, CurrentAIReplyFailure.codexWindowDrift:
+            return "读取期间会话发生变化，请停留在目标会话后重试。"
+        case is CurrentAIReplyFailure:
+            return "未能读取当前 AI 会话，请确认目标会话已打开且回复已完成，或使用剪贴板朗读。"
         case Selection.Failure.noAccessibility: return "需要辅助功能权限：系统设置 → 隐私与安全性 → 辅助功能，勾上「念」"
         case Selection.Failure.selfIsFrontmost: return "请切到有选中文字的 app 再按热键"
         default: return "没有读取到选中文字，请重新选择后再试。"

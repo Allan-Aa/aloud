@@ -12,6 +12,15 @@ case let .exportShots(outputDirectory):
     app.delegate = delegate
     app.setActivationPolicy(.prohibited)
     app.run()
+case .diagnoseCurrentAIReply:
+    let app = NSApplication.shared
+    app.setActivationPolicy(.prohibited)
+    Task { @MainActor in
+        let result = await CurrentAIReplyDiagnosticCLI.run(reader: CurrentAIReplyReader.live)
+        FileHandle.standardOutput.write(result.output)
+        exit(result.status)
+    }
+    app.run()
 case .launchApp:
     AloudApp.main()
 }

@@ -3,6 +3,11 @@ import XCTest
 @testable import Aloud
 
 final class CLIDispatcherTests: XCTestCase {
+    func testCurrentReplyDiagnosticRequiresExactArguments() {
+        XCTAssertEqual(CLIDispatcher.route(arguments: RecordingArguments(["Aloud", "--diagnose-current-ai-reply"])), .diagnoseCurrentAIReply)
+        XCTAssertEqual(CLIDispatcher.route(arguments: RecordingArguments(["Aloud", "--diagnose-current-ai-reply", "extra"])), .invalidArguments)
+    }
+
     // Catches a dispatcher that scans or parses a disabled command's opaque tail.
     func testDisabledSynthReadsOnlyArgvOne() {
         let canary = ["SECRET", "CANARY"].joined(separator: "-")

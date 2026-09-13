@@ -106,7 +106,9 @@ final class SystemPasteboardClient: @unchecked Sendable, PasteboardClient {
 }
 #endif
 
-enum PasteboardTransportError: Error, Equatable, Sendable { case noText, timeout }
+enum PasteboardTransportError: Error, Equatable, Sendable {
+    case noText, timeout, ownershipLost, restoreFailed
+}
 
 final class PasteboardOperationOwnership: @unchecked Sendable {
     private let lock = NSLock()
@@ -122,8 +124,11 @@ final class PasteboardOperationOwnership: @unchecked Sendable {
     }
 
     func claimCurrentPasteboard() throws {
-        try client.installOperationMarker(marker)
-        lock.withLock { expectedChangeCount = client.changeCount }
+        try lock.withLock {
+            guard !revoked else { throw PasteboardTransportError.ownershipLost }
+            try client.installOperationMarker(marker)
+            expectedChangeCount = client.changeCount
+        }
     }
 
     /// Installs ownership before the asynchronous Command-C event can mutate
@@ -148,6 +153,16 @@ final class PasteboardOperationOwnership: @unchecked Sendable {
     }
 
     var isClaimed: Bool { lock.withLock { expectedChangeCount != nil } }
+    func requireNotRevoked() throws {
+        guard lock.withLock({ !revoked }) else {
+            throw PasteboardTransportError.ownershipLost
+        }
+    }
+    func requireCurrentOwnership() throws {
+        guard stillOwnsPasteboard() else {
+            throw PasteboardTransportError.ownershipLost
+        }
+    }
     func stillOwnsPasteboard() -> Bool {
         guard let expected = lock.withLock({ revoked ? nil : expectedChangeCount }) else { return false }
         return client.changeCount == expected && client.containsOperationMarker(marker)
@@ -186,32 +201,57 @@ actor PasteboardTransport {
         }
         do { try await copier(ownership) }
         catch {
-            if ownership.dispatched { await drainExpectedWrite(ownership) }
+            if ownership.dispatched { try? await drainExpectedWrite(ownership) }
             throw error
         }
         try Task.checkCancellation()
         if !ownership.dispatched { ownership.copyCommandDispatched() }
-        await drainExpectedWrite(ownership)
+        try await drainExpectedWrite(ownership)
         let clock = ContinuousClock()
         let deadline = clock.now.advanced(by: timeout)
         while clock.now < deadline {
-            do { return try client.nonEmptyString() }
+            try ownership.requireCurrentOwnership()
+            do {
+                let text = try client.nonEmptyString()
+                try ownership.requireCurrentOwnership()
+                try restoreAndValidate(snapshot, ownership: ownership)
+                return text
+            }
             catch PasteboardTransportError.noText {
+                try ownership.requireCurrentOwnership()
                 try await Task.sleep(for: .milliseconds(10))
                 try Task.checkCancellation()
             }
         }
+        try restoreAndValidate(snapshot, ownership: ownership)
         throw PasteboardTransportError.timeout
     }
 
-    private func drainExpectedWrite(_ ownership: PasteboardOperationOwnership) async {
+    private func restoreAndValidate(
+        _ snapshot: PasteboardSnapshot,
+        ownership: PasteboardOperationOwnership
+    ) throws {
+        try ownership.requireCurrentOwnership()
+        do {
+            try client.restore(snapshot)
+            guard try client.snapshotAllItems() == snapshot else {
+                throw PasteboardTransportError.restoreFailed
+            }
+        } catch {
+            throw PasteboardTransportError.restoreFailed
+        }
+    }
+
+    private func drainExpectedWrite(_ ownership: PasteboardOperationOwnership) async throws {
         let clock = ContinuousClock()
         let deadline = clock.now.advanced(by: timeout)
         while clock.now < deadline {
-            if (try? ownership.adoptExpectedTargetWriteIfObserved()) == true { return }
+            try ownership.requireNotRevoked()
+            if try ownership.adoptExpectedTargetWriteIfObserved() { return }
             // Deliberately ignore task cancellation while draining the one
             // already-dispatched pasteboard write; restoration happens after.
             try? await Task.sleep(for: .milliseconds(2))
         }
+        try ownership.requireNotRevoked()
     }
 }

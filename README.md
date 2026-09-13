@@ -10,7 +10,8 @@ A native macOS text-to-speech app for reading editor text, clipboard content, or
 
 - 支持 MiniMax、OpenAI 和 macOS 系统语音。MiniMax 与 OpenAI 使用用户自己的 API Key，macOS 系统语音无需云端凭据。
 - MiniMax 音色按类别分组并支持搜索；332 个系统音色附带内置离线样音，试听同一音色时无需重复请求 API。
-- 在任意 App 中选中需要朗读的内容后，按下设置的全局快捷键即可播放；也支持剪贴板朗读、Markdown 清理、播放速度调整、历史记录和 WAV 导出。
+- 全局朗读快捷键优先读取当前选区；没有选区时，在 Claude / Codex 桌面端读取当前会话最新的完整 AI 回复，无法确认会话或回复未完成时会提示重试。其他 App 保留选区复制朗读。
+- 开启 Markdown 清理后，链接只朗读名称，跳过目标路径和网址。也支持剪贴板朗读、播放速度调整、历史记录和 WAV 导出。
 - API Key 保存在 macOS 钥匙串中；MiniMax 也可通过本机 1Password CLI 导入。
 - Gemini 适配器仍受实验功能与发布审批双重门控，当前发行版不可用。
 
@@ -18,7 +19,8 @@ A native macOS text-to-speech app for reading editor text, clipboard content, or
 
 - Supports MiniMax, OpenAI, and macOS system voices. MiniMax and OpenAI use the user's own API key; macOS voices require no cloud credential.
 - MiniMax voices are searchable and grouped. The app bundles offline samples for 332 system voices, so replaying those samples does not incur another API request.
-- In any app, select the content you want to hear, then press the configured global hotkey to play it. Also includes clipboard reading, Markdown cleanup, playback-speed controls, history, and WAV export.
+- The reading hotkey prioritizes selected text. With no selection, Claude / Codex desktop reads the latest completed reply in the current conversation; ambiguous or incomplete replies require a retry. Other apps retain selection-copy reading.
+- Markdown cleanup reads link labels without their destination paths or URLs. Clipboard reading, playback-speed controls, history, and WAV export are also available.
 - API keys are stored in the macOS Keychain. MiniMax can also import through the local 1Password CLI.
 - The Gemini adapter remains behind both experimental-feature and release-approval gates and is unavailable in the current release.
 
@@ -49,9 +51,9 @@ swift run Aloud
 
 For first use, choose a provider, model, and voice in Settings. MiniMax and OpenAI each require their own API key. MiniMax can import through the [1Password CLI](https://developer.1password.com/docs/cli/) from an item named `Aloud MiniMax API Key`, with a `credential` field, in the `Private` vault; manual entry in the app is also supported. The project does not read production credentials from environment variables or repository files.
 
-要朗读 Codex、Claude 等 AI App 的回复时，先选中想听的那一段，再按设置的“朗读选中文字”快捷键。无需复制到另一个应用；如果无法选中，也可以复制后使用“朗读剪贴板”。
+在 Codex / Claude 桌面端，选中一段文字后按“朗读选中文字”快捷键，只读选中内容；不选文字时，读取当前会话最新的完整 AI 回复。识别失败或回复仍在生成时会提示重试，也可手动复制后使用“朗读剪贴板”。
 
-To read a reply in an AI app such as Codex or Claude, select the passage you want to hear, then press the configured Read Selection hotkey. You do not need to copy it into another app; if selection is unavailable, copy it and use Read Clipboard instead.
+In Codex / Claude desktop, select a passage and press Read Selection to hear only that text. With no selection, the hotkey reads the latest completed reply in the current conversation. If identification fails or the reply is still being generated, retry later or manually copy the text and use Read Clipboard.
 
 ## 构建应用包 / Build the app bundle
 
@@ -84,6 +86,7 @@ Cloud voices may incur provider charges. Bundled MiniMax system-voice samples ar
 - 生产凭据存储在 macOS 钥匙串中，设置界面不会回显已保存的密钥。
 - 自动化测试必须使用假的凭据、网络、播放器和系统边界，不应读取真实钥匙串或调用付费 API。
 - 日志与错误提示应保持内容安全，不包含密钥或待朗读文本。
+- 当前会话读取使用 macOS 辅助功能与本地 Claude 会话文件 / Codex 历史数据库；Codex 的消息复制会保护并恢复剪贴板。可直接读取的选区不会修改剪贴板；控件未暴露选区时会尝试受保护的选区复制。识别依赖桌面端版本，格式变化时会拒绝读取；最终朗读文本按所选语音服务的正常流程处理。
 
 Never commit API keys, Keychain exports, 1Password output, user text, or raw provider responses. Production credentials belong in the macOS Keychain, and automated tests must use fake external boundaries rather than real credentials or paid APIs.
 

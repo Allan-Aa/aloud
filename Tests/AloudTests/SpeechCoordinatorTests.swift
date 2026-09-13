@@ -870,6 +870,161 @@ final class SpeechCoordinatorTests: XCTestCase {
         XCTAssertTrue(engine.history.isEmpty)
     }
 
+    @MainActor
+    func testAIReplyLinkAddressIsRemovedBeforeSynthesisWithoutChangingOriginalText() async throws {
+        let raw = "[新版应用包](/Users/reader/build/念.app)已生成。"
+        let syntheses = TextSynthesisSpy()
+        let engine = try makeTask14Engine(
+            currentAIReply: { raw },
+            synthesize: { text, _, _, _ in await syntheses.record(text) }
+        )
+        await engine.installCredentialCancellationHook()
+        engine.readSelection()
+        for _ in 0..<200 where await syntheses.values.isEmpty {
+            try await Task.sleep(for: .milliseconds(1))
+        }
+        let recorded = await syntheses.values
+        XCTAssertEqual(recorded, ["新版应用包已生成。"])
+        XCTAssertEqual(engine.text, raw)
+    }
+
+    @MainActor
+    func testSelectedTextWinsWithoutReadingLatestAIReply() async throws {
+        for app in ["Codex", "Claude"] {
+            let syntheses = TextSynthesisSpy()
+            let engine = try makeTask14Engine(
+                selectedText: { "selected words in \(app)" },
+                currentAIReply: {
+                    XCTFail("An explicit selection must bypass the latest-reply reader")
+                    return "latest reply"
+                },
+                legacySelection: {
+                    XCTFail("The selection must not be copied a second time")
+                    return "wrong text"
+                },
+                synthesize: { text, _, _, _ in await syntheses.record(text) }
+            )
+            await engine.installCredentialCancellationHook()
+            engine.readSelection()
+            for _ in 0..<200 where await syntheses.values.isEmpty {
+                try await Task.sleep(for: .milliseconds(1))
+            }
+            let recorded = await syntheses.values
+            XCTAssertEqual(recorded, ["selected words in \(app)"])
+            XCTAssertEqual(engine.text, "selected words in \(app)")
+        }
+    }
+
+    @MainActor
+    func testWhitespaceSelectionFallsBackToLatestReply() async throws {
+        let dependencies = EngineSpeechDependencies(
+            cachePath: { _, _, _ in URL(fileURLWithPath: "/unused") },
+            cacheHit: { _ in false }, synthesize: { _, _, _, _ in }, concat: { _, _, _ in },
+            selectedText: { " \n\t" },
+            currentAIReply: { "latest reply" },
+            legacySelection: { XCTFail("AI app must not fall back to clipboard copying"); return "wrong" }
+        )
+        let result = try await dependencies.readSelection()
+        XCTAssertEqual(result, "latest reply")
+    }
+
+    @MainActor
+    func testSelectionFailureDoesNotReadLatestReply() async throws {
+        for error: Error in [CancellationError(), CurrentAIReplyFailure.frontmostApplicationDrift] {
+            let dependencies = EngineSpeechDependencies(
+                cachePath: { _, _, _ in URL(fileURLWithPath: "/unused") },
+                cacheHit: { _ in false }, synthesize: { _, _, _, _ in }, concat: { _, _, _ in },
+                selectedText: { throw error },
+                currentAIReply: { XCTFail("Failed selection must stop reading"); return "wrong" },
+                legacySelection: { XCTFail("Failed selection must not trigger copying"); return "wrong" }
+            )
+            do {
+                _ = try await dependencies.readSelection()
+                XCTFail("Selection failure must propagate")
+            } catch is CancellationError {
+                XCTAssertTrue(error is CancellationError)
+            } catch let failure as CurrentAIReplyFailure {
+                XCTAssertEqual(failure, error as? CurrentAIReplyFailure)
+            }
+        }
+    }
+
+    @MainActor
+    func testEngineDefaultSelectionSendsCurrentCodexAndClaudeRepliesToSpeechPreparation() async throws {
+        for fixture in ["Codex current reply", "Claude current reply"] {
+            let legacyCalls = LockedCounter()
+            let syntheses = TextSynthesisSpy()
+            let engine = try makeTask14Engine(
+                currentAIReply: { fixture },
+                legacySelection: {
+                    legacyCalls.increment()
+                    return "legacy must not win"
+                },
+                synthesize: { text, _, _, _ in await syntheses.record(text) }
+            )
+            await engine.installCredentialCancellationHook()
+
+            engine.readSelection()
+            for _ in 0..<200 where await syntheses.values.isEmpty {
+                try await Task.sleep(for: .milliseconds(1))
+            }
+
+            let recorded = await syntheses.values
+            XCTAssertEqual(recorded, [fixture])
+            XCTAssertEqual(engine.text, fixture)
+            XCTAssertEqual(legacyCalls.value, 0)
+        }
+    }
+
+    @MainActor
+    func testEngineDefaultSelectionFallsBackToLegacyExactlyOnceForNormalApp() async throws {
+        let legacyCalls = LockedCounter()
+        let syntheses = TextSynthesisSpy()
+        let engine = try makeTask14Engine(
+            currentAIReply: { nil },
+            legacySelection: {
+                legacyCalls.increment()
+                return "legacy selection"
+            },
+            synthesize: { text, _, _, _ in await syntheses.record(text) }
+        )
+        await engine.installCredentialCancellationHook()
+
+        engine.readSelection()
+        for _ in 0..<200 where await syntheses.values.isEmpty {
+            try await Task.sleep(for: .milliseconds(1))
+        }
+
+        let recorded = await syntheses.values
+        XCTAssertEqual(recorded, ["legacy selection"])
+        XCTAssertEqual(legacyCalls.value, 1)
+    }
+
+    @MainActor
+    func testEngineDefaultSelectionDoesNotFallbackWhenCurrentReaderFails() async throws {
+        let legacyCalls = LockedCounter()
+        let syntheses = TextSynthesisSpy()
+        let engine = try makeTask14Engine(
+            currentAIReply: { throw CurrentAIReplyFailure.incompleteClaudeReply },
+            legacySelection: {
+                legacyCalls.increment()
+                return "legacy must not hide failure"
+            },
+            synthesize: { text, _, _, _ in await syntheses.record(text) }
+        )
+        await engine.installCredentialCancellationHook()
+
+        engine.readSelection()
+        for _ in 0..<200 where engine.toast == nil {
+            try await Task.sleep(for: .milliseconds(1))
+        }
+
+        XCTAssertEqual(legacyCalls.value, 0)
+        let recorded = await syntheses.values
+        XCTAssertTrue(recorded.isEmpty)
+        XCTAssertEqual(engine.toast, "当前 AI 回复尚未完成，请等回复结束后再按快捷键。")
+    }
+
     func testCoordinatorStopDrainsCancellationIgnoringInputPreparation() async {
         let coordinator = SpeechCoordinator()
         let preparation = CancellationIgnoringPreparationGate()
@@ -1259,7 +1414,10 @@ private final class Task14Playback: EnginePlayback {
 @MainActor
 private func makeTask14Engine(
     installCredentialHook: Bool = false,
-    readSelection: @escaping @Sendable () async throws -> String = { "fixture" },
+    readSelection: (@Sendable () async throws -> String)? = nil,
+    selectedText: @escaping @Sendable () async throws -> String? = { nil },
+    currentAIReply: @escaping @Sendable () async throws -> String? = { nil },
+    legacySelection: @escaping @Sendable () async throws -> String = { "legacy fixture" },
     synthesize: @escaping (String, String, Int, URL) async throws -> Void
 ) throws -> Engine {
     let root = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("aloud-task14-\(UUID().uuidString)", isDirectory: true)
@@ -1273,7 +1431,10 @@ private func makeTask14Engine(
                 cacheHit: { _ in false },
                 synthesize: synthesize,
                 concat: { _, _, _ in },
-                readSelection: readSelection
+                readSelection: readSelection,
+                selectedText: selectedText,
+                currentAIReply: currentAIReply,
+                legacySelection: legacySelection
             ),
             credentialRegistry: CredentialScopeRegistry(),
             installCredentialHook: installCredentialHook

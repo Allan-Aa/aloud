@@ -141,7 +141,14 @@ struct EngineSpeechDependencies {
         concat: @escaping ([URL], URL, String) throws -> Void,
         beforePlayback: @escaping () async -> Void = {},
         beforeHistoryWrite: @escaping () async -> Void = {},
-        readSelection: @escaping @Sendable () async throws -> String = { try await Selection.read() },
+        readSelection: (@Sendable () async throws -> String)? = nil,
+        selectedText: @escaping @Sendable () async throws -> String? = {
+            try await Selection.readIfPresent()
+        },
+        currentAIReply: @escaping @Sendable () async throws -> String? = {
+            try await CurrentAIReplyReader.live.readIfSupported()
+        },
+        legacySelection: @escaping @Sendable () async throws -> String = { try await Selection.read() },
         legacyMiniMaxDisabled: Bool = false,
         provider: (any VoiceProvider)? = nil,
         providerForID: ((ProviderID) -> (any VoiceProvider)?)? = nil,
@@ -159,7 +166,22 @@ struct EngineSpeechDependencies {
         afterCanonicalization: @escaping @Sendable () async -> Void = {}
     ) {
         self.cachePath = cachePath; self.cacheHit = cacheHit; self.synthesize = synthesize
-        self.concat = concat; self.beforePlayback = beforePlayback; self.beforeHistoryWrite = beforeHistoryWrite; self.readSelection = readSelection; self.legacyMiniMaxDisabled = legacyMiniMaxDisabled
+        self.concat = concat; self.beforePlayback = beforePlayback; self.beforeHistoryWrite = beforeHistoryWrite
+        if let readSelection {
+            self.readSelection = readSelection
+        } else {
+            self.readSelection = {
+                try Task.checkCancellation()
+                let selection = try await selectedText()
+                try Task.checkCancellation()
+                if let selection, !selection.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
+                    return selection
+                }
+                if let reply = try await currentAIReply() { return reply }
+                return try await legacySelection()
+            }
+        }
+        self.legacyMiniMaxDisabled = legacyMiniMaxDisabled
         self.provider = provider; self.canonicalizeNative = canonicalizeNative
         self.providerForID = providerForID ?? { id in provider?.id == id ? provider : nil }
         self.accountSnapshot = accountSnapshot
@@ -1470,6 +1492,9 @@ final class Engine: ObservableObject {
             onPreparationFailure: { [weak self] control, error in
                 guard let self else { return }
                 Diag.record(.selectionRead(status: error is CancellationError ? .cancelled : .failed, characterCount: nil))
+                if let failure = error as? CurrentAIReplyFailure {
+                    Diag.record(.currentAIReplyFailure(failure))
+                }
                 _ = try? await control.performCurrent {
                     self.toast = error is OpenAIDisclosureAuthorizationError
                         ? OpenAIDisclosurePolicy.text
@@ -1699,6 +1724,12 @@ enum Dictionary_ {
             out = out.replacingOccurrences(of: r.find, with: r.replace)
         }
         if prefs.stripMarkdown {
+            if let markdown = try? AttributedString(
+                markdown: out,
+                options: .init(interpretedSyntax: .inlineOnlyPreservingWhitespace)
+            ) {
+                out = String(markdown.characters)
+            }
             out = out.replacingOccurrences(of: #"[*_`#>]"#, with: "", options: .regularExpression)
         }
         if prefs.skipCode {

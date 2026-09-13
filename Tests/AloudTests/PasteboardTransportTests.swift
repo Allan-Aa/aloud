@@ -35,7 +35,7 @@ final class PasteboardTransportTests: XCTestCase {
         }
     }
 
-    func testFirstPostDispatchUserCopyRevokesBeforeTargetAdoption() async {
+    func testInterferenceBeforeTargetAdoptionIsTerminalAndPreservesUserCopy() async {
         let original = [PasteboardItem(types: ["public.utf8-plain-text": Data("old".utf8)])]
         let client = RecordingPasteboardClient(items: original)
         let monitor = RecordingCopyInterferenceMonitor()
@@ -43,11 +43,14 @@ final class PasteboardTransportTests: XCTestCase {
         let copier: @Sendable (PasteboardOperationOwnership) async throws -> Void = { ownership in
             ownership.copyCommandDispatched()
             monitor.physicalCopy(); client.replaceWithCopiedText("user-copy")
-            Task { try? await Task.sleep(for: .milliseconds(3)); client.replaceWithCopiedText("target") }
-            throw CancellationError()
         }
-        await XCTAssertThrowsErrorAsync(try await transport.readSelection(using: copier))
-        XCTAssertEqual(client.string, "target", "revoked operation may not restore over any later clipboard content")
+        do {
+            _ = try await transport.readSelection(using: copier)
+            XCTFail("Expected terminal ownership loss")
+        } catch {
+            XCTAssertEqual(error as? PasteboardTransportError, .ownershipLost)
+        }
+        XCTAssertEqual(client.string, "user-copy")
         XCTAssertEqual(monitor.stopCount, 1)
     }
 
@@ -119,15 +122,40 @@ final class PasteboardTransportTests: XCTestCase {
         XCTAssertEqual(client.string, "user-copy")
     }
 
-    func testConcurrentUserCopyIsNeverOverwritten() async throws {
+    func testConcurrentUserCopyAfterTextReadThrowsAndIsNeverOverwritten() async {
         let client = RecordingPasteboardClient(items: [PasteboardItem(types: ["public.utf8-plain-text": Data("old".utf8)])])
         let transport = PasteboardTransport(client: client, timeout: .milliseconds(20))
         client.afterNextStringRead = { client.replaceWithCopiedText("user-new-copy") }
-        let value = try await transport.readSelection {
-            client.replaceWithCopiedText("selected")
+        do {
+            _ = try await transport.readSelection {
+                client.replaceWithCopiedText("selected")
+            }
+            XCTFail("Expected ownership loss after text read")
+        } catch {
+            XCTAssertEqual(error as? PasteboardTransportError, .ownershipLost)
         }
-        XCTAssertEqual(value, "selected")
         XCTAssertEqual(client.string, "user-new-copy")
+    }
+
+    func testInterferenceAfterTargetAdoptionThrowsAndPreservesUserCopy() async {
+        let client = RecordingPasteboardClient(items: [PasteboardItem(types: ["public.utf8-plain-text": Data("old".utf8)])])
+        let monitor = RecordingCopyInterferenceMonitor()
+        let transport = PasteboardTransport(client: client, timeout: .milliseconds(20), interference: monitor)
+        client.afterMarkerCheckNumber = 2
+        client.afterSelectedMarkerCheck = {
+            monitor.physicalCopy()
+            client.replaceWithCopiedText("user-copy")
+        }
+        do {
+            _ = try await transport.readSelection {
+                client.replaceWithCopiedText("selected")
+            }
+            XCTFail("Expected terminal ownership loss after adoption")
+        } catch {
+            XCTAssertEqual(error as? PasteboardTransportError, .ownershipLost)
+        }
+        XCTAssertEqual(client.string, "user-copy")
+        XCTAssertEqual(monitor.stopCount, 1)
     }
 
     func testNonTextAndTimeoutFailAndRestoreOwnedSnapshot() async {
@@ -139,6 +167,41 @@ final class PasteboardTransportTests: XCTestCase {
                 if fixture == .nonText { client.replace(items: original) }
             })
             XCTAssertEqual(client.items, original)
+        }
+    }
+
+    func testNoSelectionTimeoutCannotHideClipboardRestoreFailure() async {
+        for mode in [RecordingRestoreMode.throwing, .mismatching] {
+            let client = RecordingPasteboardClient(items: [PasteboardItem(types: ["public.utf8-plain-text": Data("old".utf8)])])
+            client.restoreMode = mode
+            let transport = PasteboardTransport(client: client, timeout: .milliseconds(20))
+            do {
+                _ = try await Selection.copyIfPresent {
+                    try await transport.readSelection { ownership in
+                        ownership.copyCommandDispatched()
+                    }
+                }
+                XCTFail("A failed restore must not become a missing selection")
+            } catch {
+                XCTAssertEqual(error as? PasteboardTransportError, .restoreFailed)
+            }
+        }
+    }
+
+    func testRestoreThrowAndMismatchFailWithDedicatedError() async {
+        let original = [PasteboardItem(types: ["public.utf8-plain-text": Data("old".utf8)])]
+        for mode in [RecordingRestoreMode.throwing, .mismatching] {
+            let client = RecordingPasteboardClient(items: original)
+            client.restoreMode = mode
+            let transport = PasteboardTransport(client: client, timeout: .milliseconds(20))
+            do {
+                _ = try await transport.readSelection {
+                    client.replaceWithCopiedText("selected")
+                }
+                XCTFail("Expected restore failure for \(mode)")
+            } catch {
+                XCTAssertEqual(error as? PasteboardTransportError, .restoreFailed, "\(mode)")
+            }
         }
     }
 
@@ -166,6 +229,7 @@ final class PasteboardTransportTests: XCTestCase {
 private enum PasteboardFixtureOutcome: CaseIterable { case success, failure, cancelled }
 private enum PasteboardNoTextFixture { case nonText, timeout }
 private enum PasteboardFixtureError: Error { case failed }
+private enum RecordingRestoreMode { case exact, throwing, mismatching }
 private struct FakeCopyEvent: CopyEventAccessing {
     let keyCode: UInt16; let command: Bool; let sourceUserData: Int64
 }
@@ -191,16 +255,33 @@ private final class RecordingPasteboardClient: @unchecked Sendable, PasteboardCl
     private var storedItems: [PasteboardItem]
     private var count = 0
     private var markerInstallCount = 0
+    private var markerCheckCount = 0
+    private var configuredRestoreMode = RecordingRestoreMode.exact
     var afterNextStringRead: (() -> Void)?
     var afterMarkerInstallNumber: Int?
     var afterSelectedMarkerInstall: (() -> Void)?
+    var afterMarkerCheckNumber: Int?
+    var afterSelectedMarkerCheck: (() -> Void)?
     init(items: [PasteboardItem]) { storedItems = items }
     var items: [PasteboardItem] { lock.withLock { storedItems } }
     var changeCount: Int { lock.withLock { count } }
     var string: String? { try? nonEmptyString() }
     var replacementCount: Int { changeCount }
+    var restoreMode: RecordingRestoreMode {
+        get { lock.withLock { configuredRestoreMode } }
+        set { lock.withLock { configuredRestoreMode = newValue } }
+    }
     func snapshotAllItems() throws -> PasteboardSnapshot { PasteboardSnapshot(items: items) }
-    func restore(_ snapshot: PasteboardSnapshot) throws { replace(items: snapshot.items) }
+    func restore(_ snapshot: PasteboardSnapshot) throws {
+        switch restoreMode {
+        case .exact:
+            replace(items: snapshot.items)
+        case .throwing:
+            throw PasteboardFixtureError.failed
+        case .mismatching:
+            replace(items: [PasteboardItem(types: ["public.utf8-plain-text": Data("mismatch".utf8)])])
+        }
+    }
     func installOperationMarker(_ marker: PasteboardOperationMarker) throws {
         var current = items
         var types = current.first?.types ?? [:]
@@ -214,7 +295,13 @@ private final class RecordingPasteboardClient: @unchecked Sendable, PasteboardCl
         hook?()
     }
     func containsOperationMarker(_ marker: PasteboardOperationMarker) -> Bool {
-        items.contains { $0.types["app.aloud.pasteboard-operation"] == Data(marker.rawValue.uuidString.utf8) }
+        let result = items.contains { $0.types["app.aloud.pasteboard-operation"] == Data(marker.rawValue.uuidString.utf8) }
+        let hook: (() -> Void)? = lock.withLock {
+            markerCheckCount += 1
+            return markerCheckCount == afterMarkerCheckNumber ? afterSelectedMarkerCheck : nil
+        }
+        hook?()
+        return result
     }
     func nonEmptyString() throws -> String {
         let value: String? = lock.withLock {
