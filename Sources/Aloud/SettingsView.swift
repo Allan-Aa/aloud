@@ -40,25 +40,41 @@ extension View {
     }
 }
 
+struct SettingsButtonStyle: ButtonStyle {
+    var prominent = false
+    @Environment(\.isEnabled) private var enabled
+    @Environment(\.palette) private var p
+
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .font(.system(size: 11, weight: .medium))
+            .padding(.horizontal, 10).padding(.vertical, 7)
+            .foregroundStyle(prominent ? p.bg : p.ink)
+            .background(prominent ? p.seal : p.ink.opacity(configuration.isPressed ? 0.08 : 0.035),
+                        in: RoundedRectangle(cornerRadius: 4))
+            .opacity(enabled ? (configuration.isPressed ? 0.8 : 1) : 0.4)
+    }
+}
+
 struct InkToggle: View {
     @Binding var on: Bool
     @Environment(\.palette) private var p
+    @Environment(\.lang) private var lang
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
 
     var body: some View {
         Button { on.toggle() } label: {
-            Capsule()
-                .fill(on ? p.seal : p.ink.opacity(0.15))
-                .frame(width: 34, height: 20)
+            Capsule().fill(on ? p.seal : p.ink.opacity(0.15))
+                .frame(width: 29, height: 17)
                 .overlay(alignment: on ? .trailing : .leading) {
-                    Circle().fill(.white)
-                        .frame(width: 16, height: 16)
-                        .padding(.horizontal, 2)
-                        .shadow(color: .black.opacity(0.2), radius: 1, y: 0.5)
+                    Circle().fill(p.bg).frame(width: 13, height: 13).padding(.horizontal, 2)
                 }
+                .frame(minHeight: 26)
+                .contentShape(Rectangle())
         }
         .buttonStyle(.plain)
-        .focusEffectDisabled()
-        .animation(Motion.snap, value: on)
+        .accessibilityValue(on ? (lang == .zh ? "开启" : "On") : (lang == .zh ? "关闭" : "Off"))
+        .animation(reduceMotion ? nil : Motion.fade, value: on)
     }
 }
 
@@ -70,18 +86,18 @@ struct SettingRow<Control: View>: View {
     @Environment(\.palette) private var p
 
     var body: some View {
-        HStack(alignment: .firstTextBaseline, spacing: 16) {
+        HStack(alignment: .center, spacing: 12) {
             VStack(alignment: .leading, spacing: 2) {
-                Text(title).font(.system(size: 13)).foregroundStyle(p.ink)
+                Text(title).font(.system(size: 12)).foregroundStyle(p.ink)
                 if let note {
-                    Text(note).font(.system(size: 11)).foregroundStyle(p.inkFaint)
+                    Text(note).font(.system(size: 10)).foregroundStyle(p.inkFaint)
                         .fixedSize(horizontal: false, vertical: true)
                 }
             }
             Spacer(minLength: 12)
-            control()
+            control().accessibilityLabel(title)
         }
-        .padding(.vertical, 9)
+        .padding(.vertical, 15)
     }
 }
 
@@ -91,6 +107,8 @@ struct SettingsView: View {
     @State private var hasKey: Bool
     @State private var binaryStatuses: [BinaryStatus]
     private let initialTab: Int
+    private let embedded: Bool
+    private let onClose: () -> Void
     private let credentialIngress: CredentialIngress
     private let systemVoices: ProviderSettingsSystemVoices
     @TaskLocal private static var binaryProbeOverride: (@Sendable (String) -> Bool)?
@@ -123,11 +141,13 @@ struct SettingsView: View {
         )
     }
 
-    init(engine: Engine, credentialIngress: CredentialIngress, systemVoices: ProviderSettingsSystemVoices, initialTab: Int = 0) {
+    init(engine: Engine, credentialIngress: CredentialIngress, systemVoices: ProviderSettingsSystemVoices, initialTab: Int = 0, embedded: Bool = false, onClose: @escaping () -> Void = {}) {
         self.engine = engine
         self.credentialIngress = credentialIngress
         self.systemVoices = systemVoices
         self.initialTab = initialTab
+        self.embedded = embedded
+        self.onClose = onClose
         _hasKey = State(initialValue: false)
         let paths = [
             ("mpv", engine.prefs.mpvBin),
@@ -200,15 +220,22 @@ struct SettingsView: View {
                 installInitialSystemVoiceSelection: { voices in
                     _ = await engine.installInitialSystemVoiceSelectionIfNeeded(voices, preferredLanguages: Locale.preferredLanguages)
                 },
-                confirmOpenAIDisclosureAndPreview: { engine.confirmOpenAIDisclosureAndPreview() }
+                confirmOpenAIDisclosureAndPreview: { engine.confirmOpenAIDisclosureAndPreview() },
+                cancelRecording: {
+                    guard recorder.recording != nil else { return }
+                    recorder.stop()
+                    engine.restoreHotkeys()
+                }
             ),
-            voiceSampleState: engine.voiceSamplePlaybackState
+            voiceSampleState: engine.voiceSamplePlaybackState,
+            embedded: embedded, onClose: onClose
         )
     }
 }
 
 struct SettingsPreviewView: View {
     let state: SettingsViewState
+    var embedded = false
 
     var body: some View {
         SettingsViewBody(
@@ -217,6 +244,7 @@ struct SettingsPreviewView: View {
             credentialActions: .unavailable,
             systemVoices: .init(load: { [] }),
             actions: .none,
+            embedded: embedded,
             previewCredentialStatuses: state.credentialStatuses,
             initialSelectedProviderID: state.selectedProviderID,
             previewSystemVoices: state.systemVoices
@@ -284,6 +312,7 @@ struct SettingsViewActions {
     let toggleVoiceSample: (ProviderID, VoiceID) -> Void
     let installInitialSystemVoiceSelection: ([SystemVoiceDescriptor]) async -> Void
     let confirmOpenAIDisclosureAndPreview: () -> Void
+    var cancelRecording: () -> Void = {}
 
     static let none = SettingsViewActions(
         setVoice: { _ in }, setRate: { _ in }, setStripMarkdown: { _ in }, setSkipCode: { _ in },
@@ -302,10 +331,13 @@ struct SettingsViewBody: View {
     let actions: SettingsViewActions
     let voiceSampleState: VoiceSamplePlaybackState
     let resolvedInitialProviderID: ProviderID
+    let embedded: Bool
+    let onClose: () -> Void
 
-    @Environment(\.colorScheme) private var scheme
     @Environment(\.lang) private var lang
     @State private var tab: Int
+    @State private var diagnosticsExpanded = false
+    @FocusState private var focusedRule: DictRule.ID?
     // Each cloud provider owns an independent, ephemeral draft. Switching cards
     // never moves a typed key into another provider's save action.
     @StateObject private var credentialDraftState: CredentialDraftState
@@ -314,8 +346,8 @@ struct SettingsViewBody: View {
     @State private var credentialTasks: [ProviderID: Task<Void, Never>] = [:]
     @StateObject private var credentialBanner = SettingsCredentialBannerState()
 
-    private var p: Palette { Palette.of(scheme) }
-    private var tabs: [String] { [T.tabVoice(lang), T.tabHotkeys(lang), T.tabDict(lang), T.tabAdvanced(lang)] }
+    private var p: Palette { .reader }
+    private var tabs: [String] { [T.tabVoice(lang), T.tabHotkeys(lang), T.tabDict(lang), lang == .zh ? "通用" : "General"] }
 
     init(
         state: SettingsViewState,
@@ -324,6 +356,8 @@ struct SettingsViewBody: View {
         systemVoices: ProviderSettingsSystemVoices,
         actions: SettingsViewActions,
         voiceSampleState: VoiceSamplePlaybackState = .idle,
+        embedded: Bool = false,
+        onClose: @escaping () -> Void = {},
         previewCredentialStatuses: [ProviderID: ProviderCredentialUIStatus]? = nil,
         initialSelectedProviderID: ProviderID? = nil,
         previewSystemVoices: [SystemVoiceDescriptor]? = nil
@@ -334,6 +368,8 @@ struct SettingsViewBody: View {
         self.systemVoices = systemVoices
         self.actions = actions
         self.voiceSampleState = voiceSampleState
+        self.embedded = embedded
+        self.onClose = onClose
         let resolvedInitialProviderID = initialSelectedProviderID ?? state.selectedProviderID
         self.resolvedInitialProviderID = resolvedInitialProviderID
         _tab = State(initialValue: state.initialTab)
@@ -344,48 +380,67 @@ struct SettingsViewBody: View {
 
     var body: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 2) {
+            HStack(spacing: 17) {
                 ForEach(tabs.indices, id: \.self) { index in
                     Button { tab = index } label: {
                         Text(tabs[index])
-                            .font(.system(size: 12, weight: tab == index ? .semibold : .regular))
+                            .font(.system(size: 11, weight: tab == index ? .medium : .regular))
                             .foregroundStyle(tab == index ? p.ink : p.inkDim)
-                            .padding(.horizontal, 14).padding(.vertical, 6)
-                            .background(Capsule().fill(tab == index ? p.ink.opacity(0.07) : .clear))
+                            .padding(.vertical, 12)
+                            .overlay(alignment: .bottom) {
+                                if tab == index { p.ink.frame(height: 1) }
+                            }
                     }
                     .buttonStyle(.plain)
-                    .focusEffectDisabled()
+                    .accessibilityAddTraits(tab == index ? .isSelected : [])
                 }
-                Spacer()
-            }
-            .padding(.horizontal, 18)
-            .padding(.vertical, 12)
-
-            Divider().overlay(p.line)
+                Spacer(minLength: 0)
+                if embedded {
+                    Button(action: onClose) {
+                        Image(systemName: "xmark").font(.system(size: 10))
+                            .foregroundStyle(p.inkDim).frame(width: 22, height: 28)
+                    }
+                    .buttonStyle(.plain)
+                    .help(lang == .zh ? "收起设置" : "Close settings")
+                    .accessibilityLabel(lang == .zh ? "收起设置" : "Close settings")
+                    .accessibilityIdentifier("settings-close")
+                }
+            }.padding(.horizontal, 27).padding(.top, 14).padding(.bottom, 22)
 
             Group {
-                if exporting {
-                    VStack(alignment: .leading, spacing: 0) { body(for: tab) }
-                        .padding(.horizontal, 20).padding(.vertical, 6)
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-                    Spacer(minLength: 0)
-                } else if tab == 0 {
+                if tab == 0 {
                     voice
-                        .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
+                } else if exporting {
+                    GeometryReader { _ in
+                        VStack(alignment: .leading, spacing: 0) { body(for: tab) }
+                            .padding(.horizontal, 27).padding(.bottom, 24)
+                    }.clipped()
                 } else {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 0) { body(for: tab) }
-                            .padding(.horizontal, 20).padding(.vertical, 6)
+                            .padding(.horizontal, 27).padding(.bottom, 24)
                             .settingsOverlayScroller()
                     }
                 }
-            }
+            }.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .frame(width: 640, height: 480)
-        .background(p.bg)
+        .frame(width: 350)
+        .frame(height: embedded ? nil : 666)
+        .frame(maxHeight: embedded ? .infinity : nil, alignment: .top)
+        .background(p.surface)
+        .foregroundStyle(p.ink)
+        .font(.system(size: 12))
+        .tint(p.seal)
+        .buttonStyle(SettingsButtonStyle())
         .environment(\.palette, p)
+        .environment(\.colorScheme, .light)
+        .preferredColorScheme(.light)
         .task { await loadLiveProviderDependencies() }
-        .onDisappear { credentialTasks.values.forEach { $0.cancel() }; for providerID in credentialTasks.keys { credentialDraftState.restoreLoadedStatus(for: providerID) }; credentialTasks = [:] }
+        .onChange(of: tab) { old, _ in if old == 1 { actions.cancelRecording() } }
+        .onChange(of: state.rules.map(\.id)) { old, new in
+            if let added = new.first(where: { !old.contains($0) }) { focusedRule = added }
+        }
+        .onDisappear { actions.cancelRecording(); credentialTasks.values.forEach { $0.cancel() }; for providerID in credentialTasks.keys { credentialDraftState.restoreLoadedStatus(for: providerID) }; credentialTasks = [:] }
     }
 
     func loadLiveProviderDependencies() async {
@@ -423,13 +478,12 @@ struct SettingsViewBody: View {
             beginCredentialAction: startCredentialAction
         ) {
             if let message = credentialBanner.message { Text(message).font(.caption).foregroundStyle(.secondary) }
-            line
-            Text("朗读处理").font(.system(size: 12, weight: .semibold)).padding(.top, 8)
-            SettingRow(title: T.stripMarkdown(lang), note: T.stripMdNote(lang)) {
+            Text(lang == .zh ? "文本处理" : "Text processing").font(.system(size: 10)).foregroundStyle(p.inkDim).padding(.top, 24)
+            SettingRow(title: lang == .zh ? "略过排版标记" : "Skip formatting", note: T.stripMdNote(lang)) {
                 InkToggle(on: Binding(get: { state.stripMarkdown }, set: actions.setStripMarkdown))
             }
             line
-            SettingRow(title: T.skipCode(lang)) {
+            SettingRow(title: T.skipCode(lang), note: lang == .zh ? "保留说明文字，略过整段代码。" : "Keep explanations, skip code blocks.") {
                 InkToggle(on: Binding(get: { state.skipCode }, set: actions.setSkipCode))
             }
         }
@@ -443,10 +497,11 @@ struct SettingsViewBody: View {
                 .foregroundStyle(live ? p.seal : p.ink)
                 .frame(minWidth: 76)
                 .padding(.horizontal, 9).padding(.vertical, 4)
-                .background(RoundedRectangle(cornerRadius: 5).fill(p.ink.opacity(0.06)))
+                .background(RoundedRectangle(cornerRadius: 3).fill(live ? p.ink.opacity(0.06) : .clear))
                 .overlay(RoundedRectangle(cornerRadius: 5)
-                    .stroke(live ? p.seal : p.line, lineWidth: live ? 1.5 : 1))
+                    .stroke(live ? p.seal : .clear, lineWidth: 1))
         }
+        .accessibilityValue(live ? T.pressKeys(lang) : display)
         .buttonStyle(.plain)
         .focusEffectDisabled()
         .disabled(exporting)
@@ -508,7 +563,67 @@ struct SettingsViewBody: View {
         SettingRow(title: T.hkSound(lang), note: T.hkSoundNote(lang)) {
             InkToggle(on: Binding(get: { state.hotkeyChime }, set: actions.setHotkeyChime))
         }
-        line
+
+    }
+
+    @ViewBuilder private var dictionary: some View {
+        HStack(alignment: .top, spacing: 12) {
+            Text(T.dictNote(lang)).font(.system(size: 10)).foregroundStyle(p.inkDim)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer(minLength: 0)
+            Button(action: actions.addRule) {
+                Label(lang == .zh ? "添加" : "Add", systemImage: "plus")
+                    .font(.system(size: 10)).fixedSize()
+            }.buttonStyle(.plain).disabled(exporting)
+                .accessibilityIdentifier("dictionary-add")
+        }.padding(.bottom, 20)
+        if state.rules.isEmpty {
+            VStack(spacing: 10) {
+                Image(systemName: "text.book.closed").font(.system(size: 24))
+                Text(lang == .zh ? "还没有发音规则" : "No pronunciation rules yet")
+                    .font(.system(size: 11))
+            }.foregroundStyle(p.inkDim).frame(maxWidth: .infinity).padding(.vertical, 40)
+        } else {
+            HStack {
+                Text(T.dictFind(lang)).frame(maxWidth: .infinity, alignment: .leading)
+                Text(T.dictReplace(lang)).frame(maxWidth: .infinity, alignment: .leading)
+                Text(lang == .zh ? "启用" : "On").frame(width: 51)
+            }.font(.system(size: 9)).foregroundStyle(p.inkDim).padding(.bottom, 12)
+            line
+            ForEach(state.rules) { rule in
+                HStack(spacing: 7) {
+                    if exporting {
+                        Text(rule.find).frame(maxWidth: .infinity, alignment: .leading)
+                        Image(systemName: "arrow.right").font(.system(size: 9)).foregroundStyle(p.inkDim)
+                        Text(rule.replace).frame(maxWidth: .infinity, alignment: .leading)
+                    } else {
+                        TextField(T.dictFind(lang), text: ruleBinding(rule, keyPath: \.find))
+                            .focused($focusedRule, equals: rule.id)
+                            .accessibilityLabel(T.dictFind(lang))
+                        Image(systemName: "arrow.right").font(.system(size: 9)).foregroundStyle(p.inkDim)
+                        TextField(T.dictReplace(lang), text: ruleBinding(rule, keyPath: \.replace))
+                            .accessibilityLabel(T.dictReplace(lang))
+                    }
+                    InkToggle(on: Binding(get: { rule.enabled }, set: { value in
+                        var updated = rule; updated.enabled = value; actions.setRule(updated)
+                    })).accessibilityLabel("\(rule.find) \(lang == .zh ? "启用规则" : "Enable rule")")
+                    Button { actions.deleteRule(rule.id) } label: {
+                        Image(systemName: "trash").font(.system(size: 10))
+                            .foregroundStyle(p.inkDim).frame(width: 15, height: 25)
+                    }.buttonStyle(.plain).disabled(exporting)
+                        .help(lang == .zh ? "删除规则" : "Delete rule")
+                        .accessibilityLabel(lang == .zh ? "删除规则" : "Delete rule")
+                }.font(.system(size: 11)).textFieldStyle(.plain).padding(.vertical, 12)
+                line
+            }
+            Text(lang == .zh ? "修改自动保存，应用于之后的朗读。" : "Changes are saved automatically for future reading.")
+                .font(.system(size: 10)).foregroundStyle(p.inkDim).padding(.top, 15)
+        }
+    }
+
+    @ViewBuilder private var advanced: some View {
+        Text(lang == .zh ? "启动与驻留" : "Startup and windows")
+            .font(.system(size: 10)).foregroundStyle(p.inkDim)
         SettingRow(title: T.launchAtLogin(lang)) {
             InkToggle(on: Binding(get: { state.launchAtLogin }, set: actions.setLaunchAtLogin))
         }
@@ -516,83 +631,31 @@ struct SettingsViewBody: View {
         SettingRow(title: T.menuBarOnly(lang), note: T.menuBarNote(lang)) {
             InkToggle(on: Binding(get: { state.menuBarOnly }, set: actions.setMenuBarOnly))
         }
-    }
-
-    @ViewBuilder private var dictionary: some View {
-        HStack {
-            Text(T.dictNote(lang)).font(.system(size: 11)).foregroundStyle(p.inkFaint)
-            Spacer()
-            Button(action: actions.addRule) { pillLabel(T.newRule(lang)) }
-                .buttonStyle(.plain).focusEffectDisabled().disabled(exporting)
-        }
-        .padding(.vertical, 10)
         line
-        if exporting {
-            ForEach(state.rules) { rule in
-                HStack(spacing: 10) {
-                    Text(rule.find).font(.system(size: 12, weight: .medium)).foregroundStyle(p.ink)
-                    Image(systemName: "arrow.right").font(.system(size: 9)).foregroundStyle(p.inkFaint)
-                    Text(rule.replace).font(.system(size: 12)).foregroundStyle(p.inkDim)
-                    Spacer()
-                    InkToggle(on: .constant(rule.enabled))
-                }
-                .padding(.vertical, 8)
-                line
-            }
-        } else {
-            ForEach(state.rules) { rule in
-                HStack(spacing: 10) {
-                    TextField(T.dictFind(lang), text: ruleBinding(rule, keyPath: \.find))
-                        .textFieldStyle(.plain)
-                        .font(.system(size: 12, weight: .medium))
-                        .foregroundStyle(p.ink)
-                        .frame(width: 130)
-                    Image(systemName: "arrow.right").font(.system(size: 9)).foregroundStyle(p.inkFaint)
-                    TextField(T.dictReplace(lang), text: ruleBinding(rule, keyPath: \.replace))
-                        .textFieldStyle(.plain)
-                        .font(.system(size: 12))
-                        .foregroundStyle(p.inkDim)
-                    Spacer()
-                    InkToggle(on: Binding(
-                        get: { rule.enabled },
-                        set: { enabled in
-                            var updated = rule
-                            updated.enabled = enabled
-                            actions.setRule(updated)
-                        }
-                    ))
-                    Button { actions.deleteRule(rule.id) } label: {
-                        Image(systemName: "trash")
-                            .font(.system(size: 10))
-                            .foregroundStyle(p.inkFaint)
-                            .frame(width: 22, height: 22)
-                            .contentShape(Rectangle())
-                    }
-                    .buttonStyle(.plain).focusEffectDisabled()
-                }
-                .padding(.vertical, 6)
-                line
-            }
-        }
-    }
-
-    @ViewBuilder private var advanced: some View {
+        Text(lang == .zh ? "音频缓存 · 只读" : "Audio cache · Read only")
+            .font(.system(size: 10)).foregroundStyle(p.inkDim).padding(.top, 26)
         SettingRow(title: T.cacheLimit(lang), note: T.cacheLimitNote(lang)) {
             valueLabel("\(state.cacheLimitMB) MB")
         }
         line
         SettingRow(title: T.cacheDays(lang)) { valueLabel(T.daysValue(lang)) }
         line
-        ForEach(state.binaryStatuses, id: \.name) { binary in
-            SettingRow(title: T.binPath(binary.name)(lang)) {
-                HStack(spacing: 7) {
-                    Circle().fill(binary.isExecutable ? Color(0x3FAE6A) : p.inkFaint)
-                        .frame(width: 6, height: 6)
-                    Text(binary.path).font(.system(size: 11)).foregroundStyle(p.inkDim)
+        DisclosureGroup(lang == .zh ? "本地工具与诊断" : "Local tools and diagnostics", isExpanded: $diagnosticsExpanded) {
+            VStack(alignment: .leading, spacing: 15) {
+                ForEach(state.binaryStatuses, id: \.name) { binary in
+                    VStack(alignment: .leading, spacing: 5) {
+                        HStack {
+                            Text(binary.name)
+                            Spacer()
+                            Text(binary.isExecutable ? (lang == .zh ? "可用" : "Available") : (lang == .zh ? "未找到" : "Not found"))
+                        }.font(.system(size: 11))
+                        Text(binary.path).font(.system(size: 10, design: .monospaced))
+                            .foregroundStyle(p.inkDim).textSelection(.enabled)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
-            }
-            line
-        }
+            }.padding(.top, 14)
+        }.font(.system(size: 11)).foregroundStyle(p.inkDim).padding(.top, 22)
     }
 
     private var line: some View { Divider().overlay(p.line.opacity(0.7)) }
@@ -612,7 +675,7 @@ struct SettingsViewBody: View {
     }
 
     private func valueLabel(_ value: String) -> some View {
-        Text(value).font(.system(size: 12)).foregroundStyle(p.ink)
+        Text(value).font(.system(size: 12)).foregroundStyle(p.ink).accessibilityValue(value)
     }
 
     private func pillLabel(_ value: String) -> some View {

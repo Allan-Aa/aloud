@@ -3,9 +3,10 @@ import SwiftUI
 /// 菜单栏直接提供编辑和朗读，与主窗口共享文本、控制器和界面组件。
 struct PanelView: View {
     @ObservedObject var engine: Engine
+    @EnvironmentObject private var readerRoute: ReaderWindowRoute
 
     var body: some View {
-        MainView(engine: engine, compact: true)
+        MainView(engine: engine, compact: true, settingsRoute: readerRoute)
             .frame(width: 420)
     }
 }

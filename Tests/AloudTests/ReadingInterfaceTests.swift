@@ -5,6 +5,15 @@ import XCTest
 
 @MainActor
 final class ReadingInterfaceTests: XCTestCase {
+    func testSettingsRouteKeepsOneSharedSidebarState() {
+        let route = ReaderWindowRoute()
+        XCTAssertFalse(route.isSettingsPresented)
+        route.present()
+        XCTAssertTrue(route.isSettingsPresented)
+        route.dismiss()
+        XCTAssertFalse(route.isSettingsPresented)
+    }
+
     func testMenuBarEditorAcceptsTextWithoutOpeningAnotherWindow() throws {
         var edited = ""
         let host = hostReadingView(compact: true, setText: { edited = $0 })
