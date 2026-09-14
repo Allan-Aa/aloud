@@ -3,6 +3,33 @@ import XCTest
 
 @MainActor
 final class ProviderSettingsEngineIntegrationTests: XCTestCase {
+    func testChangingOnlySynthesisRatePreservesPausedPlaybackAndPersistsSelection() async throws {
+        let player = PreviewEnginePlayback()
+        let engine = try makePreviewEngine(provider: PreviewEngineProvider(), player: player)
+        await engine.waitForInitialHydration()
+        _ = await engine.installInitialSystemVoiceSelectionIfNeeded(
+            [SystemVoiceDescriptor(identifier: "voice.fixture", name: "Fixture", language: "en-US")],
+            preferredLanguages: ["en-US"]
+        )
+        let original = try XCTUnwrap(engine.providerSettingsState.card(.macOS).selection)
+        player.alive = true
+        player.paused = true
+        player.position = 12
+        engine.phase = .paused
+        let updated = ProviderSelection(providerID: original.providerID, modelID: original.modelID, voiceID: original.voiceID,
+                                        rate: NormalizedRate(version: original.rate.version, value: 25)!)
+        let didUpdate = await engine.updateProviderSelectionAndWait(updated)
+        for _ in 0..<20 { await Task.yield() }
+        XCTAssertTrue(didUpdate)
+        XCTAssertEqual(player.stopCount, 0)
+        XCTAssertTrue(player.alive)
+        XCTAssertTrue(player.paused)
+        XCTAssertEqual(player.position, 12)
+        XCTAssertEqual(engine.phase, .paused)
+        let persisted = await engine.persistedProviderPrefsForTesting()
+        XCTAssertEqual(persisted.selections[.macOS], updated)
+    }
+
     func testColdStartRegistersPersistedHotkeysAfterInitialHydration() async throws {
         var initialPrefs = PrefsV1.defaults
         let persisted = HotkeySpec(keyCode: 17, modifiers: 6_912)

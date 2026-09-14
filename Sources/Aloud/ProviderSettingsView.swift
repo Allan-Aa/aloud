@@ -638,6 +638,7 @@ struct ProviderDetail: View {
     let voiceSampleState: VoiceSamplePlaybackState
     let beginCredentialAction: (ProviderID, ProviderCredentialOperation) -> Void
     @Environment(\.lang) private var lang
+    @State private var advancedVoiceSettingsExpanded = false
 
     private var providerWorking: Bool {
         if case .working = drafts.status[card.id] { return true }
@@ -684,14 +685,22 @@ struct ProviderDetail: View {
                     )
                     .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
                 }
-                if exporting {
-                    Text("语速：\(selection.rate.value)")
-                } else {
-                    Stepper("语速：\(selection.rate.value)", value: Binding(get: { selection.rate.value }, set: { value in
-                        guard let rate = NormalizedRate(version: selection.rate.version, value: value) else { return }
-                        actions.updateSelection(replacing(selection, rate: rate))
-                    }), in: -100...100)
-                    .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
+                DisclosureGroup(T.advancedVoiceSettings(lang), isExpanded: $advancedVoiceSettingsExpanded) {
+                    VStack(alignment: .leading, spacing: 6) {
+                        if exporting {
+                            Text("\(T.synthRate(lang))：\(selection.rate.value)")
+                        } else {
+                            Stepper("\(T.synthRate(lang))：\(selection.rate.value)", value: Binding(get: { selection.rate.value }, set: { value in
+                                guard let rate = NormalizedRate(version: selection.rate.version, value: value) else { return }
+                                actions.updateSelection(replacing(selection, rate: rate))
+                            }), in: -100...100)
+                            .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
+                        }
+                        Text(T.synthRateNextReadNote(lang))
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding(.top, 4)
                 }
             }
             if card.authRoutes.contains(.manualAPIKey) {
@@ -750,6 +759,7 @@ struct ProviderVoicePicker: View {
     let sampleState: VoiceSamplePlaybackState
     let toggleSample: (ProviderID, VoiceID) -> Void
     var showsFieldLabel = true
+    var maximumWidth: CGFloat = 280
     @State private var isPresented = false
     @State private var query = ""
 
@@ -778,7 +788,7 @@ struct ProviderVoicePicker: View {
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
-                .frame(maxWidth: 280, alignment: .trailing)
+                .frame(maxWidth: maximumWidth, alignment: .trailing)
             }
             .accessibilityLabel(Self.accessibilityLabel(voices: voices, selection: selection))
             .popover(isPresented: $isPresented, arrowEdge: .bottom) {

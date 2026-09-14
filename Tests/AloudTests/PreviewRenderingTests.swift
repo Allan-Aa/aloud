@@ -7,6 +7,15 @@ import XCTest
 
 @MainActor
 final class PreviewRenderingTests: XCTestCase {
+    func testSpeedLabelShowsExactQuarterAndFineSteps() {
+        let slider = InkSlider.speed(.constant(1))
+        XCTAssertEqual(slider.format(1), "1×")
+        XCTAssertEqual(slider.format(1.25), "1.25×")
+        XCTAssertEqual(slider.format(1.05), "1.05×")
+        XCTAssertEqual(slider.format(1.5), "1.5×")
+        XCTAssertEqual(slider.format(3), "3×")
+    }
+
     func testProviderSettingsScenesCoverLightDarkWorkingFailureDisabledAndRecovery() {
         let names = PreviewSceneCatalog.all.map(\.name)
 
@@ -15,6 +24,20 @@ final class PreviewRenderingTests: XCTestCase {
         XCTAssertTrue(names.contains("10-设置-语音-OpenAI失败-浅色"))
         XCTAssertTrue(names.contains("11-设置-语音-Gemini禁用-深色"))
         XCTAssertTrue(names.contains("12-设置-语音-恢复模式-浅色"))
+    }
+
+    func testMenuPanelPreviewsCoverPlaybackStatesAndResetVisibility() throws {
+        let scenes: [String: PanelViewState] = Dictionary(uniqueKeysWithValues: PreviewSceneCatalog.all.compactMap { scene -> (String, PanelViewState)? in
+            guard case let .panel(state) = scene.content else { return nil }
+            return (scene.name, state)
+        })
+
+        XCTAssertEqual(try XCTUnwrap(scenes["16-菜单栏面板-空闲-浅色"]).phase, .idle)
+        XCTAssertEqual(try XCTUnwrap(scenes["17-菜单栏面板-合成中-深色"]).phase, .synthesizing)
+        XCTAssertEqual(try XCTUnwrap(scenes["18-菜单栏面板-播放-1×-浅色"]).playbackSpeed, 1)
+        XCTAssertEqual(try XCTUnwrap(scenes["19-菜单栏面板-播放-1.25×-深色"]).playbackSpeed, 1.25)
+        XCTAssertEqual(try XCTUnwrap(scenes["20-菜单栏面板-暂停-深色"]).phase, .paused)
+        XCTAssertEqual(try XCTUnwrap(scenes["EN-06-panel-paused-1.25×"]).playbackSpeed, 1.25)
     }
 
     func testProviderSettingsPreviewPNGsAreExactly640By480() throws {
@@ -131,13 +154,26 @@ final class PreviewRenderingTests: XCTestCase {
             "13-设置-快捷键",
             "14-设置-词典",
             "15-设置-高级",
-            "16-菜单栏面板-深色",
-            "17-菜单栏面板-浅色",
+            "16-菜单栏面板-空闲-浅色",
+            "17-菜单栏面板-合成中-深色",
+            "18-菜单栏面板-播放-1×-浅色",
+            "19-菜单栏面板-播放-1.25×-深色",
+            "20-菜单栏面板-暂停-深色",
+            "21-菜单栏-空白-浅色",
+            "22-菜单栏-空白-深色",
+            "23-菜单栏-错误",
+            "EN-07-panel-empty",
+            "EN-08-panel-preparing",
             "EN-01-main-idle",
             "EN-02-main-playing",
             "EN-03-main-history",
             "EN-04-settings-hotkeys",
-            "EN-05-panel",
+            "EN-05-panel-playing-1×",
+            "EN-06-panel-paused-1.25×",
+            "24-主窗口-合成语速展开",
+            "25-菜单栏-倍速展开",
+            "EN-09-panel-speech-expanded",
+            "26-主窗口-播放时编辑正文",
         ])
         XCTAssertTrue(sink.payloads.allSatisfy { data in
             Array(data.prefix(8)) == [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
@@ -307,7 +343,7 @@ final class PreviewRenderingTests: XCTestCase {
     }
 
     // Catches preview export that reaches the network, spawns a provider/player process, or writes outside its sink directory.
-    func testSandboxedProcessExportWritesExactlyTwentyTwoPNGs() throws {
+    func testSandboxedProcessExportWritesEverySceneAsPNG() throws {
         let sandbox = try PreviewProcessSandbox()
         defer { try? sandbox.remove() }
 
@@ -322,7 +358,7 @@ final class PreviewRenderingTests: XCTestCase {
         let files = try FileManager.default.contentsOfDirectory(at: sandbox.output, includingPropertiesForKeys: nil)
             .filter { $0.pathExtension == "png" }
             .sorted { $0.lastPathComponent < $1.lastPathComponent }
-        XCTAssertEqual(files.count, 22)
+        XCTAssertEqual(files.count, PreviewSceneCatalog.all.count)
         XCTAssertTrue(try files.allSatisfy { file in
             Array(try Data(contentsOf: file).prefix(8)) == [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]
         })

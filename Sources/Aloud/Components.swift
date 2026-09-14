@@ -29,21 +29,25 @@ struct Waveform: View {
 /// 按下缩放必须走 ButtonStyle。别在 Button 上挂 onLongPressGesture 做这件事——
 /// 两个手势会打架,点击被吞掉,而且是时好时坏的那种(实测踩过)。
 struct PressScale: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(Motion.snap, value: configuration.isPressed)
+            .scaleEffect(!reduceMotion && configuration.isPressed ? 0.985 : 1)
+            .animation(reduceMotion ? .none : Motion.snap, value: configuration.isPressed)
     }
 }
 
-/// 主按钮。按下有 0.96 缩放,这是唯一一处 scale 反馈——用多了就廉价。
+/// 主操作使用统一高度和轻微按压反馈。
 struct SealButton: View {
     var title: String
     var busy: Bool = false
     var enabled: Bool = true
+    var foreground: Color = .white
+    var systemImage: String? = nil
     var action: () -> Void
 
     @Environment(\.palette) private var p
+    @State private var hovering = false
 
     var body: some View {
         Button(action: action) {
@@ -51,20 +55,26 @@ struct SealButton: View {
                 if busy {
                     ProgressView()
                         .controlSize(.small)
-                        .tint(.white)
+                        .tint(foreground)
+                }
+                if let systemImage, !busy {
+                    Image(systemName: systemImage).font(.system(size: 10, weight: .semibold)).accessibilityHidden(true)
                 }
                 Text(title)
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.system(size: 12, weight: .medium))
             }
-            .foregroundStyle(enabled ? .white : p.inkFaint)
-            .padding(.horizontal, 18)
-            .padding(.vertical, 9)
+            .foregroundStyle(enabled ? foreground : p.inkFaint)
+            .padding(.horizontal, 15)
+            .frame(height: 36)
             .background(
-                // 禁用态别用半透明朱砂——在深色底上会脏成砖红。改成中性底。
-                Capsule().fill(enabled ? p.seal : p.ink.opacity(0.08))
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .fill(enabled ? p.seal : p.ink.opacity(0.045))
             )
         }
         .buttonStyle(PressScale())
+        .brightness(hovering && enabled && !busy ? 0.045 : 0)
+        .onHover { hovering = $0 }
+        .animation(Motion.fade, value: hovering)
         .focusEffectDisabled()
         .keyboardShortcut(.return, modifiers: .command)   // ⌘↩ 直接朗读,手不用离开键盘
         .disabled(!enabled || busy)
@@ -96,7 +106,7 @@ struct GhostIcon: View {
     }
 }
 
-/// 速度滑块:一条能拖的进度条,两端 −/+ 微调,右侧常驻数值。
+/// 速度滑块:一条能拖的进度条,右侧常驻数值。
 /// 轨道点哪跳哪(minimumDistance: 0),不用先摸到把手再拖。
 struct InkSlider: View {
     @Binding var value: Double
@@ -104,6 +114,9 @@ struct InkSlider: View {
     let step: Double
     let format: (Double) -> String
     var showsButtons: Bool = true
+    var snapPoints: [Double] = []
+    var resetTitle: String? = nil
+    var accessibilityLabel: String = ""
     var valueWidth: CGFloat = 50
     var trackHeight: CGFloat = 4
     var knob: CGFloat = 12
@@ -119,7 +132,22 @@ struct InkSlider: View {
         min(range.upperBound, max(range.lowerBound, (v / step).rounded() * step))
     }
 
+    private func snapped(_ v: Double) -> Double {
+        guard let point = snapPoints.min(by: { abs($0 - v) < abs($1 - v) }), abs(point - v) <= step * 0.6 else {
+            return clamp(v)
+        }
+        return point
+    }
+
     var body: some View {
+        slider.accessibilityActions {
+            if let resetTitle, abs(value - 1) >= 0.001 {
+                Button(resetTitle) { value = 1 }
+            }
+        }
+    }
+
+    private var slider: some View {
         HStack(spacing: 7) {
             if showsButtons {
                 stepButton("minus", enabled: value > range.lowerBound) { value = clamp(value - step) }
@@ -133,6 +161,12 @@ struct InkSlider: View {
                         .frame(height: trackHeight)
                     Capsule().fill(p.seal)
                         .frame(width: max(0, x), height: trackHeight)
+                    ForEach(snapPoints, id: \.self) { point in
+                        Circle()
+                            .fill(p.ink.opacity(0.26))
+                            .frame(width: 3, height: 3)
+                            .offset(x: max(0, min(w - 3, w * (point - range.lowerBound) / span - 1.5)))
+                    }
                     Circle()
                         .fill(.white)
                         .frame(width: dragging ? knob + 2 : knob, height: dragging ? knob + 2 : knob)
@@ -150,7 +184,7 @@ struct InkSlider: View {
                         .onChanged { g in
                             dragging = true
                             let r = max(0, min(1, g.location.x / max(w, 1)))
-                            value = clamp(range.lowerBound + r * span)
+                            value = snapped(range.lowerBound + r * span)
                         }
                         .onEnded { _ in dragging = false }
                 )
@@ -167,6 +201,32 @@ struct InkSlider: View {
                 .monospacedDigit()
                 .foregroundStyle(dragging ? p.seal : p.inkDim)
                 .frame(width: valueWidth, alignment: .trailing)
+
+            if let resetTitle {
+                Button { value = 1 } label: {
+                    Image(systemName: "arrow.counterclockwise")
+                        .font(.system(size: 10, weight: .medium))
+                        .frame(width: 16, height: 16)
+                }
+                .buttonStyle(.plain)
+                .focusEffectDisabled()
+                .foregroundStyle(p.inkDim)
+                .help(resetTitle)
+                .accessibilityLabel(resetTitle)
+                .accessibilityHidden(true)
+                .opacity(abs(value - 1) < 0.001 ? 0 : 1)
+                .disabled(abs(value - 1) < 0.001)
+            }
+        }
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(accessibilityLabel)
+        .accessibilityValue(format(value))
+        .accessibilityAdjustableAction { direction in
+            switch direction {
+            case .increment: value = clamp(value + step)
+            case .decrement: value = clamp(value - step)
+            @unknown default: break
+            }
         }
     }
 
@@ -185,23 +245,36 @@ struct InkSlider: View {
 }
 
 extension InkSlider {
+    private static func speedFormat(_ value: Double) -> String {
+        let hundredths = Int((value * 100).rounded())
+        if hundredths.isMultiple(of: 100) { return "\(hundredths / 100)×" }
+        if hundredths.isMultiple(of: 10) { return String(format: "%.1f×", value) }
+        return String(format: "%.2f×", value)
+    }
+
     /// 合成语速:−50%–+100%,5% 一档
-    static func rate(_ binding: Binding<Int>, valueWidth: CGFloat = 46) -> InkSlider {
+    static func rate(_ binding: Binding<Int>, showsButtons: Bool = true, valueWidth: CGFloat = 46,
+                     accessibilityLabel: String = "Synthesis rate") -> InkSlider {
         InkSlider(
             value: Binding(get: { Double(binding.wrappedValue) },
                            set: { binding.wrappedValue = Int($0.rounded()) }),
             range: -50...100, step: 5,
             format: { $0 >= 0 ? "+\(Int($0))%" : "\(Int($0))%" },
+            showsButtons: showsButtons,
+            accessibilityLabel: accessibilityLabel,
             valueWidth: valueWidth
         )
     }
 
     /// 播放倍速:0.5×–3×,0.05 一档。播放层的,拖着就立即变
     static func speed(_ binding: Binding<Double>, showsButtons: Bool = true,
-                      valueWidth: CGFloat = 40) -> InkSlider {
+                      valueWidth: CGFloat = 40, resetTitle: String? = nil,
+                      accessibilityLabel: String = "Speed") -> InkSlider {
         InkSlider(value: binding, range: 0.5...3.0, step: 0.05,
-                  format: { String(format: "%.2g×", $0) },
-                  showsButtons: showsButtons, valueWidth: valueWidth)
+                  format: { Self.speedFormat($0) },
+                  showsButtons: showsButtons, snapPoints: [1, 1.25, 1.5, 2],
+                  resetTitle: resetTitle, accessibilityLabel: accessibilityLabel,
+                  valueWidth: valueWidth)
     }
 }
 

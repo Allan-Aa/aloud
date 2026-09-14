@@ -187,10 +187,34 @@ final class SystemVoiceProviderTests: XCTestCase {
         }
     }
 
-    func testAVClientRejectsFormatChangesAndUnsupportedFloatWithoutLeavingDestination() async throws {
+    func testAVClientConvertsSystemFloatBuffersToInterleavedInt16() async throws {
+        for channels: AVAudioChannelCount in [1, 2] {
+            let directory = try TemporaryDirectory(); defer { try? directory.remove() }
+            let destination = directory.url.appendingPathComponent("system.pcm")
+            let source = RecordingSystemBufferSource(voices: [])
+            let format = try XCTUnwrap(AVAudioFormat(standardFormatWithSampleRate: 22_050, channels: channels))
+            let buffer = try pcmBuffer(format: format, frames: 4, value: 0.25)
+            if channels == 2 {
+                for frame in 0..<4 { buffer.floatChannelData![1][frame] = -0.5 }
+            }
+            source.buffersOnStart = [buffer, try pcmBuffer(format: format, frames: 0, value: 0)]
+            let result = try await AVSpeechSynthesizerClient(source: source).write(
+                SystemSpeechWriteRequest(text: "fixture", voiceIdentifier: "voice.fixture", rate: 0.5), to: destination
+            )
+            XCTAssertEqual(result, .pcm(sampleRate: 22_050, channels: Int(channels), bitDepth: 16, littleEndian: true))
+            let data = try Data(contentsOf: destination)
+            let samples = data.withUnsafeBytes { Array($0.bindMemory(to: Int16.self)) }
+            XCTAssertEqual(samples.count, 4 * Int(channels))
+            for (index, sample) in samples.enumerated() {
+                XCTAssertEqual(Double(sample), channels == 2 && index % 2 == 1 ? -16_384 : 8_192, accuracy: 1)
+            }
+        }
+    }
+
+    func testAVClientRejectsFormatChangesAndUnsupportedFloat64WithoutLeavingDestination() async throws {
         let valid = try XCTUnwrap(AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: 32_000, channels: 1, interleaved: true))
         let changed = try XCTUnwrap(AVAudioFormat(commonFormat: .pcmFormatInt16, sampleRate: 48_000, channels: 2, interleaved: true))
-        let float = try XCTUnwrap(AVAudioFormat(standardFormatWithSampleRate: 24_000, channels: 1))
+        let float = try XCTUnwrap(AVAudioFormat(commonFormat: .pcmFormatFloat64, sampleRate: 24_000, channels: 1, interleaved: false))
         let cases = [
             [try pcmBuffer(format: valid, frames: 2, value: 0.1), try pcmBuffer(format: changed, frames: 2, value: 0.1)],
             [try pcmBuffer(format: float, frames: 2, value: 0.1)],

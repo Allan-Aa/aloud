@@ -29,10 +29,38 @@ extension EnvironmentValues {
 enum T {
     // 主窗口
     static let appName        = Str(zh: "念", en: "Aloud")
-    static let speak          = Str(zh: "念", en: "aloud")
-    static let synthesizing   = Str(zh: "合成中", en: "synthesizing")
-    static let placeholder    = Str(zh: "输入或粘贴文本，或按 ⌃` 读选中的字",
-                                    en: "Type or paste text, or press ⌃` to read your selection")
+    static let readyToRead    = Str(zh: "准备朗读", en: "Ready to read")
+    static let speak          = Str(zh: "开始朗读", en: "Read aloud")
+    static let synthesizing   = Str(zh: "正在生成语音…", en: "Preparing audio…")
+    static let placeholder    = Str(zh: "在这里输入，或按 ⌘V 粘贴文字…",
+                                    en: "Type here, or press ⌘V to paste text…")
+    static let editorTitle    = Str(zh: "把文字，交给声音。", en: "Give your words a voice.")
+    static let editorSubtitle = Str(zh: "文章、笔记、灵感，放在这里慢慢听。", en: "A place to listen to articles, notes and ideas.")
+    static let readingText    = Str(zh: "朗读文本", en: "Text to read")
+    static let editReadingText = Str(zh: "编辑正文", en: "Edit text")
+    static let showPlayer = Str(zh: "返回播放器", en: "Back to player")
+    static let pasteText      = Str(zh: "粘贴文本", en: "Paste text")
+    static let clipboardEmpty = Str(zh: "剪贴板里没有文字", en: "No text on the clipboard")
+    static let settings       = Str(zh: "设置", en: "Settings")
+    static let expandWindow   = Str(zh: "展开窗口", en: "Expand window")
+    static let pause          = Str(zh: "暂停", en: "Pause")
+    static let resume         = Str(zh: "继续朗读", en: "Resume")
+    static let stop           = Str(zh: "停止", en: "Stop")
+    static let cancel         = Str(zh: "取消生成", en: "Cancel")
+    static let saveAudio      = Str(zh: "保存音频", en: "Save audio")
+    static let voice          = Str(zh: "音色", en: "Voice")
+    static let configureVoice = Str(zh: "选择语音服务", en: "Set up a voice")
+    static let dismiss        = Str(zh: "关闭提示", en: "Dismiss message")
+    static let backTen        = Str(zh: "后退 10 秒", en: "Back 10 seconds")
+    static let forwardTen     = Str(zh: "前进 10 秒", en: "Forward 10 seconds")
+    static let noHistory      = Str(zh: "还没有朗读记录", en: "No reading history yet")
+    static let noHistoryMatch = Str(zh: "没有匹配的记录", en: "No matching entries")
+    static let loadText       = Str(zh: "载入文本", en: "Load text")
+    static let replay         = Str(zh: "重新朗读", en: "Read again")
+    static let copyText       = Str(zh: "复制文本", en: "Copy text")
+    static func characterCount(_ count: Int, _ lang: Lang) -> String {
+        lang == .zh ? "\(count) 字" : "\(count) characters"
+    }
     static let readClipboard  = Str(zh: "读剪贴板", en: "Clipboard")
     static let clipboardMock  = Str(zh: "（剪贴板内容）", en: "(clipboard contents)")
     static let providerSettings = Str(zh: "语音服务与 API Key 设置", en: "Voice providers and API keys")
@@ -47,8 +75,12 @@ enum T {
     static let idle           = Str(zh: "空闲", en: "Idle")
     static let panelIdleHint  = Str(zh: "选中任意文字，按 ⌃` 开读",
                                     en: "Select text anywhere, then press ⌃`")
-    static let synthRate      = Str(zh: "合成语速", en: "Rate")
-    static let playbackSpeed  = Str(zh: "倍速", en: "Speed")
+    static let synthRate      = Str(zh: "合成语速", en: "Synthesis rate")
+    static let playbackSpeed  = Str(zh: "播放倍速", en: "Playback speed")
+    static let playbackSpeedNote = Str(zh: "立即生效", en: "Applies immediately")
+    static let synthRateShort = Str(zh: "语速", en: "Speech")
+    static let playbackSpeedShort = Str(zh: "倍速", en: "Speed")
+    static let resetSpeed     = Str(zh: "恢复 1×", en: "Reset to 1×")
     static let readSelection  = Str(zh: "⌃` 读选中", en: "⌃` read selection")
     static let quit           = Str(zh: "退出", en: "Quit")
     static let openMain       = Str(zh: "打开主窗口", en: "Open main window")
@@ -69,6 +101,8 @@ enum T {
     static let defaultRate    = Str(zh: "默认合成语速", en: "Default synthesis rate")
     static let rateNote       = Str(zh: "改了要重新合成，缓存按语速分开存",
                                     en: "Changing this re-synthesises; cache is keyed by rate")
+    static let advancedVoiceSettings = Str(zh: "高级语音设置", en: "Advanced voice settings")
+    static let synthRateNextReadNote = Str(zh: "下次朗读生效", en: "Applies to your next reading")
     static let stripMarkdown  = Str(zh: "去除 Markdown 标记", en: "Strip Markdown")
     static let stripMdNote    = Str(zh: "读文档时不会把 # 和 * 念出来",
                                     en: "Won't read out # and * when reading documents")

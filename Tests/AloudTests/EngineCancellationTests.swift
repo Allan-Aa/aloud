@@ -3,6 +3,103 @@ import XCTest
 
 @MainActor
 final class EngineCancellationTests: XCTestCase {
+    func testRateChangeDuringSynthesisKeepsCurrentReadingAndNextReadingUsesNewRate() async throws {
+        let player = TestPlayback()
+        let barrier = TestSynthesisBarrier()
+        var rates: [Int] = []
+        let engine = try makeEngine(player: player, registry: CredentialScopeRegistry(), cacheHit: false, synthesize: { _, _, rate, _ in
+            rates.append(rate)
+            if rates.count == 1 { await barrier.enterAndWait() }
+        })
+        await engine.waitForInitialHydration()
+        let originalRate = engine.prefs.rate
+        engine.text = String(repeating: "这是一段用于验证合成语速的测试文字。", count: 100)
+        engine.speak()
+        await barrier.waitUntilEntered()
+        engine.setRate(25)
+        for _ in 0..<200 where engine.prefs.rate != 25 { try await Task.sleep(for: .milliseconds(1)) }
+        await barrier.release()
+        for _ in 0..<200 where player.playCount == 0 { try await Task.sleep(for: .milliseconds(1)) }
+        XCTAssertEqual(player.playCount, 1)
+        XCTAssertGreaterThan(rates.count, 1)
+        XCTAssertTrue(rates.allSatisfy { $0 == originalRate })
+        XCTAssertGreaterThan(player.appendCount, 0)
+
+        engine.text = "下一次朗读"
+        engine.speak()
+        for _ in 0..<200 where player.playCount < 2 { try await Task.sleep(for: .milliseconds(1)) }
+        XCTAssertEqual(player.playCount, 2)
+        XCTAssertEqual(rates.last, 25)
+        await engine.shutdownSpeech()
+    }
+
+    func testPlaybackSpeedChangedDuringPreparationIsUsedAtLaunchAndNextReading() async throws {
+        let player = TestPlayback()
+        let barrier = TestSynthesisBarrier()
+        var preparations = 0
+        let engine = try makeEngine(player: player, registry: CredentialScopeRegistry(), cacheHit: true, synthesize: { _, _, _, _ in }, beforePlayback: {
+            preparations += 1
+            if preparations == 1 { await barrier.enterAndWait() }
+        })
+        await engine.waitForInitialHydration()
+        engine.text = "prepared reading"
+        engine.speak()
+        await barrier.waitUntilEntered()
+        engine.setSpeed(1.75)
+        for _ in 0..<200 where engine.prefs.playbackSpeed != 1.75 { try await Task.sleep(for: .milliseconds(1)) }
+        await barrier.release()
+        for _ in 0..<200 where player.playCount == 0 { try await Task.sleep(for: .milliseconds(1)) }
+        XCTAssertEqual(player.launchSpeeds, [1.75])
+        let persisted = await engine.persistedProviderPrefsForTesting()
+        XCTAssertEqual(persisted.playbackSpeed, 1.75)
+        engine.text = "next reading"
+        engine.speak()
+        for _ in 0..<200 where player.playCount < 2 { try await Task.sleep(for: .milliseconds(1)) }
+        XCTAssertEqual(player.launchSpeeds, [1.75, 1.75])
+        await engine.shutdownSpeech()
+    }
+
+    func testRapidSpeedChangesFinishAtLatestValueWithoutRestartingPlayback() async throws {
+        let player = TestPlayback()
+        let engine = try makeEngine(player: player, registry: CredentialScopeRegistry(), cacheHit: true, synthesize: { _, _, _, _ in })
+        await engine.waitForInitialHydration()
+        engine.text = "playing reading"
+        engine.speak()
+        for _ in 0..<200 where player.playCount == 0 { try await Task.sleep(for: .milliseconds(1)) }
+        for value in [1.25, 1.5, 2, 1, 1.75] { engine.setSpeed(value) }
+        for _ in 0..<200 where player.speed != 1.75 { try await Task.sleep(for: .milliseconds(1)) }
+        XCTAssertEqual(player.speed, 1.75)
+        XCTAssertEqual(engine.prefs.playbackSpeed, 1.75)
+        XCTAssertEqual(player.playCount, 1)
+        XCTAssertFalse(player.paused)
+        let persisted = await engine.persistedProviderPrefsForTesting()
+        XCTAssertEqual(persisted.playbackSpeed, 1.75)
+        await engine.shutdownSpeech()
+    }
+
+    func testPlaybackSpeedChangesPreservePausedPositionWithoutRestart() async throws {
+        let player = TestPlayback()
+        let engine = try makeEngine(player: player, registry: CredentialScopeRegistry(), cacheHit: true, synthesize: { _, _, _, _ in })
+        await engine.waitForInitialHydration()
+        engine.text = "playing reading"
+        engine.speak()
+        for _ in 0..<200 where player.playCount == 0 { try await Task.sleep(for: .milliseconds(1)) }
+        engine.togglePause()
+        player.position = 12
+        let stops = player.stopCount
+        for speed in [1.25, 2, 1] {
+            engine.setSpeed(speed)
+            for _ in 0..<200 where player.speed != speed { try await Task.sleep(for: .milliseconds(1)) }
+            XCTAssertEqual(player.speed, speed)
+            XCTAssertEqual(engine.prefs.playbackSpeed, speed)
+            XCTAssertTrue(player.paused)
+            XCTAssertEqual(player.position, 12)
+            XCTAssertEqual(player.playCount, 1)
+            XCTAssertEqual(player.stopCount, stops)
+        }
+        await engine.shutdownSpeech()
+    }
+
     func testCredentialBeginCancelsCacheHitBeforeItCanPlayOrRecordHistory() async throws {
         let registry = CredentialScopeRegistry()
         let player = TestPlayback()
@@ -166,7 +263,8 @@ final class EngineCancellationTests: XCTestCase {
                 cachePath: { _, _, _ in root.appendingPathComponent("fake.wav") },
                 cacheHit: { _ in cacheHit }, synthesize: synthesize,
                 concat: { _, _, _ in }, beforePlayback: beforePlayback, beforeHistoryWrite: beforeHistoryWrite, legacyMiniMaxDisabled: legacyMiniMaxDisabled
-            ), credentialRegistry: registry, historyController: historyController, installCredentialHook: installCredentialHook)
+            ), credentialRegistry: registry, historyController: historyController, installCredentialHook: installCredentialHook,
+                providerSettingsRuntimeLoader: ProviderSettingsRuntimeLoader(readCredential: { _ in .missing }, accountSnapshot: { _ in .empty }))
         }
     }
 }
@@ -189,14 +287,16 @@ private final class BlockingAtomicFileStore: @unchecked Sendable, AtomicFileStor
 @MainActor
 private final class TestPlayback: EnginePlayback {
     var alive = false; var paused = false; var position = 0.0; var duration = 0.0
-    private(set) var playCount = 0
-    func play(file: URL, prefs: Prefs, streaming: Bool) throws { playCount += 1; alive = true }
-    func append(file: URL) throws {}
+    private(set) var playCount = 0, appendCount = 0, stopCount = 0
+    private(set) var launchSpeeds: [Double] = []
+    private(set) var speed = 0.0
+    func play(file: URL, prefs: Prefs, streaming: Bool) throws { playCount += 1; alive = true; speed = prefs.playbackSpeed; launchSpeeds.append(speed) }
+    func append(file: URL) throws { appendCount += 1 }
     func finishStream(prefs: Prefs) {}
-    func stop() { alive = false }
+    func stop() { stopCount += 1; alive = false }
     func togglePause() { paused.toggle() }
     func seek(relative: Double) {}
-    func setSpeed(_ speed: Double) {}
+    func setSpeed(_ speed: Double) { self.speed = speed }
 }
 
 private actor TestSynthesisBarrier {

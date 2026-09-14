@@ -127,7 +127,6 @@ struct MainViewState: Sendable {
     let voiceControl: ProviderVoiceControlState?
     let voiceSampleState: VoiceSamplePlaybackState
     let voiceLabel: String
-    let rate: Int
     let playbackSpeed: Double
     let position: Double
     let duration: Double
@@ -136,9 +135,10 @@ struct MainViewState: Sendable {
 }
 
 struct PanelViewState: Sendable {
+    var voiceLabel: String = "清朗男声"
+    var toast: String? = nil
     let text: String
     let phase: Phase
-    let rate: Int
     let playbackSpeed: Double
     let position: Double
     let duration: Double
@@ -187,14 +187,16 @@ struct PreviewScene {
     let colorScheme: ColorScheme
     let language: Lang
     let content: PreviewContent
+    var expandedSpeedControl: ReadingSpeedControl? = nil
+    var showingReaderText = false
 }
 
 @MainActor
 enum PreviewSceneCatalog {
     static var all: [PreviewScene] {
-        let sample = "念念不忘，必有回响。这段字用来看合成和播放的动效。"
-        let sampleEN = "Read anything aloud. Select text anywhere and press the hotkey."
-        let panelText = "为什么用合成语速而不是倍速：合成语速是让模型按那个节奏去说…"
+        let sample = "留一点时间给自己\n\n把脚步放慢一点。让眼睛休息，让文字继续。\n\n有些想法，不必急着回答。留一点安静的时间，让它慢慢变得清楚。"
+        let sampleEN = "A moment for yourself\n\nSlow down a little. Rest your eyes and let the words continue."
+        let panelText = sample
 
         return [
             main("01-主窗口-空闲-浅色", .light),
@@ -218,17 +220,39 @@ enum PreviewSceneCatalog {
             settings("13-设置-快捷键", .light, tab: 1),
             settings("14-设置-词典", .dark, tab: 2),
             settings("15-设置-高级", .dark, tab: 3),
-            panel("16-菜单栏面板-深色", .dark, text: panelText),
-            panel("17-菜单栏面板-浅色", .light, text: panelText),
+            panel("16-菜单栏面板-空闲-浅色", .light, text: panelText, phase: .idle),
+            panel("17-菜单栏面板-合成中-深色", .dark, text: panelText, phase: .synthesizing),
+            panel("18-菜单栏面板-播放-1×-浅色", .light, text: panelText, phase: .playing),
+            panel("19-菜单栏面板-播放-1.25×-深色", .dark, text: panelText, phase: .playing, playbackSpeed: 1.25),
+            panel("20-菜单栏面板-暂停-深色", .dark, text: panelText, phase: .paused, playbackSpeed: 1.25),
+            panel("21-菜单栏-空白-浅色", .light, text: "", phase: .idle),
+            panel("22-菜单栏-空白-深色", .dark, text: "", phase: .idle),
+            panel("23-菜单栏-错误", .light, text: sample, phase: .idle,
+                  toast: "语音服务暂时不可用，请检查网络或在设置中切换服务后重试。"),
+            panel("EN-07-panel-empty", .light, language: .en, text: "", phase: .idle),
+            panel("EN-08-panel-preparing", .dark, language: .en, text: sampleEN, phase: .synthesizing),
             main("EN-01-main-idle", .light, language: .en),
             main("EN-02-main-playing", .dark, language: .en, text: sampleEN, phase: .playing, position: 28),
             main("EN-03-main-history", .light, language: .en, text: sampleEN, historyOpen: true),
             settings("EN-04-settings-hotkeys", .light, language: .en, tab: 1),
-            panel("EN-05-panel", .dark, language: .en, text: panelText),
+            panel("EN-05-panel-playing-1×", .dark, language: .en, text: sampleEN, phase: .playing),
+            panel("EN-06-panel-paused-1.25×", .light, language: .en, text: sampleEN, phase: .paused, playbackSpeed: 1.25),
+            main("24-主窗口-合成语速展开", .dark, text: sample, phase: .playing, position: 28,
+                 expandedSpeedControl: .synthesis),
+            panel("25-菜单栏-倍速展开", .dark, text: panelText, phase: .paused, playbackSpeed: 1.25,
+                  expandedSpeedControl: .playback),
+            panel("EN-09-panel-speech-expanded", .dark, language: .en, text: sampleEN, phase: .idle,
+                  expandedSpeedControl: .synthesis),
+            main("26-主窗口-播放时编辑正文", .dark, text: sample, phase: .playing, position: 28,
+                 showingReaderText: true),
         ]
     }
 
     private static let defaultVoice = "minimax:Chinese (Mandarin)_Radio_Host|default"
+    static var readerVoiceControl: ProviderVoiceControlState? {
+        guard let state = try? ProviderSettingsState.fixture() else { return nil }
+        return ProviderSettingsPresenter.voiceControl(state: state, providerID: .minimax, systemVoices: [], language: .zh)
+    }
     private static let previewSystemVoices = [
         SystemVoiceDescriptor(identifier: "preview.voice.yunxi", name: "云希", language: "zh-CN"),
         SystemVoiceDescriptor(identifier: "preview.voice.samantha", name: "Samantha", language: "en-US")
@@ -241,7 +265,9 @@ enum PreviewSceneCatalog {
         text: String = "",
         phase: Phase = .idle,
         position: Double = 0,
-        historyOpen: Bool = false
+        historyOpen: Bool = false,
+        expandedSpeedControl: ReadingSpeedControl? = nil,
+        showingReaderText: Bool = false
     ) -> PreviewScene {
         PreviewScene(
             name: name,
@@ -251,10 +277,9 @@ enum PreviewSceneCatalog {
                 MainViewState(
                     text: text,
                     phase: phase,
-                    voiceControl: nil,
+                    voiceControl: readerVoiceControl,
                     voiceSampleState: .idle,
                     voiceLabel: Voices.label(defaultVoice, language),
-                    rate: 50,
                     playbackSpeed: 1,
                     position: position,
                     duration: 64,
@@ -262,7 +287,9 @@ enum PreviewSceneCatalog {
                     toast: nil
                 ),
                 historyOpen: historyOpen
-            )
+            ),
+            expandedSpeedControl: expandedSpeedControl,
+            showingReaderText: showingReaderText
         )
     }
 
@@ -344,7 +371,11 @@ enum PreviewSceneCatalog {
         _ name: String,
         _ scheme: ColorScheme,
         language: Lang = .zh,
-        text: String
+        text: String,
+        phase: Phase,
+        playbackSpeed: Double = 1,
+        toast: String? = nil,
+        expandedSpeedControl: ReadingSpeedControl? = nil
     ) -> PreviewScene {
         PreviewScene(
             name: name,
@@ -352,14 +383,16 @@ enum PreviewSceneCatalog {
             language: language,
             content: .panel(
                 PanelViewState(
+                    voiceLabel: language == .zh ? "清朗男声" : "Clear voice",
+                    toast: toast,
                     text: text,
-                    phase: .playing,
-                    rate: 50,
-                    playbackSpeed: 1,
-                    position: 23,
+                    phase: phase,
+                    playbackSpeed: playbackSpeed,
+                    position: phase.isLive ? 23 : 0,
                     duration: 64
                 )
-            )
+            ),
+            expandedSpeedControl: expandedSpeedControl
         )
     }
 }
@@ -460,12 +493,12 @@ struct ScreenshotExporter {
         let content: AnyView
         switch scene.content {
         case let .main(state, historyOpen):
-            content = AnyView(MainPreviewView(state: state, historyOpen: historyOpen)
-                .frame(width: 720, height: 620))
+            content = AnyView(MainPreviewView(state: state, historyOpen: historyOpen, expandedSpeedControl: scene.expandedSpeedControl, showingText: scene.showingReaderText)
+                .frame(width: 520, height: scene.expandedSpeedControl == nil ? 620 : 720))
         case let .settings(state):
             content = AnyView(SettingsPreviewView(state: state))
         case let .panel(state):
-            content = AnyView(PanelPreviewView(state: state))
+            content = AnyView(PanelPreviewView(state: state, expandedSpeedControl: scene.expandedSpeedControl))
         }
 
         let renderer = ImageRenderer(content: content
