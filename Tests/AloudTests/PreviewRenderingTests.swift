@@ -170,6 +170,10 @@ final class PreviewRenderingTests: XCTestCase {
             "EN-04-settings-hotkeys",
             "EN-05-panel-playing-1×",
             "EN-06-panel-paused-1.25×",
+            "24-主窗口-合成语速展开",
+            "25-菜单栏-倍速展开",
+            "EN-09-panel-speech-expanded",
+            "26-主窗口-播放时编辑正文",
         ])
         XCTAssertTrue(sink.payloads.allSatisfy { data in
             Array(data.prefix(8)) == [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]

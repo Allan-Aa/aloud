@@ -6,6 +6,10 @@ enum Phase: Equatable, Sendable {
     var isLive: Bool { self == .playing || self == .paused }
 }
 
+enum ReadingSpeedControl: Equatable, Sendable {
+    case synthesis, playback
+}
+
 struct MainView: View {
     @ObservedObject var engine: Engine
     @Environment(\.openSettings) private var openSettings
@@ -43,6 +47,7 @@ struct MainView: View {
                 },
                 toggleVoiceSample: { providerID, voiceID in engine.toggleVoiceSample(providerID: providerID, voiceID: voiceID) },
                 setPlaybackSpeed: { engine.setSpeed($0) },
+                setSynthesisRate: { engine.setRate($0) },
                 pasteClipboard: {
                     guard let text = NSPasteboard.general.string(forType: .string), !text.isEmpty else {
                         engine.toast = T.clipboardEmpty(Lang.system)
@@ -85,10 +90,14 @@ struct MainPreviewView: View {
     let state: MainViewState
     @State private var historyOpen: Bool
     var compact: Bool = false
+    var expandedSpeedControl: ReadingSpeedControl? = nil
+    var showingText = false
 
-    init(state: MainViewState, historyOpen: Bool, compact: Bool = false) {
+    init(state: MainViewState, historyOpen: Bool, compact: Bool = false, expandedSpeedControl: ReadingSpeedControl? = nil, showingText: Bool = false) {
         self.compact = compact
         self.state = state
+        self.expandedSpeedControl = expandedSpeedControl
+        self.showingText = showingText
         _historyOpen = State(initialValue: historyOpen)
     }
 
@@ -98,7 +107,9 @@ struct MainPreviewView: View {
             historyOpen: $historyOpen,
             exporting: true,
             compact: compact,
-            actions: .none
+            actions: .none,
+            expandedSpeedControl: expandedSpeedControl,
+            showingText: showingText
         )
     }
 }
@@ -108,6 +119,7 @@ struct MainViewActions {
     let setVoice: (VoiceID) -> Void
     let toggleVoiceSample: (ProviderID, VoiceID) -> Void
     let setPlaybackSpeed: (Double) -> Void
+    let setSynthesisRate: (Int) -> Void
     let pasteClipboard: () -> Void
     let speak: () -> Void
     let seek: (Double) -> Void
@@ -123,7 +135,7 @@ struct MainViewActions {
     let quit: () -> Void
 
     static let none = MainViewActions(
-        setText: { _ in }, setVoice: { _ in }, toggleVoiceSample: { _, _ in }, setPlaybackSpeed: { _ in },
+        setText: { _ in }, setVoice: { _ in }, toggleVoiceSample: { _, _ in }, setPlaybackSpeed: { _ in }, setSynthesisRate: { _ in },
         pasteClipboard: {}, speak: {}, seek: { _ in }, togglePause: {}, stop: {}, saveAudio: {},
         replay: { _ in }, load: { _ in }, copy: { _ in }, dismissToast: {}, openSettings: {}, openMain: {}, quit: {}
     )
@@ -135,41 +147,44 @@ struct MainViewBody: View {
     let exporting: Bool
     var compact: Bool = false
     let actions: MainViewActions
+    @State var expandedSpeedControl: ReadingSpeedControl? = nil
+    @State var showingText = false
 
-    @Environment(\.colorScheme) private var scheme
     @Environment(\.lang) private var lang
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @FocusState private var editorFocused: Bool
+    @State private var playbackHovered = false
+    @StateObject private var orbClock = ThinkingOrbClock()
 
-    private var p: Palette { Palette.of(scheme) }
-    private var inset: CGFloat { compact ? 20 : 28 }
+    // The reading surface intentionally owns this graphite palette. Settings and
+    // the rest of the app keep the existing paper/ink theme.
+    private var p: Palette {
+        Palette(
+            bg: Color(0x141719), surface: Color(0x1C2022),
+            ink: Color(0xEEEEE9), inkDim: Color(0xABB3AF), inkFaint: Color(0x969E9B),
+            seal: Color(0xD7E4DD), line: Color(0x2D3333)
+        )
+    }
+    private var inset: CGFloat { compact ? 24 : 28 }
     private var busy: Bool { state.phase == .synthesizing }
     private var canSpeak: Bool { !state.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    private var showsEditor: Bool { state.phase == .idle || showingText || historyOpen }
 
     var body: some View {
         VStack(spacing: 0) {
             header
-            if !compact && !historyOpen {
-                VStack(alignment: .leading, spacing: 6) {
-                    Text(T.editorTitle(lang))
-                        .font(.system(size: 26, weight: .semibold))
-                        .tracking(-0.6)
-                        .foregroundStyle(p.ink)
-                    Text(T.editorSubtitle(lang))
-                        .font(.system(size: 13))
-                        .foregroundStyle(p.inkDim)
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
-                .padding(.horizontal, inset)
-                .padding(.bottom, 22)
+            if showsEditor {
+                if !historyOpen { readingStatus }
+                editor.padding(.horizontal, inset)
+            } else {
+                listeningHero
             }
-            editor
-                .padding(.horizontal, inset)
-            voiceControls
             if state.phase.isLive {
                 player
             } else {
                 readingAction
             }
+            voiceControls
             if let message = state.toast {
                 HStack(alignment: .top, spacing: 10) {
                     Image(systemName: "info.circle")
@@ -195,11 +210,11 @@ struct MainViewBody: View {
                     Button(T.quit(lang), action: actions.quit)
                 }
                 .buttonStyle(.plain)
-                .font(.system(size: 12, weight: .medium))
-                .foregroundStyle(p.inkDim)
+                .font(.system(size: 11))
+                .foregroundStyle(p.inkFaint)
                 .padding(.horizontal, inset)
-                .padding(.vertical, 15)
-                .overlay(alignment: .top) { p.line.frame(height: 1) }
+                .padding(.vertical, 14)
+                .overlay(alignment: .top) { p.line.frame(height: 0.5).padding(.horizontal, inset) }
             } else {
                 HistoryPanel(
                     expanded: $historyOpen,
@@ -211,38 +226,131 @@ struct MainViewBody: View {
                 )
             }
         }
-        .background(p.bg)
+        .frame(minWidth: compact ? 420 : 520, minHeight: compact ? nil : (expandedSpeedControl == nil ? 620 : 720))
+        .frame(maxWidth: .infinity, maxHeight: compact ? nil : .infinity)
+        .background(p.bg.ignoresSafeArea())
         .environment(\.palette, p)
+        .environment(\.colorScheme, .dark)
         .tint(p.seal)
-        .frame(minWidth: compact ? 420 : 620, minHeight: compact ? nil : (state.phase.isLive ? 620 : 560))
-        .onAppear { if !exporting { editorFocused = true } }
+        .onAppear { if !exporting && showsEditor { editorFocused = true } }
+        .onChange(of: state.phase) { old, new in
+            if old == .idle && new == .synthesizing {
+                showingText = false
+                editorFocused = false
+            }
+        }
     }
 
     private var header: some View {
-        HStack(spacing: 10) {
-            Text("念")
-                .font(.custom("STSongti-SC-Bold", size: 25))
-                .foregroundStyle(.white)
-                .frame(width: 40, height: 40)
-                .background(p.seal, in: RoundedRectangle(cornerRadius: 12))
-            VStack(alignment: .leading, spacing: 2) {
-                Text("Aloud").font(.system(size: 15, weight: .semibold)).foregroundStyle(p.ink)
-                Text(T.readingText(lang)).font(.system(size: 11)).foregroundStyle(p.inkDim)
-            }
+        HStack {
+            Text(T.appName(lang))
+                .font(.system(size: 18, weight: .medium))
+                .tracking(0.3)
+                .foregroundStyle(p.ink)
+                .accessibilityIdentifier("reader-brand")
             Spacer()
-            Button(action: actions.openSettings) {
-                Label(T.settings(lang), systemImage: "gearshape")
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(p.inkDim)
-                    .padding(.horizontal, 10)
-                    .padding(.vertical, 8)
-                    .background(p.surface, in: RoundedRectangle(cornerRadius: 8))
+            if state.phase != .idle && !historyOpen {
+                GhostIcon(systemName: showsEditor ? "waveform" : "square.and.pencil") {
+                    showingText.toggle()
+                    editorFocused = showingText
+                }
+                .help(showsEditor ? T.showPlayer(lang) : T.editReadingText(lang))
+                .accessibilityLabel(showsEditor ? T.showPlayer(lang) : T.editReadingText(lang))
+                .accessibilityIdentifier("reader-edit-toggle")
             }
-            .buttonStyle(.plain)
+            GhostIcon(systemName: "gearshape", action: actions.openSettings)
+                .help(T.settings(lang))
+                .accessibilityLabel(T.settings(lang))
+                .accessibilityIdentifier("reader-settings")
         }
         .padding(.horizontal, inset)
-        .padding(.top, compact ? 20 : 24)
-        .padding(.bottom, compact ? 20 : 26)
+        .padding(.top, compact ? 19 : 24)
+        .padding(.bottom, compact ? 10 : 16)
+    }
+
+    private var readingStatus: some View {
+        HStack(spacing: 12) {
+            orb.frame(width: 40, height: 40)
+
+            Text(statusLabel)
+                .font(.system(size: 12))
+                .foregroundStyle(p.inkDim)
+            Spacer(minLength: 0)
+        }
+        .frame(height: 46)
+        .padding(.horizontal, inset)
+        .padding(.bottom, compact ? 12 : 16)
+        .accessibilityElement(children: .combine)
+        .accessibilityLabel(statusLabel)
+    }
+
+    private var orb: some View {
+        Group {
+            if exporting {
+                ParticleSphereFrame(mode: orbMode, time: staticOrbTime, level: 0)
+            } else {
+                LiveThinkingOrb(mode: orbMode, running: state.phase != .paused, reducedMotion: reduceMotion, clock: orbClock)
+            }
+        }
+        .accessibilityHidden(true)
+    }
+
+    private var listeningHero: some View {
+        VStack(spacing: 0) {
+            HStack(spacing: 6) {
+                Circle().fill(p.seal).frame(width: 4, height: 4)
+                Text(statusLabel).font(.system(size: 11)).foregroundStyle(p.inkFaint)
+            }
+            .padding(.top, 8)
+            orb.frame(width: 176, height: 176).padding(.top, 10)
+            Text(state.text.split(separator: "\n", maxSplits: 1).first.map(String.init) ?? T.readingText(lang))
+                .font(.system(size: 20, weight: .medium))
+                .foregroundStyle(p.ink)
+                .multilineTextAlignment(.center)
+                .lineLimit(2)
+                .frame(maxWidth: 320)
+                .padding(.top, 5)
+            Text(state.voiceLabel)
+                .font(.system(size: 12)).foregroundStyle(p.inkFaint)
+                .padding(.top, 9)
+            if let excerpt = state.text.split(separator: "\n", maxSplits: 1).dropFirst().first {
+                Text(excerpt.trimmingCharacters(in: .whitespacesAndNewlines))
+                    .font(.system(size: 13)).lineSpacing(5)
+                    .foregroundStyle(p.inkDim).multilineTextAlignment(.center)
+                    .lineLimit(2).frame(maxWidth: 300)
+                    .padding(.top, 20)
+            }
+        }
+        .frame(maxWidth: .infinity)
+        .padding(.horizontal, inset)
+        .padding(.bottom, 25)
+    }
+
+    private var orbMode: ThinkingOrbMode {
+        switch state.phase {
+        case .idle: .breathe
+        case .synthesizing: .rings
+        case .playing, .paused: .vortex
+        }
+    }
+
+    private var statusLabel: String {
+        switch state.phase {
+        case .idle: T.readyToRead(lang)
+        case .synthesizing: T.synthesizing(lang)
+        case .playing: T.nowReading(lang)
+        case .paused: T.paused(lang)
+        }
+    }
+
+    // Export previews are deterministic and never read live engine or clock state.
+    private var staticOrbTime: Double {
+        switch state.phase {
+        case .idle: 0
+        case .synthesizing: 1.4
+        case .playing: 2.8
+        case .paused: 0.8
+        }
     }
 
     private var editor: some View {
@@ -252,8 +360,7 @@ struct MainViewBody: View {
                     Text(T.placeholder(lang))
                         .font(.system(size: compact ? 14 : 16))
                         .foregroundStyle(p.inkFaint)
-                        .padding(.horizontal, 16)
-                        .padding(.top, 15)
+                        .padding(.top, 12)
                         .allowsHitTesting(false)
                 }
                 if exporting {
@@ -261,7 +368,7 @@ struct MainViewBody: View {
                         .font(.system(size: compact ? 14 : 16))
                         .lineSpacing(6)
                         .foregroundStyle(p.ink)
-                        .padding(16)
+                        .padding(.top, 12)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 } else {
                     TextEditor(text: Binding(get: { state.text }, set: actions.setText))
@@ -269,8 +376,9 @@ struct MainViewBody: View {
                         .lineSpacing(6)
                         .foregroundStyle(p.ink)
                         .scrollContentBackground(.hidden)
-                        .padding(.horizontal, 11)
-                        .padding(.top, 9)
+                        .scrollIndicators(.hidden)
+                        .padding(.horizontal, -5)
+                        .padding(.top, 6)
                         .focused($editorFocused)
                         .accessibilityLabel(T.readingText(lang))
                         .accessibilityIdentifier("reading-editor")
@@ -289,45 +397,48 @@ struct MainViewBody: View {
                 Spacer()
                 Text(T.characterCount(state.text.count, lang)).monospacedDigit()
             }
-            .font(.system(size: 12))
-            .foregroundStyle(p.inkDim)
-            .padding(.horizontal, 16)
-            .padding(.vertical, 12)
+            .font(.system(size: 11))
+            .foregroundStyle(p.inkFaint)
+            .padding(.vertical, 13)
         }
-        .background(p.surface, in: RoundedRectangle(cornerRadius: 14))
-        .overlay {
-            RoundedRectangle(cornerRadius: 14)
-                .stroke(editorFocused ? p.seal.opacity(0.5) : p.line, lineWidth: 1)
+        .overlay(alignment: .bottom) {
+            Rectangle().fill(editorFocused ? p.seal.opacity(0.22) : p.line).frame(height: 0.5)
         }
     }
 
     private var voiceControls: some View {
-        Group {
-            if !compact {
-                HStack(spacing: 16) {
-                    voicePicker.disabled(busy || state.phase.isLive)
-                    Spacer(minLength: 0)
-                    speedControl
+        VStack(alignment: .leading, spacing: 16) {
+            HStack(spacing: 16) {
+                if showsEditor { voicePicker.disabled(busy || state.phase.isLive) }
+                speedDisclosure(.synthesis)
+                speedDisclosure(.playback)
+            }
+            .frame(maxWidth: .infinity)
+            if let expandedSpeedControl {
+                Group {
+                    switch expandedSpeedControl {
+                    case .synthesis: synthesisRateControl
+                    case .playback: speedControl
+                    }
                 }
-            } else {
-                VStack(alignment: .leading, spacing: 12) {
-                    voicePicker.disabled(busy || state.phase.isLive)
-                    speedControl
-                }
-                .frame(maxWidth: .infinity, alignment: .leading)
+                .frame(maxWidth: 320)
+                .frame(maxWidth: .infinity)
+                .transition(.opacity)
             }
         }
+        .frame(maxWidth: 380)
+        .frame(maxWidth: .infinity)
         .padding(.horizontal, inset)
-        .padding(.vertical, 16)
+        .padding(.bottom, 18)
     }
 
     private var voicePicker: some View {
         HStack(spacing: 8) {
-            Text(T.voice(lang)).font(.system(size: 12)).foregroundStyle(p.inkDim)
             if exporting {
                 Text(state.voiceLabel)
                     .font(.system(size: 12, weight: .medium))
                     .foregroundStyle(p.ink)
+                    .lineLimit(1)
                 Image(systemName: "chevron.down").font(.system(size: 9)).foregroundStyle(p.inkDim)
             } else if let control = state.voiceControl {
                 ProviderVoicePicker(
@@ -336,9 +447,11 @@ struct MainViewBody: View {
                     selection: Binding(get: { control.selectedVoiceID }, set: actions.setVoice),
                     sampleState: state.voiceSampleState,
                     toggleSample: actions.toggleVoiceSample,
-                    showsFieldLabel: false
+                    showsFieldLabel: false,
+                    maximumWidth: compact ? 120 : 220
                 )
-                .fixedSize()
+                .buttonStyle(.plain)
+                .font(.system(size: 12, weight: .medium))
                 .disabled(!control.canMutate)
             } else {
                 Button(T.configureVoice(lang), action: actions.openSettings)
@@ -347,10 +460,42 @@ struct MainViewBody: View {
                     .foregroundStyle(p.seal)
             }
         }
+        .frame(maxWidth: compact ? 120 : 220, alignment: .leading)
+    }
+
+    private func speedDisclosure(_ control: ReadingSpeedControl) -> some View {
+        let synthesis = control == .synthesis
+        let title = synthesis ? T.synthRate(lang) : T.playbackSpeed(lang)
+        let shortTitle = synthesis ? T.synthRateShort(lang) : T.playbackSpeedShort(lang)
+        let value = synthesis
+            ? state.voiceControl.map { String(format: "%+d%%", $0.rate.value) } ?? "—"
+            : String(format: "%g×", state.playbackSpeed)
+        let expanded = expandedSpeedControl == control
+        return Button {
+            withAnimation(reduceMotion ? .none : Motion.fade) {
+                expandedSpeedControl = expanded ? nil : control
+            }
+        } label: {
+            HStack(spacing: 5) {
+                Text(shortTitle).foregroundStyle(p.inkFaint)
+                Text(value).monospacedDigit().foregroundStyle(p.ink)
+                Image(systemName: expanded ? "chevron.up" : "chevron.down")
+                    .font(.system(size: 8, weight: .medium)).foregroundStyle(p.inkFaint)
+            }
+            .font(.system(size: 11))
+            .padding(.vertical, 8)
+            .contentShape(Rectangle())
+        }
+        .buttonStyle(.plain)
+        .disabled(synthesis && state.voiceControl == nil)
+        .help(title)
+        .accessibilityLabel(title)
+        .accessibilityValue(value)
+        .accessibilityIdentifier(synthesis ? "synthesis-rate-disclosure" : "playback-speed-disclosure")
     }
 
     private var speedControl: some View {
-        HStack(spacing: 8) {
+        VStack(alignment: .leading, spacing: 7) {
             Text(T.playbackSpeed(lang)).font(.system(size: 12)).foregroundStyle(p.inkDim)
             InkSlider.speed(
                 Binding(get: { state.playbackSpeed }, set: actions.setPlaybackSpeed),
@@ -359,89 +504,111 @@ struct MainViewBody: View {
                 resetTitle: T.resetSpeed(lang),
                 accessibilityLabel: T.playbackSpeed(lang)
             )
-            .frame(width: compact ? 240 : 168)
+            Text(T.playbackSpeedNote(lang)).font(.system(size: 10)).foregroundStyle(p.inkFaint)
         }
-        .fixedSize()
+        .frame(maxWidth: .infinity)
+    }
+
+    private var synthesisRateControl: some View {
+        VStack(alignment: .leading, spacing: 7) {
+            Text(T.synthRate(lang)).font(.system(size: 12)).foregroundStyle(p.inkDim)
+            if let control = state.voiceControl {
+                InkSlider.rate(
+                    Binding(get: { control.rate.value }, set: actions.setSynthesisRate),
+                    showsButtons: false,
+                    valueWidth: 36,
+                    accessibilityLabel: T.synthRate(lang)
+                )
+                .disabled(!control.canMutate)
+                .accessibilityIdentifier("synthesis-rate")
+            } else {
+                Text("—").font(.system(size: 11)).foregroundStyle(p.inkFaint).frame(height: 16)
+            }
+            Text(T.synthRateNextReadNote(lang)).font(.system(size: 10)).foregroundStyle(p.inkFaint)
+        }
+        .frame(maxWidth: .infinity)
     }
 
     private var readingAction: some View {
         HStack(spacing: 12) {
             if busy {
-                if exporting {
-                    Image(systemName: "waveform").foregroundStyle(p.seal)
-                } else {
-                    ProgressView().controlSize(.small)
+                if historyOpen {
+                    Text(T.synthesizing(lang))
+                        .font(.system(size: 12))
+                        .foregroundStyle(p.inkDim)
                 }
-                Text(T.synthesizing(lang))
-                    .font(.system(size: 12))
-                    .foregroundStyle(p.inkDim)
-                Spacer(minLength: 0)
                 Button(T.cancel(lang), action: actions.stop)
                     .buttonStyle(.plain)
-                    .font(.system(size: 12, weight: .medium)).foregroundStyle(p.ink)
-                    .padding(.horizontal, 12).padding(.vertical, 9)
-                    .background(p.surface, in: RoundedRectangle(cornerRadius: 8))
+                    .font(.system(size: 12, weight: .medium)).foregroundStyle(p.inkDim)
+                    .padding(.vertical, 9)
             } else {
-                Text("⌘ ↵").font(.system(size: 12, weight: .medium)).foregroundStyle(p.inkFaint)
-                Spacer()
-                SealButton(title: T.speak(lang), enabled: canSpeak, action: actions.speak)
+                SealButton(title: T.speak(lang), enabled: canSpeak, foreground: p.bg, systemImage: "play.fill", action: actions.speak)
                     .accessibilityIdentifier("read-aloud")
             }
         }
+        .frame(maxWidth: .infinity)
+        .padding(.top, showsEditor ? 18 : 0)
         .padding(.horizontal, inset)
         .padding(.bottom, 20)
     }
 
     private var player: some View {
-        VStack(spacing: 14) {
-            HStack(spacing: 10) {
-                Waveform(active: state.phase == .playing, color: p.seal)
-                Text(state.phase == .playing ? T.nowReading(lang) : T.paused(lang))
-                    .font(.system(size: 12, weight: .medium))
-                    .foregroundStyle(p.ink)
-                Spacer()
-                Text("\(fmt(state.position)) / \(fmt(state.duration))")
-                    .font(.system(size: 11)).monospacedDigit().foregroundStyle(p.inkDim)
-            }
-            GeometryReader { geometry in
-                ZStack(alignment: .leading) {
-                    Capsule().fill(p.ink.opacity(0.10))
-                    Capsule().fill(p.seal).frame(width: geometry.size.width * progress)
+        VStack(spacing: 16) {
+            VStack(spacing: 7) {
+                GeometryReader { geometry in
+                    ZStack(alignment: .leading) {
+                        Capsule().fill(p.ink.opacity(0.08))
+                        Capsule().fill(p.inkDim).frame(width: geometry.size.width * progress)
+                    }
+                    .frame(height: 2).frame(maxHeight: .infinity)
+                }.frame(height: 2)
+                HStack {
+                    Text(fmt(state.position))
+                    Spacer()
+                    Text(fmt(state.duration))
                 }
             }
-            .frame(height: 4)
-            HStack(spacing: 8) {
+            .font(.system(size: 10)).monospacedDigit().foregroundStyle(p.inkFaint)
+
+            HStack(spacing: 20) {
                 GhostIcon(systemName: "gobackward.10") { actions.seek(-10) }
                     .help(T.backTen(lang)).accessibilityLabel(T.backTen(lang))
                 Button(action: actions.togglePause) {
-                    Label(state.phase == .playing ? T.pause(lang) : T.resume(lang),
-                          systemImage: state.phase == .playing ? "pause.fill" : "play.fill")
-                        .font(.system(size: 13, weight: .semibold))
-                        .foregroundStyle(p.seal)
-                        .padding(.horizontal, 12).padding(.vertical, 9)
-                        .background(p.seal.opacity(0.10), in: RoundedRectangle(cornerRadius: 9))
+                    Image(systemName: state.phase == .playing ? "pause.fill" : "play.fill")
+                        .font(.system(size: 16, weight: .semibold))
+                        .offset(x: state.phase == .playing ? 0 : 1)
+                        .foregroundStyle(p.bg)
+                        .frame(width: 44, height: 44)
+                        .background(p.seal, in: Circle())
+                        .brightness(playbackHovered ? 0.045 : 0)
                 }
-                .buttonStyle(.plain)
+                .buttonStyle(PressScale())
+                .onHover { playbackHovered = $0 }
+                .animation(reduceMotion ? .none : Motion.fade, value: playbackHovered)
                 .keyboardShortcut(.return, modifiers: .command)
+                .help(state.phase == .playing ? T.pause(lang) : T.resume(lang))
+                .accessibilityLabel(state.phase == .playing ? T.pause(lang) : T.resume(lang))
+                .accessibilityIdentifier("playback-toggle")
                 GhostIcon(systemName: "goforward.10") { actions.seek(10) }
                     .help(T.forwardTen(lang)).accessibilityLabel(T.forwardTen(lang))
-                Spacer(minLength: 0)
-                Button(T.stop(lang), action: actions.stop)
-                    .buttonStyle(.plain).font(.system(size: 12)).foregroundStyle(p.inkDim)
             }
-            HStack {
-                Spacer()
-                Button(action: actions.saveAudio) {
-                    Label(T.saveAudio(lang), systemImage: "square.and.arrow.down")
-                }
-                .buttonStyle(.plain).font(.system(size: 12)).foregroundStyle(p.inkDim)
+            .frame(maxWidth: .infinity)
+            .overlay(alignment: .leading) {
+                GhostIcon(systemName: "stop.fill", action: actions.stop)
+                    .opacity(0.55)
+                    .help(T.stop(lang)).accessibilityLabel(T.stop(lang))
+            }
+            .overlay(alignment: .trailing) {
+                GhostIcon(systemName: "square.and.arrow.down", action: actions.saveAudio)
+                    .opacity(0.55)
+                    .help(T.saveAudio(lang)).accessibilityLabel(T.saveAudio(lang))
             }
         }
-        .padding(16)
-        .background(p.surface, in: RoundedRectangle(cornerRadius: 14))
-        .overlay(RoundedRectangle(cornerRadius: 14).stroke(p.line, lineWidth: 1))
+        .frame(maxWidth: 380)
+        .frame(maxWidth: .infinity)
         .padding(.horizontal, inset)
-        .padding(.bottom, 20)
+        .padding(.top, showsEditor ? 18 : 2)
+        .padding(.bottom, 10)
     }
 
     private var progress: Double {
@@ -452,5 +619,19 @@ struct MainViewBody: View {
     private func fmt(_ seconds: Double) -> String {
         guard seconds.isFinite, seconds >= 0 else { return "0:00" }
         return String(format: "%d:%02d", Int(seconds) / 60, Int(seconds) % 60)
+    }
+}
+
+private struct LiveThinkingOrb: View {
+    let mode: ThinkingOrbMode
+    let running: Bool
+    let reducedMotion: Bool
+    @ObservedObject var clock: ThinkingOrbClock
+    @State private var visible = false
+
+    var body: some View {
+        ThinkingOrb(mode: mode, level: 0, running: running && visible, reducedMotion: reducedMotion, clock: clock)
+            .onAppear { visible = true }
+            .onDisappear { visible = false; clock.setRunning(false) }
     }
 }

@@ -4,7 +4,7 @@
 
 A native macOS text-to-speech app for reading editor text, clipboard content, or the current selection aloud.
 
-当前版本：`0.2.21 (23)` · 最低系统：macOS 14
+当前版本：`0.2.30 (32)` · 最低系统：macOS 14
 
 ## 功能 / Features
 

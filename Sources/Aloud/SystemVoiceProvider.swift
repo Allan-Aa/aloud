@@ -145,6 +145,8 @@ private final class SystemSpeechBufferWriteState: @unchecked Sendable {
     private var file: FileHandle?
     private var nativeFormat: NativeAudioFormat?
     private var streamSignature: SystemPCMStreamSignature?
+    private var inputFormat: AVAudioFormat?
+    private var pcmConverter: AVAudioConverter?
     private var completed = false
     private var started = false
     private var cancellationRequested = false
@@ -192,7 +194,28 @@ private final class SystemSpeechBufferWriteState: @unchecked Sendable {
                 file = nil
                 result = cancellationRequested ? .failure(CancellationError()) : .success(nativeFormat)
             } else {
-                let parsed = try SystemPCMStreamSignature(buffer: buffer)
+                if let inputFormat {
+                    guard inputFormat.isEqual(buffer.format) else { throw SystemVoiceProviderError.nativeWriteFailed }
+                } else {
+                    inputFormat = buffer.format
+                }
+                let pcm: AVAudioPCMBuffer
+                if buffer.format.commonFormat == .pcmFormatFloat32 {
+                    guard let format = AVAudioFormat(commonFormat: .pcmFormatInt16,
+                                                     sampleRate: buffer.format.sampleRate,
+                                                     channels: buffer.format.channelCount, interleaved: true),
+                          let converted = AVAudioPCMBuffer(pcmFormat: format, frameCapacity: buffer.frameLength) else {
+                        throw SystemVoiceProviderError.nativeWriteFailed
+                    }
+                    if pcmConverter == nil { pcmConverter = AVAudioConverter(from: buffer.format, to: format) }
+                    guard let pcmConverter else { throw SystemVoiceProviderError.nativeWriteFailed }
+                    try pcmConverter.convert(to: converted, from: buffer)
+                    guard converted.frameLength == buffer.frameLength else { throw SystemVoiceProviderError.nativeWriteFailed }
+                    pcm = converted
+                } else {
+                    pcm = buffer
+                }
+                let parsed = try SystemPCMStreamSignature(buffer: pcm)
                 if let streamSignature {
                     guard streamSignature == parsed else { throw SystemVoiceProviderError.nativeWriteFailed }
                 } else {
@@ -203,7 +226,7 @@ private final class SystemSpeechBufferWriteState: @unchecked Sendable {
                     }
                     file = try FileHandle(forWritingTo: destination)
                 }
-                try file?.write(contentsOf: parsed.frameData(from: buffer))
+                try file?.write(contentsOf: parsed.frameData(from: pcm))
                 sawFrames = true
                 result = nil
             }

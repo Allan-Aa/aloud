@@ -29,21 +29,25 @@ struct Waveform: View {
 /// 按下缩放必须走 ButtonStyle。别在 Button 上挂 onLongPressGesture 做这件事——
 /// 两个手势会打架,点击被吞掉,而且是时好时坏的那种(实测踩过)。
 struct PressScale: ButtonStyle {
+    @Environment(\.accessibilityReduceMotion) private var reduceMotion
     func makeBody(configuration: Configuration) -> some View {
         configuration.label
-            .scaleEffect(configuration.isPressed ? 0.96 : 1)
-            .animation(Motion.snap, value: configuration.isPressed)
+            .scaleEffect(!reduceMotion && configuration.isPressed ? 0.985 : 1)
+            .animation(reduceMotion ? .none : Motion.snap, value: configuration.isPressed)
     }
 }
 
-/// 主按钮。按下有 0.96 缩放,这是唯一一处 scale 反馈——用多了就廉价。
+/// 主操作使用统一高度和轻微按压反馈。
 struct SealButton: View {
     var title: String
     var busy: Bool = false
     var enabled: Bool = true
+    var foreground: Color = .white
+    var systemImage: String? = nil
     var action: () -> Void
 
     @Environment(\.palette) private var p
+    @State private var hovering = false
 
     var body: some View {
         Button(action: action) {
@@ -51,20 +55,26 @@ struct SealButton: View {
                 if busy {
                     ProgressView()
                         .controlSize(.small)
-                        .tint(.white)
+                        .tint(foreground)
+                }
+                if let systemImage, !busy {
+                    Image(systemName: systemImage).font(.system(size: 10, weight: .semibold)).accessibilityHidden(true)
                 }
                 Text(title)
-                    .font(.system(size: 13, weight: .semibold))
+                    .font(.system(size: 12, weight: .medium))
             }
-            .foregroundStyle(enabled ? .white : p.inkFaint)
-            .padding(.horizontal, 18)
-            .padding(.vertical, 9)
+            .foregroundStyle(enabled ? foreground : p.inkFaint)
+            .padding(.horizontal, 15)
+            .frame(height: 36)
             .background(
-                // 禁用态别用半透明朱砂——在深色底上会脏成砖红。改成中性底。
-                Capsule().fill(enabled ? p.seal : p.ink.opacity(0.08))
+                RoundedRectangle(cornerRadius: 9, style: .continuous)
+                    .fill(enabled ? p.seal : p.ink.opacity(0.045))
             )
         }
         .buttonStyle(PressScale())
+        .brightness(hovering && enabled && !busy ? 0.045 : 0)
+        .onHover { hovering = $0 }
+        .animation(Motion.fade, value: hovering)
         .focusEffectDisabled()
         .keyboardShortcut(.return, modifiers: .command)   // ⌘↩ 直接朗读,手不用离开键盘
         .disabled(!enabled || busy)
@@ -243,13 +253,14 @@ extension InkSlider {
     }
 
     /// 合成语速:−50%–+100%,5% 一档
-    static func rate(_ binding: Binding<Int>, valueWidth: CGFloat = 46,
+    static func rate(_ binding: Binding<Int>, showsButtons: Bool = true, valueWidth: CGFloat = 46,
                      accessibilityLabel: String = "Synthesis rate") -> InkSlider {
         InkSlider(
             value: Binding(get: { Double(binding.wrappedValue) },
                            set: { binding.wrappedValue = Int($0.rounded()) }),
             range: -50...100, step: 5,
             format: { $0 >= 0 ? "+\(Int($0))%" : "\(Int($0))%" },
+            showsButtons: showsButtons,
             accessibilityLabel: accessibilityLabel,
             valueWidth: valueWidth
         )

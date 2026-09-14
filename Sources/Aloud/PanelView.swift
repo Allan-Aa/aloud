@@ -12,17 +12,19 @@ struct PanelView: View {
 
 struct PanelPreviewView: View {
     let state: PanelViewState
+    var expandedSpeedControl: ReadingSpeedControl? = nil
 
     var body: some View {
         MainPreviewView(
             state: MainViewState(
-                text: state.text, phase: state.phase, voiceControl: nil,
+                text: state.text, phase: state.phase, voiceControl: PreviewSceneCatalog.readerVoiceControl,
                 voiceSampleState: .idle, voiceLabel: state.voiceLabel,
                 playbackSpeed: state.playbackSpeed,
                 position: state.position, duration: state.duration, history: [], toast: state.toast
             ),
             historyOpen: false,
-            compact: true
+            compact: true,
+            expandedSpeedControl: expandedSpeedControl
         )
         .frame(width: 420)
     }

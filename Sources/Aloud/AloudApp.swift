@@ -16,8 +16,10 @@ struct AloudApp: App {
 
         Window("念", id: "main") {
             MainView(engine: Engine.shared)
+                .preferredColorScheme(.dark)
         }
-        .defaultSize(width: 720, height: 620)
+        .windowStyle(.hiddenTitleBar)
+        .defaultSize(width: 520, height: 620)
 
         Settings {
             SettingsView(

@@ -29,6 +29,7 @@ extension EnvironmentValues {
 enum T {
     // 主窗口
     static let appName        = Str(zh: "念", en: "Aloud")
+    static let readyToRead    = Str(zh: "准备朗读", en: "Ready to read")
     static let speak          = Str(zh: "开始朗读", en: "Read aloud")
     static let synthesizing   = Str(zh: "正在生成语音…", en: "Preparing audio…")
     static let placeholder    = Str(zh: "在这里输入，或按 ⌘V 粘贴文字…",
@@ -36,6 +37,8 @@ enum T {
     static let editorTitle    = Str(zh: "把文字，交给声音。", en: "Give your words a voice.")
     static let editorSubtitle = Str(zh: "文章、笔记、灵感，放在这里慢慢听。", en: "A place to listen to articles, notes and ideas.")
     static let readingText    = Str(zh: "朗读文本", en: "Text to read")
+    static let editReadingText = Str(zh: "编辑正文", en: "Edit text")
+    static let showPlayer = Str(zh: "返回播放器", en: "Back to player")
     static let pasteText      = Str(zh: "粘贴文本", en: "Paste text")
     static let clipboardEmpty = Str(zh: "剪贴板里没有文字", en: "No text on the clipboard")
     static let settings       = Str(zh: "设置", en: "Settings")
@@ -73,7 +76,10 @@ enum T {
     static let panelIdleHint  = Str(zh: "选中任意文字，按 ⌃` 开读",
                                     en: "Select text anywhere, then press ⌃`")
     static let synthRate      = Str(zh: "合成语速", en: "Synthesis rate")
-    static let playbackSpeed  = Str(zh: "语速", en: "Speed")
+    static let playbackSpeed  = Str(zh: "播放倍速", en: "Playback speed")
+    static let playbackSpeedNote = Str(zh: "立即生效", en: "Applies immediately")
+    static let synthRateShort = Str(zh: "语速", en: "Speech")
+    static let playbackSpeedShort = Str(zh: "倍速", en: "Speed")
     static let resetSpeed     = Str(zh: "恢复 1×", en: "Reset to 1×")
     static let readSelection  = Str(zh: "⌃` 读选中", en: "⌃` read selection")
     static let quit           = Str(zh: "退出", en: "Quit")

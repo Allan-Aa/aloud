@@ -26,8 +26,7 @@ struct HistoryPanel: View {
                 list
             }
         }
-        .background(p.ink.opacity(0.03))
-        .overlay(alignment: .top) { Rectangle().fill(p.line).frame(height: 1) }
+        .overlay(alignment: .top) { Rectangle().fill(p.line).frame(height: 0.5).padding(.horizontal, 28) }
     }
 
     private var trigger: some View {

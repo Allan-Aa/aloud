@@ -759,6 +759,7 @@ struct ProviderVoicePicker: View {
     let sampleState: VoiceSamplePlaybackState
     let toggleSample: (ProviderID, VoiceID) -> Void
     var showsFieldLabel = true
+    var maximumWidth: CGFloat = 280
     @State private var isPresented = false
     @State private var query = ""
 
@@ -787,7 +788,7 @@ struct ProviderVoicePicker: View {
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
-                .frame(maxWidth: 280, alignment: .trailing)
+                .frame(maxWidth: maximumWidth, alignment: .trailing)
             }
             .accessibilityLabel(Self.accessibilityLabel(voices: voices, selection: selection))
             .popover(isPresented: $isPresented, arrowEdge: .bottom) {
