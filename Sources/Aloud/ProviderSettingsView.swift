@@ -560,6 +560,7 @@ struct ProviderSettingsView<DetailFooter: View>: View {
     let actions: ProviderSettingsViewActions
     let voiceSampleState: VoiceSamplePlaybackState
     let beginCredentialAction: (ProviderID, ProviderCredentialOperation) -> Void
+    @State private var serviceSettingsPresented = false
     private let detailFooter: DetailFooter
 
     init(
@@ -585,47 +586,25 @@ struct ProviderSettingsView<DetailFooter: View>: View {
     }
 
     var body: some View {
-        HStack(spacing: 0) {
-            ProviderSidebar(items: presentation.sidebar, selectedProviderID: $selectedProviderID).frame(width: 132)
-            Divider()
-            Group {
-                if exporting {
-                    detail
-                } else {
-                    ScrollView { detail.settingsOverlayScroller() }
-                }
+        Group {
+            if exporting {
+                detail
+            } else {
+                ScrollView { detail.settingsOverlayScroller() }
             }
-            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
         }
-        .frame(minWidth: 600, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity, alignment: .top)
+        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 300, maxHeight: .infinity, alignment: .topLeading)
     }
 
     private var detail: some View {
         VStack(alignment: .leading, spacing: 8) {
             if state.recoveryMode { Text(state.recoveryMessage).font(.caption).foregroundStyle(.orange) }
-            ProviderDetail(card: state.card(selectedProviderID), presentation: presentation.detail, exporting: exporting, drafts: drafts, actions: actions, voiceSampleState: voiceSampleState, beginCredentialAction: beginCredentialAction)
+            ProviderDetail(card: state.card(selectedProviderID), presentation: presentation.detail, exporting: exporting, selectedProviderID: $selectedProviderID, serviceSettingsPresented: $serviceSettingsPresented, drafts: drafts, actions: actions, voiceSampleState: voiceSampleState, beginCredentialAction: beginCredentialAction)
             detailFooter
-        }.padding(18)
-    }
-}
-
-private struct ProviderSidebar: View {
-    let items: [ProviderSidebarPresentation]
-    @Binding var selectedProviderID: ProviderID
-    var body: some View {
-        VStack(alignment: .leading, spacing: 4) {
-            ForEach(items) { item in
-                Button { selectedProviderID = item.id } label: {
-                    HStack(spacing: 6) {
-                        Circle().fill(item.isEnabled ? .green : .orange).frame(width: 6, height: 6)
-                        Text(item.title).font(.system(size: 12, weight: .medium)).fixedSize(horizontal: true, vertical: false)
-                        Spacer(minLength: 4)
-                        if item.isDefault { Text("默认").font(.caption2) }
-                    }.padding(.horizontal, 8).padding(.vertical, 8)
-                }.buttonStyle(.plain).background(selectedProviderID == item.id ? Color.primary.opacity(0.08) : .clear).clipShape(RoundedRectangle(cornerRadius: 6))
-            }
-            Spacer()
-        }.padding(8)
+            ProviderConnectionSummary(card: state.card(selectedProviderID), presentation: presentation.detail, serviceSettingsPresented: $serviceSettingsPresented)
+        }
+        .padding(.horizontal, 28)
+        .padding(.vertical, 26)
     }
 }
 
@@ -633,12 +612,35 @@ struct ProviderDetail: View {
     let card: ProviderCardState
     let presentation: ProviderDetailPresentation
     let exporting: Bool
+    @Binding var selectedProviderID: ProviderID
+    @Binding var serviceSettingsPresented: Bool
     @ObservedObject var drafts: CredentialDraftState
     let actions: ProviderSettingsViewActions
     let voiceSampleState: VoiceSamplePlaybackState
     let beginCredentialAction: (ProviderID, ProviderCredentialOperation) -> Void
     @Environment(\.lang) private var lang
-    @State private var advancedVoiceSettingsExpanded = false
+
+    init(
+        card: ProviderCardState,
+        presentation: ProviderDetailPresentation,
+        exporting: Bool,
+        selectedProviderID: Binding<ProviderID>? = nil,
+        serviceSettingsPresented: Binding<Bool>? = nil,
+        drafts: CredentialDraftState,
+        actions: ProviderSettingsViewActions,
+        voiceSampleState: VoiceSamplePlaybackState,
+        beginCredentialAction: @escaping (ProviderID, ProviderCredentialOperation) -> Void
+    ) {
+        self.card = card
+        self.presentation = presentation
+        self.exporting = exporting
+        _selectedProviderID = selectedProviderID ?? .constant(card.id)
+        _serviceSettingsPresented = serviceSettingsPresented ?? .constant(false)
+        self.drafts = drafts
+        self.actions = actions
+        self.voiceSampleState = voiceSampleState
+        self.beginCredentialAction = beginCredentialAction
+    }
 
     private var providerWorking: Bool {
         if case .working = drafts.status[card.id] { return true }
@@ -655,100 +657,238 @@ struct ProviderDetail: View {
             : "API Key"
     }
 
-    private var previewCredentialFieldText: String {
-        switch credentialStatus {
-        case .configured: return "API Key 已安全保存在系统钥匙串"
-        case .working: return presentation.credentialMessage
-        case .missing, .blocked, .saveFailed: return "请输入 API Key 后保存"
+    var body: some View {
+        VStack(alignment: .leading, spacing: 0) {
+            voiceHeader
+            divider
+            serviceRow
+            divider
+            if let selection = card.selection {
+                rateControl(selection)
+            }
+            if !card.isDefault {
+                HStack(spacing: 12) {
+                    Text(lang == .zh ? "正在查看此服务的设置" : "Viewing this provider")
+                        .font(.system(size: 10)).foregroundStyle(.secondary)
+                    Spacer(minLength: 0)
+                    Button(lang == .zh ? "用于朗读" : "Use for reading") { actions.setDefault(card.id) }
+                        .buttonStyle(SettingsButtonStyle(prominent: true))
+                        .disabled(!ProviderSettingsPersistenceGate.canSetDefault(card))
+                }.padding(.top, 14)
+            }
         }
+        .sheet(isPresented: $serviceSettingsPresented) { serviceSettingsSheet }
     }
 
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            HStack { Text(presentation.title).font(.headline); Spacer(); Text(presentation.status).foregroundStyle(.secondary) }
-            if !card.isDefault { Button("设为默认") { actions.setDefault(card.id) }.disabled(!ProviderSettingsPersistenceGate.canSetDefault(card)) }
-            if let selection = card.selection {
-                Picker("模型", selection: Binding(get: { selection.modelID }, set: { actions.updateSelection(replacing(selection, modelID: $0)) })) {
-                    ForEach(presentation.models) { Text($0.title).tag($0.id) }
-                }
-                .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
-                if !presentation.voices.isEmpty {
+    private var voiceHeader: some View {
+        VStack(alignment: .leading, spacing: 6) {
+            Text(lang == .zh ? "朗读声音" : "Voice")
+                .font(.system(size: 12)).foregroundStyle(.secondary)
+            HStack(alignment: .center, spacing: 10) {
+                if !presentation.voices.isEmpty, let selection = card.selection {
                     ProviderVoicePicker(
-                        voices: presentation.voices,
-                        providerID: card.id,
+                        voices: presentation.voices, providerID: card.id,
                         selection: Binding(
                             get: { selection.voiceID ?? presentation.voices[0].id },
                             set: { actions.updateSelection(replacing(selection, voiceID: $0)) }
-                        ),
-                        sampleState: voiceSampleState,
-                        toggleSample: actions.toggleVoiceSample
+                        ), sampleState: voiceSampleState, toggleSample: actions.toggleVoiceSample,
+                        showsFieldLabel: false, maximumWidth: 210
                     )
+                    .font(.system(size: 22, weight: .regular))
                     .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
+                } else {
+                    Text(presentation.title).font(.system(size: 22, weight: .regular))
                 }
-                DisclosureGroup(T.advancedVoiceSettings(lang), isExpanded: $advancedVoiceSettingsExpanded) {
-                    VStack(alignment: .leading, spacing: 6) {
-                        if exporting {
-                            Text("\(T.synthRate(lang))：\(selection.rate.value)")
-                        } else {
-                            Stepper("\(T.synthRate(lang))：\(selection.rate.value)", value: Binding(get: { selection.rate.value }, set: { value in
-                                guard let rate = NormalizedRate(version: selection.rate.version, value: value) else { return }
-                                actions.updateSelection(replacing(selection, rate: rate))
-                            }), in: -100...100)
-                            .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
-                        }
-                        Text(T.synthRateNextReadNote(lang))
-                            .font(.caption)
-                            .foregroundStyle(.secondary)
+                Spacer(minLength: 4)
+                Button {
+                    guard let voiceID = card.selection?.voiceID else { return }
+                    actions.toggleVoiceSample(card.id, voiceID)
+                } label: {
+                    Image(systemName: sampleIcon)
+                        .frame(width: 26, height: 26)
+                }
+                .buttonStyle(.plain)
+                .help(sampleActionTitle)
+                .accessibilityLabel(sampleActionTitle)
+                .disabled(providerWorking || !ProviderSettingsPersistenceGate.canSynthesize(card))
+            }
+            Text(voiceDescription)
+                .font(.system(size: 11)).foregroundStyle(.secondary)
+            if card.previewBillingNotice != nil {
+                Text(lang == .zh ? "音色样音可能产生少量可计费用量" : "Voice samples may incur a small usage charge")
+                    .font(.system(size: 10)).foregroundStyle(.secondary)
+            }
+        }
+        .padding(.bottom, 20)
+    }
+
+    private var serviceRow: some View {
+        HStack {
+            Text(lang == .zh ? "语音服务" : "Provider").font(.system(size: 13))
+            Spacer()
+            Menu {
+                ForEach([ProviderID.minimax, .openAI, .gemini, .macOS], id: \.self) { id in
+                    Button {
+                        // 浏览服务设置不会修改默认朗读服务。
+                        selectedProviderID = id
+                    } label: {
+                        Text(id == card.id ? "\(providerName(id))  ✓" : providerName(id))
                     }
-                    .padding(.top, 4)
+                }
+            } label: {
+                HStack(spacing: 5) {
+                    Text(presentation.title).font(.system(size: 12, weight: .medium))
+                    if card.isDefault { Text(lang == .zh ? "当前使用" : "In use").foregroundStyle(.secondary) }
+                    Image(systemName: "chevron.down").font(.system(size: 9))
                 }
             }
-            if card.authRoutes.contains(.manualAPIKey) {
-                HStack {
-                    if exporting {
-                        Text(previewCredentialFieldText)
-                            .foregroundStyle(.secondary)
-                            .frame(maxWidth: .infinity, alignment: .leading)
-                            .padding(.horizontal, 8).padding(.vertical, 6)
-                            .background(RoundedRectangle(cornerRadius: 6).fill(.primary.opacity(0.06)))
-                    } else {
-                        SecureField(credentialPrompt, text: Binding(get: { drafts.draft(for: card.id) }, set: { drafts.setDraft($0, for: card.id) })).textFieldStyle(.roundedBorder).disabled(providerWorking)
-                    }
-                    Button("保存") { beginCredentialAction(card.id, .manualSave) }
-                        .disabled(providerWorking || card.synthesisBlockedReason != nil || !card.persistenceActionsEnabled || drafts.draft(for: card.id).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
-                }
-                if !exporting {
-                    Text(drafts.recentSuccessSource[card.id]?.message(lang) ?? "API Key 将安全保存在系统钥匙串")
-                        .font(.caption)
-                        .foregroundStyle(.secondary)
-                }
-            }
+            .menuStyle(.borderlessButton)
+            .menuIndicator(.hidden)
+            .fixedSize()
+        }
+        .padding(.vertical, 18)
+    }
+
+    private func rateControl(_ selection: ProviderSelection) -> some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack { Text(lang == .zh ? "朗读语速" : "Reading rate").font(.system(size: 13)); Spacer() }
+            InkSlider.rate(
+                Binding(get: { selection.rate.value }, set: { value in
+                    guard let rate = NormalizedRate(version: selection.rate.version, value: value) else { return }
+                    actions.updateSelection(replacing(selection, rate: rate))
+                }), showsButtons: false, valueWidth: 38, accessibilityLabel: lang == .zh ? "朗读语速（百分比）" : "Reading rate (percent)"
+            )
+            .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
+            Text(T.synthRateNextReadNote(lang)).font(.system(size: 10)).foregroundStyle(.secondary)
+        }
+        .padding(.vertical, 18)
+    }
+
+    private var serviceSettingsSheet: some View {
+        VStack(alignment: .leading, spacing: 0) {
             HStack {
-                if card.authRoutes.contains(.onePasswordImport) {
-                    Button(card.configuration == .configured ? "从 1Password 更新" : "从 1Password 导入") { beginCredentialAction(card.id, .onePasswordImport) }
-                        .disabled(providerWorking || card.synthesisBlockedReason != nil)
+                VStack(alignment: .leading, spacing: 3) {
+                    Text(presentation.title).font(.title3.weight(.semibold))
+                    Text(presentation.status).font(.caption).foregroundStyle(.secondary)
                 }
-                Button("试听") { actions.preview(card.id) }.disabled(providerWorking || !ProviderSettingsPersistenceGate.canSynthesize(card))
-                if card.actions.contains(.confirmDisclosure) { Button("确认 AI 语音披露并试听") { actions.confirmDisclosureAndPreview() }.disabled(providerWorking || card.synthesisBlockedReason != nil) }
+                Spacer()
+                Button(lang == .zh ? "完成" : "Done") { serviceSettingsPresented = false }
+                    .buttonStyle(.plain)
             }
-            if let disclosure = card.disclosure { Text(disclosure).font(.caption) }
-            if let billing = card.billingNotice { Text(billing).font(.caption) }
-            if let notice = card.previewBillingNotice { Text(notice).font(.caption) }
-            DisclosureGroup("技术详情") {
-                VStack(alignment: .leading, spacing: 4) {
-                    Text(presentation.technicalDetails)
-                    Text("目录来源：\(card.catalogSource)\(card.catalogFetchedAt.map { " · \($0.formatted())" } ?? "")")
-                    ForEach(AccountCatalogPresentationDimension.allCases, id: \.self) { dimension in
-                        if let account = card.accountCatalogPresentation[dimension] {
-                            Text("账户目录 \(dimension.rawValue)：\(account.authoritySource ?? "未知") · \(account.coverage.rawValue) · \(account.contractVersion.rawValue)\(account.fetchedAt.map { " · \($0.formatted())" } ?? "")")
+            .padding(.bottom, 18)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 18) {
+                    if let selection = card.selection {
+                        Picker(lang == .zh ? "模型" : "Model", selection: Binding(get: { selection.modelID }, set: { actions.updateSelection(replacing(selection, modelID: $0)) })) {
+                            ForEach(presentation.models) { Text($0.title).tag($0.id) }
                         }
+                        .disabled(providerWorking || !ProviderSettingsPersistenceGate.canMutateSelection(card))
                     }
-                }.font(.caption2).textSelection(.enabled)
+                    credentialControls
+                    Divider()
+                    Button(lang == .zh ? "测试服务连接" : "Test service connection") { actions.preview(card.id) }
+                        .buttonStyle(SettingsButtonStyle())
+                        .disabled(providerWorking || !ProviderSettingsPersistenceGate.canSynthesize(card))
+                    if card.actions.contains(.confirmDisclosure) {
+                        Button(lang == .zh ? "确认 AI 语音披露并测试" : "Acknowledge AI voice disclosure and test") {
+                            actions.confirmDisclosureAndPreview()
+                        }
+                        .buttonStyle(SettingsButtonStyle())
+                        .disabled(providerWorking || card.synthesisBlockedReason != nil)
+                    }
+                    if let disclosure = card.disclosure { Text(disclosure).font(.caption) }
+                    if let billing = card.billingNotice { Text(billing).font(.caption).foregroundStyle(.secondary) }
+                    if let notice = card.previewBillingNotice { Text("\(lang == .zh ? "服务测试" : "Service test")：\(notice)").font(.caption).foregroundStyle(.secondary) }
+                    DisclosureGroup(lang == .zh ? "技术详情" : "Technical details") {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(presentation.technicalDetails)
+                            Text("\(lang == .zh ? "目录来源" : "Catalog source")：\(card.catalogSource)\(card.catalogFetchedAt.map { " · \($0.formatted())" } ?? "")")
+                            ForEach(AccountCatalogPresentationDimension.allCases, id: \.self) { dimension in
+                                if let account = card.accountCatalogPresentation[dimension] {
+                                    Text("\(lang == .zh ? "账户目录" : "Account catalog") \(dimension.rawValue)：\(account.authoritySource ?? (lang == .zh ? "未知" : "Unknown")) · \(account.coverage.rawValue) · \(account.contractVersion.rawValue)\(account.fetchedAt.map { " · \($0.formatted())" } ?? "")")
+                                }
+                            }
+                        }.font(.caption2).textSelection(.enabled)
+                    }
+                }
+            }
+        }
+        .padding(24).frame(width: 420, height: 510, alignment: .topLeading)
+    }
+
+    @ViewBuilder private var credentialControls: some View {
+        if card.authRoutes.contains(.manualAPIKey) {
+            VStack(alignment: .leading, spacing: 8) {
+                SecureField(credentialPrompt, text: Binding(get: { drafts.draft(for: card.id) }, set: { drafts.setDraft($0, for: card.id) }))
+                    .textFieldStyle(.roundedBorder).disabled(providerWorking)
+                HStack {
+                Button(lang == .zh ? "保存 API Key" : "Save API key") { beginCredentialAction(card.id, .manualSave) }
+                    .buttonStyle(SettingsButtonStyle(prominent: true))
+                    .disabled(providerWorking || card.synthesisBlockedReason != nil || !card.persistenceActionsEnabled || drafts.draft(for: card.id).trimmingCharacters(in: .whitespacesAndNewlines).isEmpty)
+                    if card.authRoutes.contains(.onePasswordImport) {
+                        Button(card.configuration == .configured ? (lang == .zh ? "从 1Password 更新" : "Update from 1Password") : (lang == .zh ? "从 1Password 导入" : "Import from 1Password")) { beginCredentialAction(card.id, .onePasswordImport) }
+                            .disabled(providerWorking || card.synthesisBlockedReason != nil)
+                    }
+                }
+                Text(drafts.recentSuccessSource[card.id]?.message(lang) ?? "API Key 将安全保存在系统钥匙串")
+                    .font(.caption).foregroundStyle(.secondary)
             }
         }
     }
+
+    private var voiceDescription: String {
+        guard let voiceID = card.selection?.voiceID,
+              let voice = presentation.voices.first(where: { $0.id == voiceID }) else { return presentation.status }
+        return Locale(identifier: lang == .zh ? "zh" : "en").localizedString(forIdentifier: voice.languageTag) ?? voice.languageTag
+    }
+
+    private var sampleIcon: String {
+        guard let voiceID = card.selection?.voiceID,
+              let active = voiceSampleState.activeIdentity,
+              active.providerID == card.id, active.stableVoiceID == voiceID else { return "play" }
+        switch voiceSampleState {
+        case .generating: return "hourglass"
+        case .playing: return "stop.fill"
+        case .failed: return "exclamationmark.triangle"
+        case .idle: return "play"
+        }
+    }
+
+    private var sampleActionTitle: String {
+        sampleIcon == "stop.fill" ? (lang == .zh ? "停止音色样音" : "Stop voice sample") : (lang == .zh ? "试听当前音色" : "Preview this voice")
+    }
+
+    private var divider: some View { Divider().opacity(0.7) }
+
+    private func providerName(_ id: ProviderID) -> String {
+        switch id { case .minimax: return "MiniMax"; case .openAI: return "OpenAI"; case .gemini: return "Gemini"; case .macOS: return "macOS"; default: return "Provider" }
+    }
     private func replacing(_ selection: ProviderSelection, modelID: ModelID? = nil, voiceID: VoiceID? = nil, rate: NormalizedRate? = nil) -> ProviderSelection {
         ProviderSelection(providerID: selection.providerID, modelID: modelID ?? selection.modelID, voiceID: voiceID ?? selection.voiceID, rate: rate ?? selection.rate)
+    }
+}
+
+private struct ProviderConnectionSummary: View {
+    let card: ProviderCardState
+    let presentation: ProviderDetailPresentation
+    @Binding var serviceSettingsPresented: Bool
+    @Environment(\.lang) private var lang
+
+    private var color: Color {
+        card.configuration == .configured && card.synthesisBlockedReason == nil ? .green : .orange
+    }
+
+    var body: some View {
+        HStack(spacing: 8) {
+            Circle().fill(color).frame(width: 5, height: 5)
+            Text("\(presentation.title) · \(presentation.status)")
+                .font(.system(size: 11)).foregroundStyle(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
+            Spacer()
+            Button(lang == .zh ? "服务设置 ›" : "Service settings ›") { serviceSettingsPresented = true }
+                .buttonStyle(.plain).font(.system(size: 11, weight: .medium))
+        }
+        .padding(.top, 16)
     }
 }
 
@@ -788,8 +928,9 @@ struct ProviderVoicePicker: View {
                         .font(.caption2)
                         .foregroundStyle(.secondary)
                 }
-                .frame(maxWidth: maximumWidth, alignment: .trailing)
+                .frame(maxWidth: maximumWidth, alignment: showsFieldLabel ? .trailing : .leading)
             }
+            .buttonStyle(.plain)
             .accessibilityLabel(Self.accessibilityLabel(voices: voices, selection: selection))
             .popover(isPresented: $isPresented, arrowEdge: .bottom) {
                 ProviderVoicePickerPopover(

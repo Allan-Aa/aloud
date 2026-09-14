@@ -4,32 +4,95 @@ import AppKit
 // 入口在 main.swift(要分流导出模式),所以这里不能有 @main
 struct AloudApp: App {
     @NSApplicationDelegateAdaptor(AppDelegate.self) private var delegate
+    @StateObject private var readerRoute = ReaderWindowRoute()
 
     var body: some Scene {
         // 菜单栏常驻。.window 样式=左键弹面板,跟旧版 Electron 的迷你播放器对齐。
         MenuBarExtra {
             PanelView(engine: Engine.shared)
+                .environmentObject(readerRoute)
         } label: {
             TrayLabel()
         }
         .menuBarExtraStyle(.window)
 
         Window("念", id: "main") {
-            MainView(engine: Engine.shared)
-                .preferredColorScheme(.dark)
+            ReaderWindowLayout(route: readerRoute) {
+                MainView(engine: Engine.shared, settingsRoute: readerRoute)
+            } settings: {
+                SettingsView(engine: Engine.shared,
+                    credentialIngress: AppCompositionRoot.live.credentialIngress,
+                    systemVoices: AppCompositionRoot.live.systemVoices,
+                    embedded: true, onClose: readerRoute.dismiss)
+            }
+            .preferredColorScheme(.light)
         }
         .windowStyle(.hiddenTitleBar)
-        .defaultSize(width: 520, height: 620)
-
-        Settings {
-            SettingsView(
-                engine: Engine.shared,
-                credentialIngress: AppCompositionRoot.live.credentialIngress,
-                systemVoices: AppCompositionRoot.live.systemVoices
-            )
+        .defaultSize(width: 610, height: 666)
+        .commands {
+            CommandGroup(replacing: .appSettings) {
+                Button("设置…") {
+                    readerRoute.present()
+                    AppDelegate.backToDock()
+                    AppDelegate.openMain?()
+                }
+                .keyboardShortcut(",", modifiers: .command)
+            }
         }
-        .defaultSize(width: 640, height: 480)
-        .windowResizability(.contentSize)
+    }
+}
+
+@MainActor
+final class ReaderWindowRoute: ObservableObject {
+    @Published var isSettingsPresented = false
+
+    func present() { isSettingsPresented = true }
+    func dismiss() { isSettingsPresented = false }
+}
+
+/// Keeps settings in the existing reader window so closing it preserves text and playback.
+struct ReaderWindowLayout<Reader: View, SettingsContent: View>: View {
+    @ObservedObject var route: ReaderWindowRoute
+    private let reader: Reader
+    private let settings: SettingsContent
+
+    init(route: ReaderWindowRoute, @ViewBuilder reader: () -> Reader, @ViewBuilder settings: () -> SettingsContent) {
+        self.route = route
+        self.reader = reader()
+        self.settings = settings()
+    }
+
+    var body: some View {
+        HStack(spacing: 0) {
+            reader.frame(width: 610)
+            if route.isSettingsPresented {
+                Rectangle().fill(Palette.reader.line).frame(width: 0.5)
+                settings.frame(width: 350).frame(maxHeight: .infinity)
+                    .transition(.opacity)
+            }
+        }
+        .frame(width: route.isSettingsPresented ? 960.5 : 610)
+        .frame(minHeight: 666)
+        .background(Palette.reader.bg)
+        .background(ReaderWindowSizer(width: route.isSettingsPresented ? 960.5 : 610))
+        .preferredColorScheme(.light)
+    }
+}
+
+/// SwiftUI updates the content constraints, but AppKit keeps a manually resized window width.
+/// Resize only the width on sidebar changes and preserve the user's current height.
+private struct ReaderWindowSizer: NSViewRepresentable {
+    let width: CGFloat
+
+    func makeNSView(context: Context) -> NSView { NSView() }
+
+    func updateNSView(_ view: NSView, context: Context) {
+        DispatchQueue.main.async {
+            guard let window = view.window else { return }
+            let current = window.contentView?.bounds.size ?? window.contentRect(forFrameRect: window.frame).size
+            guard abs(current.width - width) > 0.5 else { return }
+            window.setContentSize(NSSize(width: width, height: max(666, current.height)))
+        }
     }
 }
 

@@ -40,7 +40,7 @@ final class PreviewRenderingTests: XCTestCase {
         XCTAssertEqual(try XCTUnwrap(scenes["EN-06-panel-paused-1.25×"]).playbackSpeed, 1.25)
     }
 
-    func testProviderSettingsPreviewPNGsAreExactly640By480() throws {
+    func testProviderSettingsPreviewPNGsAreExactly350By666() throws {
         let sink = RecordingScreenshotSink()
         try ScreenshotExporter().export(sceneFactory: { PreviewSceneCatalog.all }, sink: sink)
 
@@ -56,15 +56,15 @@ final class PreviewRenderingTests: XCTestCase {
         XCTAssertEqual(providerShots.count, 5)
         for (_, png) in providerShots {
             let image = try XCTUnwrap(NSBitmapImageRep(data: png))
-            XCTAssertEqual(image.pixelsWide, 640)
-            XCTAssertEqual(image.pixelsHigh, 480)
+            XCTAssertEqual(image.pixelsWide, 350)
+            XCTAssertEqual(image.pixelsHigh, 666)
         }
     }
 
     func testVoiceSettingsUsesOneConfiguredDetailScrollViewAtItsIntrinsicContentSize() throws {
         let host = try hostedSettings(named: "08-设置-语音-MiniMax-浅色")
 
-        XCTAssertEqual(host.fittingSize, NSSize(width: 640, height: 480))
+        XCTAssertEqual(host.fittingSize, NSSize(width: 350, height: 666))
         host.layoutSubtreeIfNeeded()
         RunLoop.main.run(until: Date().addingTimeInterval(0.01))
 
@@ -106,7 +106,7 @@ final class PreviewRenderingTests: XCTestCase {
         host.layoutSubtreeIfNeeded()
         RunLoop.main.run(until: Date().addingTimeInterval(0.01))
 
-        XCTAssertTrue(descendantViews(in: host).compactMap { $0 as? NSPopUpButton }.isEmpty)
+        XCTAssertEqual(descendantViews(in: host).compactMap { $0 as? NSPopUpButton }.count, 1, "Only the provider menu is native; voice selection remains searchable")
         let sections = ProviderVoicePickerCatalog.sections(voices: presentation.detail.voices, query: "我的")
         XCTAssertEqual(sections.map(\.title), ["我的克隆"])
         XCTAssertEqual(sections.flatMap(\.options).map(\.id), [selectedVoiceID])
@@ -117,7 +117,7 @@ final class PreviewRenderingTests: XCTestCase {
     func testHotkeysSettingsUsesOneConfiguredOuterScrollViewAtItsIntrinsicContentSize() throws {
         let host = try hostedSettings(named: "13-设置-快捷键")
 
-        XCTAssertEqual(host.fittingSize, NSSize(width: 640, height: 480))
+        XCTAssertEqual(host.fittingSize, NSSize(width: 350, height: 666))
         host.layoutSubtreeIfNeeded()
         RunLoop.main.run(until: Date().addingTimeInterval(0.01))
 
@@ -174,6 +174,8 @@ final class PreviewRenderingTests: XCTestCase {
             "25-菜单栏-倍速展开",
             "EN-09-panel-speech-expanded",
             "26-主窗口-播放时编辑正文",
+            "27-主窗口-侧边设置",
+            "28-主窗口-播放与设置",
         ])
         XCTAssertTrue(sink.payloads.allSatisfy { data in
             Array(data.prefix(8)) == [0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A]

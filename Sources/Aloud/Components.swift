@@ -118,8 +118,8 @@ struct InkSlider: View {
     var resetTitle: String? = nil
     var accessibilityLabel: String = ""
     var valueWidth: CGFloat = 50
-    var trackHeight: CGFloat = 4
-    var knob: CGFloat = 12
+    var trackHeight: CGFloat = 1
+    var knob: CGFloat = 8
 
     @Environment(\.palette) private var p
     @State private var dragging = false
@@ -168,9 +168,8 @@ struct InkSlider: View {
                             .offset(x: max(0, min(w - 3, w * (point - range.lowerBound) / span - 1.5)))
                     }
                     Circle()
-                        .fill(.white)
+                        .fill(p.seal)
                         .frame(width: dragging ? knob + 2 : knob, height: dragging ? knob + 2 : knob)
-                        .shadow(color: .black.opacity(0.22), radius: 1.5, y: 0.5)
                         .overlay(Circle().stroke(p.ink.opacity(0.10), lineWidth: 0.5))
                         .offset(x: max(0, min(w - knob, x - knob / 2)))
                 }

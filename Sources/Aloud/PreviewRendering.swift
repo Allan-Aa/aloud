@@ -189,6 +189,7 @@ struct PreviewScene {
     let content: PreviewContent
     var expandedSpeedControl: ReadingSpeedControl? = nil
     var showingReaderText = false
+    var settingsSidebar: SettingsViewState? = nil
 }
 
 @MainActor
@@ -198,7 +199,7 @@ enum PreviewSceneCatalog {
         let sampleEN = "A moment for yourself\n\nSlow down a little. Rest your eyes and let the words continue."
         let panelText = sample
 
-        return [
+        let scenes = [
             main("01-主窗口-空闲-浅色", .light),
             main("02-主窗口-空闲-深色", .dark),
             main("03-主窗口-合成中", .dark, text: sample, phase: .synthesizing),
@@ -246,13 +247,35 @@ enum PreviewSceneCatalog {
             main("26-主窗口-播放时编辑正文", .dark, text: sample, phase: .playing, position: 28,
                  showingReaderText: true),
         ]
+        let settingsState = scenes.compactMap { scene -> SettingsViewState? in
+            if case let .settings(state) = scene.content, scene.name == "08-设置-语音-MiniMax-浅色" { return state }
+            return nil
+        }.first
+        let combined = scenes.filter { ["01-主窗口-空闲-浅色", "04-主窗口-播放中-浅色"].contains($0.name) }.enumerated().map { index, scene in
+            PreviewScene(name: index == 0 ? "27-主窗口-侧边设置" : "28-主窗口-播放与设置",
+                         colorScheme: .light, language: .zh, content: scene.content,
+                         settingsSidebar: settingsState)
+        }
+        return scenes + combined
     }
 
     private static let defaultVoice = "minimax:Chinese (Mandarin)_Radio_Host|default"
     static var readerVoiceControl: ProviderVoiceControlState? {
-        guard let state = try? ProviderSettingsState.fixture() else { return nil }
+        let state = previewProviderState
         return ProviderSettingsPresenter.voiceControl(state: state, providerID: .minimax, systemVoices: [], language: .zh)
     }
+    static var previewProviderState: ProviderSettingsState {
+        let voiceID = VoiceID(rawValue: "minimax.dynamic.1d4f9f64d50f443e805eb51ed2aac42c5b421636abcf3ac20a3f98091ad8fda5")
+        var prefs = PrefsV1.defaults
+        prefs.selections[.minimax] = ProviderSelection(providerID: .minimax, modelID: MiniMaxWireContractV1.modelID,
+            voiceID: voiceID, rate: NormalizedRate(version: MiniMaxRateMappingV1.version, value: 15)!)
+        return try! ProviderSettingsState.build(prefs: prefs,
+            credentialConfigurations: [.minimax: .configured, .openAI: .configured, .gemini: .configured, .macOS: .configured],
+            health: [:], recoveryMode: false,
+            accountCoverage: [.minimax: [.voice: .authoritativeComplete]],
+            availableVoices: [.minimax: [.init(stableID: voiceID, wireID: "Chinese (Mandarin)_Gentle_Senior", displayName: "Gentle Senior", kind: .system)]])
+    }
+
     private static let previewSystemVoices = [
         SystemVoiceDescriptor(identifier: "preview.voice.yunxi", name: "云希", language: "zh-CN"),
         SystemVoiceDescriptor(identifier: "preview.voice.samantha", name: "Samantha", language: "en-US")
@@ -279,7 +302,7 @@ enum PreviewSceneCatalog {
                     phase: phase,
                     voiceControl: readerVoiceControl,
                     voiceSampleState: .idle,
-                    voiceLabel: Voices.label(defaultVoice, language),
+                    voiceLabel: "Gentle Senior",
                     playbackSpeed: 1,
                     position: position,
                     duration: 64,
@@ -330,7 +353,7 @@ enum PreviewSceneCatalog {
                         BinaryStatus(name: "ffprobe", path: "/opt/homebrew/bin/ffprobe", isExecutable: true),
                         BinaryStatus(name: "edge-tts", path: "/opt/homebrew/bin/edge-tts", isExecutable: true),
                     ],
-                    providerSettings: providerSettings ?? (try! ProviderSettingsState.fixture()),
+                    providerSettings: providerSettings ?? previewProviderState,
                     selectedProviderID: selectedProviderID,
                     credentialStatuses: credentialStatuses,
                     systemVoices: systemVoices
@@ -493,22 +516,48 @@ struct ScreenshotExporter {
         let content: AnyView
         switch scene.content {
         case let .main(state, historyOpen):
-            content = AnyView(MainPreviewView(state: state, historyOpen: historyOpen, expandedSpeedControl: scene.expandedSpeedControl, showingText: scene.showingReaderText)
-                .frame(width: 520, height: scene.expandedSpeedControl == nil ? 620 : 720))
+            let reader = MainPreviewView(state: state, historyOpen: historyOpen, expandedSpeedControl: scene.expandedSpeedControl, showingText: scene.showingReaderText)
+                .frame(width: 610, height: scene.expandedSpeedControl == nil ? 666 : 720)
+            if let settings = scene.settingsSidebar {
+                content = AnyView(HStack(spacing: 0) {
+                    reader
+                    Palette.reader.line.frame(width: 0.5)
+                    SettingsPreviewView(state: settings, embedded: true)
+                }.frame(height: 666))
+            } else {
+                content = AnyView(reader)
+            }
         case let .settings(state):
             content = AnyView(SettingsPreviewView(state: state))
         case let .panel(state):
             content = AnyView(PanelPreviewView(state: state, expandedSpeedControl: scene.expandedSpeedControl))
         }
 
+        let nativeSettings: Bool
+        if case .settings = scene.content { nativeSettings = true } else { nativeSettings = scene.settingsSidebar != nil }
+        if nativeSettings {
+            let host = NSHostingView(rootView: content
+                .environment(\.colorScheme, .light).environment(\.lang, scene.language))
+            host.setFrameSize(host.fittingSize)
+            host.layoutSubtreeIfNeeded()
+            guard let bitmap = NSBitmapImageRep(bitmapDataPlanes: nil,
+                pixelsWide: Int(ceil(host.bounds.width)), pixelsHigh: Int(ceil(host.bounds.height)),
+                bitsPerSample: 8, samplesPerPixel: 4, hasAlpha: true, isPlanar: false,
+                colorSpaceName: .deviceRGB, bytesPerRow: 0, bitsPerPixel: 0) else {
+                throw ScreenshotExportError.imageRenderingFailed(scene.name)
+            }
+            bitmap.size = host.bounds.size
+            host.cacheDisplay(in: host.bounds, to: bitmap)
+            guard let png = bitmap.representation(using: .png, properties: [:]) else {
+                throw ScreenshotExportError.pngEncodingFailed(scene.name)
+            }
+            return png
+        }
+
         let renderer = ImageRenderer(content: content
             .environment(\.colorScheme, scene.colorScheme)
             .environment(\.lang, scene.language))
-        if case .settings = scene.content {
-            renderer.scale = 1
-        } else {
-            renderer.scale = 2
-        }
+        renderer.scale = 2
         guard let image = renderer.nsImage,
               let tiff = image.tiffRepresentation,
               let representation = NSBitmapImageRep(data: tiff) else {

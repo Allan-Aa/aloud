@@ -12,14 +12,15 @@ enum ReadingSpeedControl: Equatable, Sendable {
 
 struct MainView: View {
     @ObservedObject var engine: Engine
-    @Environment(\.openSettings) private var openSettings
     @Environment(\.openWindow) private var openWindow
+    var settingsRoute: ReaderWindowRoute? = nil
     @State private var historyOpen: Bool
     let compact: Bool
 
-    init(engine: Engine, historyOpen: Bool = false, compact: Bool = false) {
+    init(engine: Engine, historyOpen: Bool = false, compact: Bool = false, settingsRoute: ReaderWindowRoute? = nil) {
         self.compact = compact
         self.engine = engine
+        self.settingsRoute = settingsRoute
         _historyOpen = State(initialValue: historyOpen)
     }
 
@@ -69,7 +70,9 @@ struct MainView: View {
                 dismissToast: { engine.toast = nil },
                 openSettings: {
                     NSApp.activate(ignoringOtherApps: true)
-                    openSettings()
+                    settingsRoute?.present()
+                    AppDelegate.backToDock()
+                    openWindow(id: "main")
                 },
                 openMain: {
                     AppDelegate.backToDock()
@@ -82,6 +85,29 @@ struct MainView: View {
         .onAppear {
             AppDelegate.openMain = { openWindow(id: "main") }
             if !compact { AppDelegate.backToDock() }
+        }
+    }
+}
+
+/// A restrained, deterministic waveform replaces the previous decorative particle sphere.
+private struct ReaderWaveform: View {
+    let isAnimating: Bool
+    @Environment(\.palette) private var p
+
+    private let heights: [CGFloat] = [7, 14, 22, 11, 27, 16, 9, 20, 13, 6]
+
+    var body: some View {
+        TimelineView(.animation(minimumInterval: isAnimating ? 0.28 : 60, paused: !isAnimating)) { context in
+            let phase = isAnimating ? context.date.timeIntervalSinceReferenceDate : 0
+            HStack(spacing: 4) {
+                ForEach(Array(heights.enumerated()), id: \.offset) { index, height in
+                    Capsule()
+                        .fill(p.ink.opacity(0.68))
+                        .frame(width: 1, height: max(5, height + (isAnimating ? CGFloat(sin(phase * 4 + Double(index)) * 4) : 0)))
+                }
+            }
+            .frame(height: 30, alignment: .center)
+            .accessibilityHidden(true)
         }
     }
 }
@@ -154,17 +180,7 @@ struct MainViewBody: View {
     @Environment(\.accessibilityReduceMotion) private var reduceMotion
     @FocusState private var editorFocused: Bool
     @State private var playbackHovered = false
-    @StateObject private var orbClock = ThinkingOrbClock()
-
-    // The reading surface intentionally owns this graphite palette. Settings and
-    // the rest of the app keep the existing paper/ink theme.
-    private var p: Palette {
-        Palette(
-            bg: Color(0x141719), surface: Color(0x1C2022),
-            ink: Color(0xEEEEE9), inkDim: Color(0xABB3AF), inkFaint: Color(0x969E9B),
-            seal: Color(0xD7E4DD), line: Color(0x2D3333)
-        )
-    }
+    private let p = Palette.reader
     private var inset: CGFloat { compact ? 24 : 28 }
     private var busy: Bool { state.phase == .synthesizing }
     private var canSpeak: Bool { !state.text.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
@@ -174,7 +190,11 @@ struct MainViewBody: View {
         VStack(spacing: 0) {
             header
             if showsEditor {
-                if !historyOpen { readingStatus }
+                if !historyOpen {
+                    if !compact && state.phase == .idle {
+                        Color.clear.frame(height: 62).accessibilityHidden(true)
+                    } else { readingStatus }
+                }
                 editor.padding(.horizontal, inset)
             } else {
                 listeningHero
@@ -226,12 +246,12 @@ struct MainViewBody: View {
                 )
             }
         }
-        .frame(minWidth: compact ? 420 : 520, minHeight: compact ? nil : (expandedSpeedControl == nil ? 620 : 720))
+        .frame(minWidth: compact ? 420 : 610, minHeight: compact ? nil : (expandedSpeedControl == nil ? 666 : 720))
         .frame(maxWidth: .infinity, maxHeight: compact ? nil : .infinity)
         .background(p.bg.ignoresSafeArea())
         .environment(\.palette, p)
-        .environment(\.colorScheme, .dark)
-        .tint(p.seal)
+        .environment(\.colorScheme, .light)
+        .tint(p.ink)
         .onAppear { if !exporting && showsEditor { editorFocused = true } }
         .onChange(of: state.phase) { old, new in
             if old == .idle && new == .synthesizing {
@@ -243,7 +263,7 @@ struct MainViewBody: View {
 
     private var header: some View {
         HStack {
-            Text(T.appName(lang))
+            Text("Aloud")
                 .font(.system(size: 18, weight: .medium))
                 .tracking(0.3)
                 .foregroundStyle(p.ink)
@@ -270,10 +290,8 @@ struct MainViewBody: View {
 
     private var readingStatus: some View {
         HStack(spacing: 12) {
-            orb.frame(width: 40, height: 40)
-
             Text(statusLabel)
-                .font(.system(size: 12))
+                .font(.system(size: 11))
                 .foregroundStyle(p.inkDim)
             Spacer(minLength: 0)
         }
@@ -284,54 +302,24 @@ struct MainViewBody: View {
         .accessibilityLabel(statusLabel)
     }
 
-    private var orb: some View {
-        Group {
-            if exporting {
-                ParticleSphereFrame(mode: orbMode, time: staticOrbTime, level: 0)
-            } else {
-                LiveThinkingOrb(mode: orbMode, running: state.phase != .paused, reducedMotion: reduceMotion, clock: orbClock)
-            }
-        }
-        .accessibilityHidden(true)
-    }
-
     private var listeningHero: some View {
         VStack(spacing: 0) {
-            HStack(spacing: 6) {
-                Circle().fill(p.seal).frame(width: 4, height: 4)
-                Text(statusLabel).font(.system(size: 11)).foregroundStyle(p.inkFaint)
-            }
-            .padding(.top, 8)
-            orb.frame(width: 176, height: 176).padding(.top, 10)
-            Text(state.text.split(separator: "\n", maxSplits: 1).first.map(String.init) ?? T.readingText(lang))
-                .font(.system(size: 20, weight: .medium))
-                .foregroundStyle(p.ink)
-                .multilineTextAlignment(.center)
-                .lineLimit(2)
-                .frame(maxWidth: 320)
-                .padding(.top, 5)
+            Spacer(minLength: compact ? 12 : 48)
             Text(state.voiceLabel)
-                .font(.system(size: 12)).foregroundStyle(p.inkFaint)
-                .padding(.top, 9)
-            if let excerpt = state.text.split(separator: "\n", maxSplits: 1).dropFirst().first {
-                Text(excerpt.trimmingCharacters(in: .whitespacesAndNewlines))
-                    .font(.system(size: 13)).lineSpacing(5)
-                    .foregroundStyle(p.inkDim).multilineTextAlignment(.center)
-                    .lineLimit(2).frame(maxWidth: 300)
-                    .padding(.top, 20)
-            }
+                .font(.system(size: compact ? 24 : 35, weight: .regular))
+                .foregroundStyle(p.ink)
+                .lineLimit(1)
+                .multilineTextAlignment(.center)
+            ReaderWaveform(isAnimating: state.phase == .playing && !reduceMotion)
+                .padding(.top, 22)
+            Text(statusLabel)
+                .font(.system(size: 11)).foregroundStyle(p.inkFaint)
+                .padding(.top, 12)
+            Spacer(minLength: compact ? 12 : 48)
         }
         .frame(maxWidth: .infinity)
+        .frame(maxHeight: .infinity)
         .padding(.horizontal, inset)
-        .padding(.bottom, 25)
-    }
-
-    private var orbMode: ThinkingOrbMode {
-        switch state.phase {
-        case .idle: .breathe
-        case .synthesizing: .rings
-        case .playing, .paused: .vortex
-        }
     }
 
     private var statusLabel: String {
@@ -343,36 +331,27 @@ struct MainViewBody: View {
         }
     }
 
-    // Export previews are deterministic and never read live engine or clock state.
-    private var staticOrbTime: Double {
-        switch state.phase {
-        case .idle: 0
-        case .synthesizing: 1.4
-        case .playing: 2.8
-        case .paused: 0.8
-        }
-    }
 
     private var editor: some View {
         VStack(spacing: 0) {
             ZStack(alignment: .topLeading) {
                 if state.text.isEmpty {
                     Text(T.placeholder(lang))
-                        .font(.system(size: compact ? 14 : 16))
+                        .font(.system(size: compact ? 14 : 25))
                         .foregroundStyle(p.inkFaint)
                         .padding(.top, 12)
                         .allowsHitTesting(false)
                 }
                 if exporting {
                     Text(state.text)
-                        .font(.system(size: compact ? 14 : 16))
+                        .font(.system(size: compact ? 14 : 25))
                         .lineSpacing(6)
                         .foregroundStyle(p.ink)
                         .padding(.top, 12)
                         .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
                 } else {
                     TextEditor(text: Binding(get: { state.text }, set: actions.setText))
-                        .font(.system(size: compact ? 14 : 16))
+                        .font(.system(size: compact ? 14 : 25))
                         .lineSpacing(6)
                         .foregroundStyle(p.ink)
                         .scrollContentBackground(.hidden)

@@ -10,8 +10,7 @@ extension Color {
     }
 }
 
-/// 三色系统,和 app 图标同源:宣纸(底)、墨(字)、朱砂(唯一强调色)。
-/// 强调色只用在"正在发生的事"上——播放中的波形、录入焦点、主按钮。别处一律墨色。
+/// Shared application colors; the reader and settings use the monochrome palette.
 struct Palette {
     let bg: Color          // 窗口底
     let surface: Color     // 卡片/输入区
@@ -20,6 +19,11 @@ struct Palette {
     let inkFaint: Color    // 占位符、分隔
     let seal: Color        // 朱砂
     let line: Color        // 描边
+
+    static let reader = Palette(
+        bg: Color(0xFDFDFB), surface: Color(0xF5F5F2),
+        ink: Color(0x20201F), inkDim: Color(0x696966), inkFaint: Color(0x6D6D68),
+        seal: Color(0x262625), line: Color(0x252523, alpha: 0.10))
 
     static let paper = Palette(
         bg: Color(0xF6F5F2), surface: Color(0xFFFFFF),
@@ -35,7 +39,7 @@ struct Palette {
 }
 
 private struct PaletteKey: EnvironmentKey {
-    static let defaultValue = Palette.paper
+    static let defaultValue = Palette.reader
 }
 
 extension EnvironmentValues {
